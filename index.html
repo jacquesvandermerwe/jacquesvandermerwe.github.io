@@ -56,6 +56,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       }
 
       $.ajax(settings).done(function (response) {
+        alert(response['access_token']); 
+         
         $("#test").append(response + "<br/>");
         console.log(response);
       });
