@@ -75,9 +75,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#refreshToken").val(params.get("refreshToken"));
 
         var preview = new Box.Preview();
-        alert("Preview:" + $("#accessToken").val());
+        alert("Preview:" + obj.access_token);
+        $("#preview-container").show();
 
-        preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
+        preview.show(params.get("MessageAttribute.1.Value.StringValue"), obj.access_token, {
           container: '.preview-container',
           showDownload: false
         });
