@@ -21,6 +21,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link rel="stylesheet" href="css/j-forms.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+  <!-- Latest version of Box Content Preview for en-US locale -->
+  <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -57,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       $.ajax(settings).done(function (response) {
         var obj = JSON.parse(response);
-        
+
         $("#accessToken").val(obj.access_token);
         $("#refreshToken").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
@@ -189,6 +194,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <input type="text" id="refreshToken" name="refreshToken" value="">
             </div>
           </div>
+          <div class="preview-container" style="height:60%; width:100%;"></div>
+          <script>
+              var preview = new Box.Preview();
+              preview.show(params.get("MessageAttribute.2.Value.StringValue"), document.getElementById("accessToken").val, {
+                  container: '.preview-container',
+                  showDownload: true
+              });
+          </script>
         </div>
         <!-- end first row of fields -->
 
