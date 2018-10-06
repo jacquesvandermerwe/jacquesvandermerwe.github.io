@@ -197,8 +197,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="preview-container" style="height:60%; width:100%;"></div>
           <script>
               var preview = new Box.Preview();
-              alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + document.getElementById("accessToken").val);
-              preview.show(params.get("MessageAttribute.1.Value.StringValue"), document.getElementById("accessToken").val, {
+              alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
+              preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
                   container: '.preview-container',
                   showDownload: true
               });
