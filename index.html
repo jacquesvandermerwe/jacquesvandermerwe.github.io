@@ -249,12 +249,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
     <script>
-      var preview = new Box.Preview();
-      alert("Preview:" + $("#accessToken").val());
-      //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
-      preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
-        container: '.preview-container',
-        showDownload: false
+      $("#accessToken").change(function () {
+        alert("Accesstoken Changed:" + $("#accessToken").val());
+        var preview = new Box.Preview();
+        alert("Preview:" + $("#accessToken").val());
+        //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
+        preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
+          container: '.preview-container',
+          showDownload: false
+        });
       });
     </script>
     <p class="copy_rights" id='test'></p>
