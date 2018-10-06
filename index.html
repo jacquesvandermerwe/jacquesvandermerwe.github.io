@@ -195,15 +195,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <input type="text" id="refreshToken" name="refreshToken" value="">
             </div>
           </div>
-          <div id="preview-container" class="preview-container" style="height:60%; width:100%;" style="visibility: hidden" ></div>
-          <script>
-              var preview = new Box.Preview();
-              //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
-              preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
-                  container: '.preview-container',
-                  showDownload: true
-              });
-          </script>
+
         </div>
         <!-- end first row of fields -->
 
@@ -255,6 +247,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       </form>
     </div>
+    <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
+    <script>
+      var preview = new Box.Preview();
+      //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
+      preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
+        container: '.preview-container',
+        showDownload: true
+      });
+    </script>
     <p class="copy_rights" id='test'></p>
   </div>
 </body>
