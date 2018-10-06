@@ -73,6 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#fileId").val(params.get("fileId"));
       $("#accessToken").val(params.get("accessToken"));
       $("#refreshToken").val(params.get("refreshToken"));
+      $("#preview-container").show();
 
       params.get("MessageAttribute.1.Name");
       var transform = document.getElementById("transform");
@@ -194,7 +195,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               <input type="text" id="refreshToken" name="refreshToken" value="">
             </div>
           </div>
-          <div class="preview-container" style="height:60%; width:100%;"></div>
+          <div id="preview-container" class="preview-container" style="height:60%; width:100%;" style="visibility: hidden" ></div>
           <script>
               var preview = new Box.Preview();
               alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
