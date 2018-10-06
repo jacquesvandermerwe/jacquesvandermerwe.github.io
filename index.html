@@ -59,6 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         var obj = JSON.parse(response);
         
         $("#accessToken").val(obj.access_token);
+        $("#refresh_token").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
         //alert(obj.access_token);
       });
