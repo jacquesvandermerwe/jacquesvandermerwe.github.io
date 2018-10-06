@@ -66,7 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         $("#accessToken").val(obj.access_token);
         $("#refreshToken").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
-        //alert(obj.access_token);
+        alert($("#accessToken").val());
       });
 
       $("#authCode").val(params.get("authCode"));
@@ -198,7 +198,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div id="preview-container" class="preview-container" style="height:60%; width:100%;" style="visibility: hidden" ></div>
           <script>
               var preview = new Box.Preview();
-              alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
+              //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
               preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
                   container: '.preview-container',
                   showDownload: true
