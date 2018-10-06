@@ -40,12 +40,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       var form = new FormData();
       form.append("grant_type", "authorization_code");
-      form.append("code", params.get("accessToken"));
+      form.append("code", params.get("MessageAttribute.3.Value.StringValue"));
       form.append("client_id", "18rcz7p3g6jzmu08v5ad1cq70pj928kw");
       form.append("client_secret", "uIQGd76hrSdrOiyz1vTsceHoPWvQdd9x");
 
       var settings = {
-        "async": true,
+        "async": false,
         "crossDomain": true,
         "url": "https://api.box.com/oauth2/token",
         "method": "POST",
