@@ -73,7 +73,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#fileId").val(params.get("fileId"));
       $("#accessToken").val(params.get("accessToken"));
       $("#refreshToken").val(params.get("refreshToken"));
-      $("#preview-container").show();
+
+        var preview = new Box.Preview();
+        alert("Preview:" + $("#accessToken").val());
+
+        preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
+          container: '.preview-container',
+          showDownload: false
+        });
+
 
       params.get("MessageAttribute.1.Name");
       var transform = document.getElementById("transform");
@@ -248,18 +256,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </form>
     </div>
     <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
-    <script>
-      $("#accessToken").change(function () {
-        alert("Accesstoken Changed:" + $("#accessToken").val());
-        var preview = new Box.Preview();
-        alert("Preview:" + $("#accessToken").val());
-        //alert(params.get("MessageAttribute.1.Value.StringValue") + ":" + $("#accessToken").val());
-        preview.show(params.get("MessageAttribute.1.Value.StringValue"), $("#accessToken").val(), {
-          container: '.preview-container',
-          showDownload: false
-        });
-      });
-    </script>
+
     <p class="copy_rights" id='test'></p>
   </div>
 </body>
