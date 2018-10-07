@@ -37,7 +37,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     //get auth code and //ID
     //Send request to lamdba? or to EC2
     $(document).ready(function () {
-      var gaccessToken="";
+      var gaccessToken = "";
       var entries = params.entries();
       for (pair of entries) {
         $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
@@ -64,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         var obj = JSON.parse(response);
 
         $("#accessToken").val(obj.access_token);
-        gaccessToken=obj.access_token;
+        gaccessToken = obj.access_token;
         $("#refreshToken").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
         //alert($("#accessToken").val());
@@ -75,14 +75,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#accessToken").val(params.get("accessToken"));
       $("#refreshToken").val(params.get("refreshToken"));
 
-        var preview = new Box.Preview();
-        //alert("Preview:" + gaccessToken);
-        $("#preview-container").show();
+      var preview = new Box.Preview();
+      //alert("Preview:" + gaccessToken);
+      $("#preview-container").show();
 
-        preview.show(params.get("MessageAttribute.1.Value.StringValue"), gaccessToken, {
-          container: '.preview-container',
-          showDownload: false
-        });
+      preview.show(params.get("MessageAttribute.1.Value.StringValue"), gaccessToken, {
+        container: '.preview-container',
+        showDownload: false
+      });
 
 
       params.get("MessageAttribute.1.Name");
@@ -158,6 +158,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
       });
 
+      $("#submitbutton").on('click', function (e) {
+        //e.preventDefault();
+        alert("Button Clicked");
+        /*     $.ajax({
+                type: "POST",
+                url: "/pages/test/",
+                data: { 
+                    id: $(this).val(), // < note use of 'this' here
+                    access_token: $("#access_token").val() 
+                },
+                success: function(result) {
+                    alert('ok');
+                },
+                error: function(result) {
+                    alert('error');
+                }
+            }); */
+      });
 
     });
   </script>
@@ -250,29 +268,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="footer" id="foot">
           <button type="submit" class="primary-btn">Accept & Send</button>
         </div>
-        <script>
-        $("submitbutton").on('click',function(e) {
-    e.preventDefault();
-    alert("Button Clicked");
-/*     $.ajax({
-        type: "POST",
-        url: "/pages/test/",
-        data: { 
-            id: $(this).val(), // < note use of 'this' here
-            access_token: $("#access_token").val() 
-        },
-        success: function(result) {
-            alert('ok');
-        },
-        error: function(result) {
-            alert('error');
-        }
-    }); */
-});
-        </script>
+
         <div id="submit">
-            <button type="button" id="submitbutton" >Transcode</button>
-          </div>
+          <button type="button" id="submitbutton" name="submitbutton">Transcode</button>
+        </div>
         <div id="loader">
           <img src="images/ajax-loader-gif-1.gif" />
         </div>
