@@ -250,6 +250,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="footer" id="foot">
           <button type="submit" class="primary-btn">Accept & Send</button>
         </div>
+        <script>
+        $("submitbutton").click(function(e) {
+    e.preventDefault();
+    alert("Button Clicked");
+/*     $.ajax({
+        type: "POST",
+        url: "/pages/test/",
+        data: { 
+            id: $(this).val(), // < note use of 'this' here
+            access_token: $("#access_token").val() 
+        },
+        success: function(result) {
+            alert('ok');
+        },
+        error: function(result) {
+            alert('error');
+        }
+    }); */
+});
+        </script>
+        <div id="submit">
+            <button type="submit" id="submitbutton" >Transcode</button>
+          </div>
         <div id="loader">
           <img src="images/ajax-loader-gif-1.gif" />
         </div>
@@ -257,6 +280,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       </form>
     </div>
+
     <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
 
     <p class="copy_rights" id='test'></p>
