@@ -30,8 +30,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script>
-    var appId = '7rc8bv';
-    var url = 'http://ec2-35-177-122-120.eu-west-2.compute.amazonaws.com';
     var params = new URLSearchParams(window.location.search);
 
     //get auth code and //ID
@@ -90,73 +88,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       transform.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        var lang = $("#lang").val();
-        //Grab data from the HTML form
-        $.ajax({
-          method: 'get',
-          url: url,
-          data: {
-            authCode: params.get('auth'),
-            id: params.get('id'),
-            userId: params.get('userId'),
-            action: 'translate',
-            language: lang
-          },
-          crossDomain: true,
-          timeout: 120000,
-          dataType: 'jsonp',
-          cache: false,
-          beforeSend: function () {
-            $('#loader').show();
-            $("#foot").hide();
-          },
-          complete: function () {
-            $('#loader').hide();
-            $("#foot").show();
-          },
-          success: function (response) {
-            console.log("Success:" + response);
-            $("#transform").html('translation done and saved to your Box folder - close window');
-          },
-          error: function (err) {
-            console.log(JSON.stringify(err));
-            console.log("error:" + err.message);
-            $("#transform").html('translation done - close window');
-          }
-        });
       });
       $("#foot").hide();
-      $
-      $.ajax({
-        method: 'get',
-        url: url,
-        data: {
-          authCode: params.get('auth'),
-          id: params.get('id'),
-          userId: params.get('userId'),
-          action: 'detectLanguage'
-        },
-        crossDomain: true,
-        timeout: 120000,
-        dataType: 'jsonp',
-        cache: false,
-        beforeSend: function () {
-          $('#loader').show();
-        },
-        complete: function () {
-          $('#loader').hide();
-          $("#foot").show();
-        },
-        success: function (response) {
-          console.log(JSON.stringify(response));
-          $("#detected").html("Detected language: " + response);
-          $("#price").html("Estimated price: £4.50");
-        },
-        error: function (err) {
-          console.log(JSON.stringify(err));
-          console.log("error:" + err.message);
-        }
-      });
+
 
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
