@@ -95,20 +95,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
         alert("Button Clicked");
-        /*     $.ajax({
-                type: "POST",
-                url: "/pages/test/",
-                data: { 
-                    id: $(this).val(), // < note use of 'this' here
-                    access_token: $("#access_token").val() 
-                },
-                success: function(result) {
-                    alert('ok');
-                },
-                error: function(result) {
-                    alert('error');
-                }
-            }); */
+        var settingsSQS = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&Myvalue=1&auth_id=123&MessageBody=YadaYada",
+          "method": "POST",
+          "headers": {
+            "Cache-Control": "no-cache",
+            "Postman-Token": "6f224831-3705-4368-b80c-999decb811ca"
+          }
+        }
+
+        $.ajax(settingsSQS).done(function (response) {
+          console.log(response);
+        });
       });
 
     });
