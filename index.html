@@ -38,8 +38,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     //Send request to lamdba? or to EC2
     $(document).ready(function () {
       var gaccessToken = "";
-      var gfileId="";
-      var grefreshToken="";
+      var gfileId = "";
+      var grefreshToken = "";
 
       var entries = params.entries();
       for (pair of entries) {
@@ -68,8 +68,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         $("#accessToken").val(obj.access_token);
         gaccessToken = obj.access_token;
-        grefreshToken=obj.refresh_token;
-        gfileId=params.get("MessageAttribute.1.Value.StringValue");
+        grefreshToken = obj.refresh_token;
+        gfileId = params.get("MessageAttribute.1.Value.StringValue");
         $("#refreshToken").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
         //alert($("#accessToken").val());
@@ -104,9 +104,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         alert("Button Clicked");
 
         // Set the region 
-        AWS.config.update({
-          region: 'us-east-1'
-        });
+/*         AWS.config.update({
+          region: 'us-east-1',
+        }); */
+        AWS.config.loadFromPath('./config.json');
+
 
         // Create an SQS service object
         var sqs = new AWS.SQS({
