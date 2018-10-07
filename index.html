@@ -102,46 +102,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
         alert("Button Clicked");
-
-        // Set the region 
-/*         AWS.config.update({
-          region: 'us-east-1',
-        }); */
-        AWS.config.loadFromPath('./config.json');
-
-
-        // Create an SQS service object
-        var sqs = new AWS.SQS({
-          apiVersion: '2012-11-05'
-        });
-
-        var params = {
-          DelaySeconds: 10,
-          MessageAttributes: {
-            "accessToken": {
-              DataType: "String",
-              StringValue: gaccessToken
-            },
-            "refreshToken": {
-              DataType: "String",
-              StringValue: grefreshToken
-            },
-            "fileId": {
-              DataType: "String",
-              StringValue: gfileId
-            }
-          },
-          MessageBody: gaccessToken,
-          QueueUrl: "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue"
-        };
-
-        sqs.sendMessage(params, function (err, data) {
-          if (err) {
-            console.log("Error", err);
-          } else {
-            console.log("Success", data.MessageId);
+        var settingsSQS = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=fileId&MessageAttribute.1.Value.StringValue=" +
+            gfileId +
+            "&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=accessToken&MessageAttribute.2.Value.StringValue="+ gaccessToken + "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue="+ grefreshToken+ "&MessageBody=" + gfileId,
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Cache-Control": "no-cache"
           }
+        }
+
+        $.ajax(settingsSQS).done(function (response) {
+          console.log(response);
         });
+
+
 
       });
 
