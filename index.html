@@ -76,7 +76,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#refreshToken").val(params.get("refreshToken"));
 
         var preview = new Box.Preview();
-        alert("Preview:" + gaccessToken);
+        //alert("Preview:" + gaccessToken);
         $("#preview-container").show();
 
         preview.show(params.get("MessageAttribute.1.Value.StringValue"), gaccessToken, {
@@ -251,7 +251,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <button type="submit" class="primary-btn">Accept & Send</button>
         </div>
         <script>
-        $("submitbutton").click(function(e) {
+        $("submitbutton").on('click',function(e) {
     e.preventDefault();
     alert("Button Clicked");
 /*     $.ajax({
