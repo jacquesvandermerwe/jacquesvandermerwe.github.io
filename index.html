@@ -25,6 +25,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- Latest version of Box Content Preview for en-US locale -->
   <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
+  <!-- Load AWS JavaScript SDK -->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.329.0.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
@@ -36,6 +38,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     //Send request to lamdba? or to EC2
     $(document).ready(function () {
       var gaccessToken = "";
+      var gfileId="";
+      var grefreshToken="";
+
       var entries = params.entries();
       for (pair of entries) {
         $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
@@ -63,6 +68,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         $("#accessToken").val(obj.access_token);
         gaccessToken = obj.access_token;
+        grefreshToken=obj.refresh_token;
+        gfileId=params.get("MessageAttribute.1.Value.StringValue");
         $("#refreshToken").val(obj.refresh_token);
         $("#test").append(response + "<br/>");
         //alert($("#accessToken").val());
@@ -77,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       //alert("Preview:" + gaccessToken);
       $("#preview-container").show();
 
-      preview.show(params.get("MessageAttribute.1.Value.StringValue"), gaccessToken, {
+      preview.show(gfileId, gaccessToken, {
         container: '.preview-container',
         showDownload: false
       });
@@ -95,20 +102,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
         alert("Button Clicked");
-        var settingsSQS = {
-          "async": true,
-          "crossDomain": true,
-          "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&Myvalue=1&auth_id=123&MessageBody=YadaYada",
-          "method": "POST",
-          "headers": {
-            "Cache-Control": "no-cache",
-            "Postman-Token": "6f224831-3705-4368-b80c-999decb811ca"
-          }
-        }
-
-        $.ajax(settingsSQS).done(function (response) {
-          console.log(response);
+        // Load the AWS SDK for Node.js
+        var AWS = require('aws-sdk');
+        // Set the region 
+        AWS.config.update({
+          region: 'us-east-1'
         });
+
+        // Create an SQS service object
+        var sqs = new AWS.SQS({
+          apiVersion: '2012-11-05'
+        });
+
+        var params = {
+          DelaySeconds: 10,
+          MessageAttributes: {
+            "accessToken": {
+              DataType: "String",
+              StringValue: gaccessToken
+            },
+            "refreshToken": {
+              DataType: "String",
+              StringValue: grefreshToken
+            },
+            "fileId": {
+              DataType: "String",
+              StringValue: gfileId
+            }
+          },
+          MessageBody: gaccessToken,
+          QueueUrl: "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue"
+        };
+
+        sqs.sendMessage(params, function (err, data) {
+          if (err) {
+            console.log("Error", err);
+          } else {
+            console.log("Success", data.MessageId);
+          }
+        });
+
       });
 
     });
