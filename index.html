@@ -31,6 +31,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script language="javascript" type="text/javascript">
+    function windowClose() {
+    window.open('','_parent','');
+    window.close();
+    }
+    </script>
   <script>
     var params = new URLSearchParams(window.location.search);
 
@@ -235,6 +241,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div id="submit">
           <button type="button" id="submitbutton" name="submitbutton">Transcode</button>
         </div>
+        <input type="button" value="Close this window" onclick="windowClose();">
         <div id="loader">
           <img src="images/ajax-loader-gif-1.gif" />
         </div>
