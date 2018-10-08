@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           "crossDomain": true,
           "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=fileId&MessageAttribute.1.Value.StringValue=" +
             gfileId +
-<<<<<<< HEAD
+
             "&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=accessToken&MessageAttribute.2.Value.StringValue=" +
             gaccessToken +
             "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue=" +
@@ -116,11 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $("#duration").val() +
             "&MessageAttribute.5.Value.DataType=String&MessageAttribute.5.Name=starttime&MessageAttribute.5.Value.StringValue=" +
             toSeconds($("#starttime").val()),
-=======
-            "&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=accessToken&MessageAttribute.2.Value.StringValue="+ gaccessToken + "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue="+ grefreshToken+ "&MessageBody=" + gfileId + "&MessageAttribute.4.Value.DataType=String&MessageAttribute.4.Name=duration&MessageAttribute.4.Value.StringValue=" +
-            $("#duration").val() + "&MessageAttribute.5.Value.DataType=String&MessageAttribute.5.Name=starttime&MessageAttribute.5.Value.StringValue=" +
-            $("#starttime").val() ,
->>>>>>> ee86b1f65fea41458f4e212f7d2bd9985299ad60
+
           "method": "POST",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
