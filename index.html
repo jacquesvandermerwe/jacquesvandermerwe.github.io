@@ -107,9 +107,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           "crossDomain": true,
           "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=fileId&MessageAttribute.1.Value.StringValue=" +
             gfileId +
-            "&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=accessToken&MessageAttribute.2.Value.StringValue="+ gaccessToken + "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue="+ grefreshToken+ "&MessageBody=" + gfileId + "&MessageAttribute.4.Value.DataType=String&MessageAttribute.4.Name=duration&MessageAttribute.4.Value.StringValue=" +
-            $("#duration").val() + "&MessageAttribute.5.Value.DataType=String&MessageAttribute.5.Name=starttime&MessageAttribute.5.Value.StringValue=" +
-            $("#starttime").val() ,
+            "&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=accessToken&MessageAttribute.2.Value.StringValue=" +
+            gaccessToken +
+            "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue=" +
+            grefreshToken + "&MessageBody=" + gfileId +
+            "&MessageAttribute.4.Value.DataType=String&MessageAttribute.4.Name=duration&MessageAttribute.4.Value.StringValue=" +
+            $("#duration").val() +
+            "&MessageAttribute.5.Value.DataType=String&MessageAttribute.5.Name=starttime&MessageAttribute.5.Value.StringValue=" +
+            toSeconds($("#starttime").val()),
           "method": "POST",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -126,6 +131,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       });
 
     });
+
+    function toSeconds(str) {
+      var pieces = str.split(":");
+      var result = Number(pieces[0]) * 60 + Number(pieces[1]);
+      return (result.toFixed(3));
+    }
   </script>
 
 </head>
