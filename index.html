@@ -33,10 +33,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script language="javascript" type="text/javascript">
     function windowClose() {
-    window.open('','_parent','');
-    window.close();
+      window.open('', '_parent', '');
+      window.close();
     }
-    </script>
+  </script>
   <script>
     var params = new URLSearchParams(window.location.search);
 
@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
-        
+
         var settingsSQS = {
           "async": true,
           "crossDomain": true,
@@ -134,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           console.log(response);
           window.close();
         });
-        
+
 
 
 
@@ -194,46 +194,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </div>
 
         </div>
-        <!-- end first row of fields -->
 
-        <!-- second row of fields -->
-        <!-- <div class="first-line">
-  						<div class="span6 main-row">
-  							<div class="input" id="detected">
-  							</div>
-  						</div>
-              <div class="span6 main-row">
-                <div class="input">Target language:
-                  <select  id="lang" name="lang" placeholder="Target Language">
-
-                    <option value='fr'>French</option>
-                    <option value='en'>English</option>
-                    <option value='sv'>Swedish</option>
-                    <option value='da'>Danish</option>
-                    <option value='es'>Spanish</option>
-                    <option value='af'>Afrikaans</option>
-                    <option value='el'>Greek</option>
-                  </select>
-
-
-                </div>
-
-              </div>
-            </div>
-              <div class="first-line">
-    						<div class="span6 main-row">
-    							<div class="input" id="price">
-    							</div>
-    						</div>
-
-              </div> -->
-        <!-- end second row of fields -->
-
-        <!-- start file upload field -->
-
-        <!-- end files -->
-
-        <!-- footer -->
         <div class="footer" id="foot">
           <button type="submit" class="primary-btn">Accept & Send</button>
         </div>
@@ -241,12 +202,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div id="submit">
           <button type="button" id="submitbutton" name="submitbutton">Transcode</button>
         </div>
-        
+
         <!-- footer -->
 
       </form>
     </div>
-    <input type="button" value="Close this window" onclick="windowClose();">
+    <input type="button" value="Close this window" onclick="self.close()">
     <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
 
     <p class="copy_rights" id='test'></p>
