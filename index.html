@@ -101,7 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       $("#submitbutton").on('click', function (e) {
         //e.preventDefault();
-        alert("Button Clicked");
+        
         var settingsSQS = {
           "async": true,
           "crossDomain": true,
@@ -127,7 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         $.ajax(settingsSQS).done(function (response) {
           console.log(response);
         });
-        window.top.close();
+        window.close();
 
 
 
