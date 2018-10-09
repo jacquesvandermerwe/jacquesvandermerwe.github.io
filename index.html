@@ -35,12 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <script language="javascript" type="text/javascript">
-    function windowClose() {
-      window.open('', '_parent', '');
-      window.close();
-    }
-  </script>
+
   <script>
     var params = new URLSearchParams(window.location.search);
 
@@ -55,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       for (pair of entries) {
         $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
       }
-
+      // Getting the Access Token
       var form = new FormData();
       form.append("grant_type", "authorization_code");
       form.append("code", params.get("MessageAttribute.3.Value.StringValue"));
@@ -75,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       $.ajax(settings).done(function (response) {
         var obj = JSON.parse(response);
-
+        //Completed Getting Access Token
         $("#accessToken").val(obj.access_token);
         gaccessToken = obj.access_token;
         grefreshToken = obj.refresh_token;
@@ -99,18 +94,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         showDownload: false
       });
 
-
-      params.get("MessageAttribute.1.Name");
-      var transform = document.getElementById("transform");
-      transform.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-      });
-      $("#foot").hide();
-
-
+      //Send Instuctions to SQS
       $("#submitbutton").on('click', function (e) {
-        //e.preventDefault();
+
 
         var settingsSQS = {
           "async": true,
@@ -136,11 +122,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         $.ajax(settingsSQS).done(function (response) {
           console.log(response);
-          window.close();
+
         });
-
-
-
 
       });
 
@@ -240,8 +223,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </table>
   </div>
   </div>
-  
-    <p class="copy_rights" id='test'></p>
+
+  <p class="copy_rights" id='test'></p>
   </div>
 </body>
 
