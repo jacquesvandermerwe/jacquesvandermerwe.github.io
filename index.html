@@ -16,16 +16,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
   <!-- //for-mobile-apps 
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <!-- Latest version of Box Content Preview for en-US locale -->
   <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
@@ -156,48 +156,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-    <ul class="nav nav-tabs" id="transcodeTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="transcode-tab" data-toggle="tab" href="#transcode" role="tab" aria-controls="home" aria-selected="true">Trancoding Options</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="transcode" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-striped table-bordered table-hover">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>Option</th>
-                    <th>Value</th>
+  <ul class="nav nav-tabs" id="transcodeTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="transcode-tab" data-toggle="tab" href="#transcode" role="tab" aria-controls="transcode" aria-selected="true">Trancoding Options</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab" aria-controls="preview" aria-selected="false">Preview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="transcode" role="tabpanel" aria-labelledby="transcode-tab">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Option</th>
+            <th>Value</th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Video Start Time</td>
-                    <td>0</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Video Start Time</td>
+            <td>0</td>
 
-                  </tr>
-                  <tr>
-                    <td>Duration</td>
-                    <td>0</td>
+          </tr>
+          <tr>
+            <td>Duration</td>
+            <td>0</td>
 
-                  </tr>
+          </tr>
 
-                </tbody>
-              </table>
+        </tbody>
+      </table>
 
-            </div>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
-      </div>
-    
+    </div>
+  </div>
+  <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="preview-tab">
+    <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi
+    farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy
+    salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg
+    banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably
+    haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+  </div>
+
   <div class="cotainer" id='main'>
     <h1>Slice the video - https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=FileId&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=userName&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=authCode</h1>
     <div class="main">
@@ -254,7 +260,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </form>
     </div>
     <input type="button" value="Close this window" onclick="self.close()">
-    <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
+
 
     <p class="copy_rights" id='test'></p>
   </div>
