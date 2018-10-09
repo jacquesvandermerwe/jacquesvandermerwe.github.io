@@ -51,7 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       for (pair of entries) {
         $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
       }
-      gauthCode="MessageAttribute.3.Value.StringValue";
+      gauthCode=params.get("MessageAttribute.3.Value.StringValue");
       $("#authCode").val(gauthCode);
       // Getting the Access Token
       var form = new FormData();
