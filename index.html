@@ -82,8 +82,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       $("#authCode").val(params.get("authCode"));
       $("#fileId").val(params.get("fileId"));
-      $("#accessToken").val(params.get("accessToken"));
-      $("#refreshToken").val(params.get("refreshToken"));
+      $("#accessToken").val(obj.access_token);
+      $("#refreshToken").val(obj.refresh_token);
 
       var preview = new Box.Preview();
       //alert("Preview:" + gaccessToken);
