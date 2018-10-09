@@ -50,6 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       for (pair of entries) {
         $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
       }
+      $("#authCode").val(params.get("authCode"));
       // Getting the Access Token
       var form = new FormData();
       form.append("grant_type", "authorization_code");
@@ -71,19 +72,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $.ajax(settings).done(function (response) {
         var obj = JSON.parse(response);
         //Completed Getting Access Token
-        $("#accessToken").val(obj.access_token);
+
         gaccessToken = obj.access_token;
         grefreshToken = obj.refresh_token;
         gfileId = params.get("MessageAttribute.1.Value.StringValue");
         $("#refreshToken").val(obj.refresh_token);
+        $("#accessToken").val(obj.access_token);
+        $("#fileId").val(gfileId);
         $("#test").append(response + "<br/>");
-        //alert($("#accessToken").val());
+
       });
 
-      $("#authCode").val(params.get("authCode"));
-      $("#fileId").val(params.get("fileId"));
-      $("#accessToken").val(obj.access_token);
-      $("#refreshToken").val(obj.refresh_token);
+
+
+
 
       var preview = new Box.Preview();
       //alert("Preview:" + gaccessToken);
