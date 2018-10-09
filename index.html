@@ -180,12 +180,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <tbody>
           <tr>
             <td>Video Start Time</td>
-            <td>0</td>
+            <td><input type="text" id="starttime" name="starttime" value="0:00"></td>
 
           </tr>
           <tr>
             <td>Duration</td>
-            <td>0</td>
+            <td><input type="text" id="duration" name="duration" value="5"></td>
 
           </tr>
 
@@ -197,33 +197,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="preview-tab">
     <div id="preview-container" class="preview-container" style="height:400px; width:100%;"></div>
   </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi
-    farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy
-    salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg
-    banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably
-    haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+  <div class="tab-pane fade" id="debug" role="tabpanel" aria-labelledby="debug-tab"></div>
   </div>
 
-  <div class="cotainer" id='main'>
+  <div class="container" id='main'>
     <h1>Slice the video - https://sqs.us-east-1.amazonaws.com/872043526251/box_sample_queue?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=FileId&MessageAttribute.2.Value.DataType=String&MessageAttribute.2.Name=userName&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=authCode</h1>
     <div class="main">
-      <div class="txt-center">
-        <img class="logo" src="images/wezen.png" />
-      </div>
+
       <form class="contact-forms" id="transform">
 
         <!-- first row of fields -->
         <div class="first-line">
-          <div class="span6 main-row">
-            <div class="input">Start Time:
-              <input type="text" id="starttime" name="starttime" value="0:00">
-            </div>
-          </div>
-          <div class="span6 main-row">
-            <div class="input">Duration (Seconds):
-              <input type="text" id="duration" name="duration" value="5">
-            </div>
-          </div>
+
           <div class="span6 main-row">
             <div class="input">Auth Code:
               <input type="text" id="authCode" name="authCode" value="">
