@@ -125,7 +125,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
 
         $.ajax(settingsSQS).done(function (response) {
-          jQuery("#transcodeContentModal").modal();
+          $("#transcodeContentModal").modal("show");
           $("#submitvideoslicebutton").attr("disabled", true);
 
           console.log(response);
@@ -193,7 +193,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+
                   </div>
                 </div>
               </div>
