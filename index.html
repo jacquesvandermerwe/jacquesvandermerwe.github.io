@@ -150,10 +150,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             "&MessageAttribute.3.Value.DataType=String&MessageAttribute.3.Name=refreshToken&MessageAttribute.3.Value.StringValue=" +
             grefreshToken + "&MessageBody=" + gfileId +
             "&MessageAttribute.4.Value.DataType=String&MessageAttribute.4.Name=duration&MessageAttribute.4.Value.StringValue=" +
+            $("#audioextractduration").val() +
             "&MessageAttribute.5.Value.DataType=String&MessageAttribute.5.Name=starttime&MessageAttribute.5.Value.StringValue=" +
             toSeconds($("#audioextractstarttime").val()) +
             "&MessageAttribute.6.Value.DataType=String&MessageAttribute.6.Name=audioextractquality&MessageAttribute.5.Value.StringValue=" +
-            $("#audioextractstarttime").val(),
+            $("#audioextractquality").val(),
 
           "method": "POST",
           "headers": {
@@ -324,21 +325,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <tr>
                   <td>Audio Start Time (Minute:Second)</td>
                   <td>
-                    <input type="text" id="audioextractstarttime" name="starttime" value="0:00">
+                    <input type="text" id="audioextractstarttime" name="audioextractstarttime" value="0:00">
                   </td>
 
                 </tr>
                 <tr>
                   <td>Duration (Seconds)</td>
                   <td>
-                    <input type="text" id="audioextractduration" name="duration" value="5">
+                    <input type="text" id="audioextractduration" name="audioextractduration" value="5">
                   </td>
 
                 </tr>
                 <tr>
                   <td>Audio Quality (Kilo Bits)</td>
                   <td>
-                    <input type="text" id="audioextractquality" name="duration" value="5">
+                    <input type="text" id="audioextractquality" name="audioextractquality" value="192">
                   </td>
 
                 </tr>
