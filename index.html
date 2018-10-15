@@ -125,8 +125,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
 
         $.ajax(settingsSQS).done(function (response) {
+          jQuery('#transcodeContentModal').modal();
           $("#submitvideoslicebutton").attr("disabled", true);
-          $('#transcodeContentModal').modal('show');
+
           console.log(response);
 
         });
