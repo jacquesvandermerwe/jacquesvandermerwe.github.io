@@ -178,7 +178,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       $("#submitbutton-frame").on('click', function (e) {
 
 
-        var settingsAudionExtractSQS = {
+        var settingsFrameExtractSQS = {
           "async": true,
           "crossDomain": true,
           "url": "https://sqs.us-east-1.amazonaws.com/872043526251/box_ffmpeg_frame_extract?Action=SendMessage&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Name=fileId&MessageAttribute.1.Value.StringValue=" +
@@ -199,8 +199,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           }
         }
 
-        $.ajax(settingsAudionExtractSQS).done(function (response) {
-          $("#audioExtractContentModal").modal("show");
+        $.ajax(settingsFrameExtractSQS).done(function (response) {
+          $("#frameExtractContentModal").modal("show");
           $("#submitbutton-audio").attr("disabled", true);
           $("#submitbutton-audio").html("Extraction Submitted");
 
