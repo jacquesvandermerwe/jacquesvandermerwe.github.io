@@ -166,7 +166,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         $.ajax(settingsAudionExtractSQS).done(function (response) {
           $("#audioExtractContentModal").modal("show");
           $("#submitbutton-audio").attr("disabled", true);
-          $("#submitbutton-audio").html("Extraxtion Submitted");
+          $("#submitbutton-audio").html("Extraction Submitted");
 
           console.log(response);
 
@@ -339,7 +339,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <tr>
                   <td>Audio Quality (Kilo Bits)</td>
                   <td>
-                    <input type="text" id="audioextractquality" name="audioextractquality" value="192">
+                    <select class="mdb-select md-form colorful-select dropdown-primary" id="audioextractquality" name="audioextractquality">
+                        <option value="8000">8000</option>
+                        <option value="11025">11025</option>
+                        <option value="12000">12000</option>
+                        <option value="16000">16000</option>
+                        <option value="22050">22050</option>
+                        <option value="32000">32000</option>
+                        <option value="44100" selected>44100</option>
+                        <option value="48000">48000</option>
+                        <option value="96000">96000</option>
+                    </select>
                   </td>
 
                 </tr>
