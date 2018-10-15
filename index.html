@@ -125,7 +125,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
 
         $.ajax(settingsSQS).done(function (response) {
-          jQuery('#transcodeContentModal').modal();
+          jQuery("#transcodeContentModal").modal();
           $("#submitvideoslicebutton").attr("disabled", true);
 
           console.log(response);
@@ -179,7 +179,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="tab-pane fade show active" id="transcode" role="tabpanel" aria-labelledby="transcode-tab">
             <!-- Code for the Information Modal -->
             <!-- Modal -->
-            <div class="modal fade" id="transcodeContentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="transcodeContentModal" name="transcodeContentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
