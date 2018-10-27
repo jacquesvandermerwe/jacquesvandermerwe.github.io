@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>4</div>
+  <div>5</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -29,7 +29,7 @@
       var uploader = new Box.ContentUploader();
 
     var addExtraHeaders = (config) => {
-      console.log("Data:" + config.data);
+      console.log("Data:" + config.data.toString());
       var obj = JSON.parse(config.data);
       
     return config;
