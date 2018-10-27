@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>1</div>
+  <div>2</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -28,16 +28,14 @@
       var accessToken = 'yWXUg6g67bPrmirdnA7lQAjckgisXTc6';
       var uploader = new Box.ContentUploader();
 
-    var addExtraHeaders = (config) => {
-      console.log(JSON.stringify(config.data));
-      console.log("Data:" + config.data.name);
-      config.data.name='This is a new file name.pdf';
+    var renameFile = (config) => {
+      config.data.name='MyFile.pdf';
       console.log(JSON.stringify(config.data));
     return config;
 };
       uploader.show(folderId, accessToken, {
           container: '.container',
-          requestInterceptor: addExtraHeaders
+          requestInterceptor: renameFile
       });
   </script>
   
