@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>1</div>
+  <div>2</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -31,7 +31,8 @@
     var addExtraHeaders = (config) => {
       console.log(config);
       console.log(config.data);
-    //config.headers['X-Custom-Header'] = 'MyCustomHeaderValue';
+      var obj = JSON.parse(config.data);
+      console.log(obj);
     return config;
 };
       uploader.show(folderId, accessToken, {
