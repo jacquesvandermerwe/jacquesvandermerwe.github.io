@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>8</div>
+  <div>1</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -25,13 +25,13 @@
 
   
       var folderId = '56730436611';
-      var accessToken = 'yWXUg6g67bPrmirdnA7lQAjckgisXTc6';
+      var accessToken = 'gwE9U5ffeIvGuM2yk7AooBATK3T5XLaZ';
       var uploader = new Box.ContentUploader();
 
     var renameFile = (config) => {
       console.log(JSON.stringify(config));
-      //config.data.attributes['name']='MyFile.pdf';
-      console.log(JSON.stringify(config.data.attributes));
+      config.data["name"]="1.pdf";
+      console.log(JSON.stringify(config));
     return config;
 };
       uploader.show(folderId, accessToken, {
