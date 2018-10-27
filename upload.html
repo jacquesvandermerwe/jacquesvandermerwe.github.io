@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>5</div>
+  <div>6</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -34,7 +34,8 @@
     return config;
 };
       uploader.show(folderId, accessToken, {
-          container: '.container'
+          container: '.container',
+          requestInterceptor: addExtraHeaders
       });
   </script>
   
