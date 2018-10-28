@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>3</div>
+  <div>4</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -32,7 +32,7 @@
       if(config.method='post')
       {
       console.log(JSON.stringify(config));
-      config.data.attributes["name"]="1.pdf";
+      config.data.["name"]="1.pdf";
       console.log(JSON.stringify(config));
     }
     return config;
