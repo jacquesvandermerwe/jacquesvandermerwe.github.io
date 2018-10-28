@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>8</div>
+  <div>9</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -33,12 +33,10 @@
 	if(config.method=='post') {
 			//add timestamp to name to mimic existing functionality
 			var jsonRep = JSON.parse(config.data.attributes);
-			console.log(config.data.attributes);
-
 				var fileName =jsonRep.name.substring(0,jsonRep.name.lastIndexOf("."));
 				var ext = jsonRep.name.substring(jsonRep.name.lastIndexOf(".")+1);
 				var oldName=jsonRep.name;
-				jsonRep.name = fileName + "_" + (new Date().toISOString().substring(0, 16)) + "_." + ext;
+				jsonRep.name = "My Custome Name " + (new Date().toISOString().substring(0, 16)) + "_." + ext;
 				var newAttributes = JSON.stringify(jsonRep);
 				config.data.attributes = newAttributes;
 				//console.log(config.url + " - replacing with:" + conflictsMap.get(oldName));
