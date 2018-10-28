@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>7</div>
+  <div>8</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -25,11 +25,11 @@
 
   
       var folderId = '56730436611';
-      var accessToken = 'K58axp6XilyC2rg2ldqD5euRYMnLA93C';
+      var accessToken = 'KSLBdNTIZjspcunQWLXmUXRspPklBq5E';
       var uploader = new Box.ContentUploader();
 
     var renameFile = (config) => {
-/* 	//console.log(JSON.stringify(config));
+	//console.log(JSON.stringify(config));
 	if(config.method=='post') {
 			//add timestamp to name to mimic existing functionality
 			var jsonRep = JSON.parse(config.data.attributes);
@@ -45,7 +45,7 @@
 				//var newURl = config.url.replace(conflictsMap.get(oldName) + "/","");
 				//config.url = newURl;
 			
-		} */
+		} 
 	  return config;
 };
       uploader.show(folderId, accessToken, {
