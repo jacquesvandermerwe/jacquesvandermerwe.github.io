@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div>9</div>
+  <div>1</div>
   <div class="container" style="height:600px"></div>
   <!-- Latest version of the uploader js for your locale -->
   <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
@@ -30,7 +30,7 @@
 
     var renameFile = (config) => {
 	//console.log(JSON.stringify(config));
-	if(method=='post') {
+	if(config.method=='post') {
 			//add timestamp to name to mimic existing functionality
 			var jsonRep = JSON.parse(config.data.attributes);
 			console.log(config.data.attributes);
