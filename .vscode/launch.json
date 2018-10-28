@@ -9,7 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///Users/jvandermerwe/Downloads/github/pages/jacquesvandermerwe.github.io/index.html",
+            "url": "file:///Users/jvandermerwe/Downloads/github/pages/jacquesvandermerwe.github.io/upload.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
