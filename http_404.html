@@ -22,10 +22,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     var params = new URLSearchParams(window.location.search);
 
     $(document).ready(function () {
-
-      var init = { "status" : 404 , "statusText" : "My error!" };
-      var myResponse = new Response("Error Body",init);
-      return myResponse;
+      const error = Boom.forbidden("Sorry, you are restricted in accesssing this API. No soup for you!.");
+error.output.statusCode = 403;    // Assign a custom error code
+error.output.payload["csrf-decorator"] = request.headers["csrf-decorator"];
+error.reformat();
+return reply(error);
       });
 
 
