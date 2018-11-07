@@ -1,0 +1,157 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Transcoding Landing Page</title>
+  <!-- for-mobile-apps -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- //for-mobile-apps 
+<!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <!-- jQuery library
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- Latest version of Box Content Preview for en-US locale -->
+  <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
+  <!-- Load AWS JavaScript SDK -->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.329.0.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <script>
+    var params = new URLSearchParams(window.location.search);
+
+    //get auth code and //ID
+    //Send request to lamdba? or to EC2
+    $(document).ready(function () {
+      var gaccessToken = "";
+      var gfileId = "";
+      var grefreshToken = "";
+      var gauthCode = ""
+
+      var entries = params.entries();
+      for (pair of entries) {
+        $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
+      }
+      gauthCode = params.get("MessageAttribute.3.Value.StringValue");
+      $("#authCode").val(gauthCode);
+      // Getting the Access Token
+      var form = new FormData();
+      form.append("grant_type", "authorization_code");
+      form.append("code", gauthCode);
+      form.append("client_id", "18rcz7p3g6jzmu08v5ad1cq70pj928kw");
+      form.append("client_secret", "uIQGd76hrSdrOiyz1vTsceHoPWvQdd9x");
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6300501378",
+        "method": "GET",
+        "headers": {}
+      }
+
+      $.ajax(settings).done(function (response) {
+        var obj = JSON.parse(response);
+        //Completed Getting Access Token
+
+        gaccessToken = obj.token;
+        $("#accessToken").val(obj.gaccessToken);
+        $("#fileId").val(gfileId);
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <a href="https://www.box.com" id="block-box-shiny-logo" class="box-logo">
+
+          <svg id="Layer_1" viewBox="0 0 40 21.6" xmlns="http://www.w3.org/2000/svg" width="150" height="100" style="fill: #0061D5">
+            <path class="box-logo-svg" d="M39.7 19.2c.5.7.4 1.6-.2 2.1-.7.5-1.7.4-2.2-.2l-3.5-4.5-3.4 4.4c-.5.7-1.5.7-2.2.2-.7-.5-.8-1.4-.3-2.1l4-5.2-4-5.2c-.5-.7-.3-1.7.3-2.2.7-.5 1.7-.3 2.2.3l3.4 4.5L37.3 7c.5-.7 1.4-.8 2.2-.3.7.5.7 1.5.2 2.2L35.8 14l3.9 5.2zm-18.2-.6c-2.6 0-4.7-2-4.7-4.6 0-2.5 2.1-4.6 4.7-4.6s4.7 2.1 4.7 4.6c-.1 2.6-2.2 4.6-4.7 4.6zm-13.8 0c-2.6 0-4.7-2-4.7-4.6 0-2.5 2.1-4.6 4.7-4.6s4.7 2.1 4.7 4.6c0 2.6-2.1 4.6-4.7 4.6zM21.5 6.4c-2.9 0-5.5 1.6-6.8 4-1.3-2.4-3.9-4-6.9-4-1.8 0-3.4.6-4.7 1.5V1.5C3.1.7 2.4 0 1.6 0 .7 0 0 .7 0 1.5v12.6c.1 4.2 3.5 7.5 7.7 7.5 3 0 5.6-1.7 6.9-4.1 1.3 2.4 3.9 4.1 6.8 4.1 4.3 0 7.8-3.4 7.8-7.7.1-4.1-3.4-7.5-7.7-7.5z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+          <li class="nav-item">
+            <a class="nav-link" id="debug-tab" data-toggle="tab" href="#debug" role="tab" aria-controls="debug" aria-selected="false">Debug</a>
+          </li>
+        </ul>
+        
+          <div class="tab-pane fade" id="debug" role="tabpanel" aria-labelledby="debug-tab">
+            <table class="table table-striped table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Debug Parameter</th>
+                  <th>Value</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Authentication Code</td>
+                  <td>
+                    <div class="md-form">
+                      <input type="text" id="authCode" name="authCode" value="">
+                    </div>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td>File ID</td>
+                  <td>
+                    <input type="text" id="fileId" name="fileId" value="" width="100%">
+                  </td>
+                  <tr>
+                    <td>Access Token</td>
+                    <td>
+                      <input type="text" id="accessToken" name="accessToken" value="" width="100%">
+                    </td>
+                  </tr>
+
+                </tr>
+                <tr>
+                  <td>Refresh Token</td>
+                  <td>
+                    <input type="text" id="refreshToken" name="refreshToken" value="" width="100%">
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <p class="copy_rights" id='test'></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>
