@@ -77,10 +77,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         console.log("Object:" + obj.token);
         console.log ("Response Token:" + response.token);
 
-
-        gaccessToken = obj.token;
-        $("#accessToken").val(obj.gaccessToken);
-        $("#fileId").val(gfileId);
+        $("#accessToken").val(response.token);
+        $("#user").val(response.user);
       });
     });
   </script>
@@ -106,38 +104,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <table class="table table-striped table-bordered table-hover">
               <thead class="thead-dark">
                 <tr>
-                  <th>Debug Parameter 4</th>
+                  <th>Debug Parameter 5</th>
                   <th>Value</th>
 
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Authentication Code</td>
-                  <td>
-                    <div class="md-form">
-                      <input type="text" id="authCode" name="authCode" value="">
-                    </div>
 
+                <tr>
+                  <td>Access Token</td>
+                  <td>
+                    <input type="text" id="accessToken" name="accessToken" value="" width="100%">
                   </td>
                 </tr>
-                <tr>
-                  <td>File ID</td>
-                  <td>
-                    <input type="text" id="fileId" name="fileId" value="" width="100%">
-                  </td>
-                  <tr>
-                    <td>Access Token</td>
-                    <td>
-                      <input type="text" id="accessToken" name="accessToken" value="" width="100%">
-                    </td>
-                  </tr>
 
-                </tr>
                 <tr>
-                  <td>Refresh Token</td>
+                  <td>User</td>
                   <td>
-                    <input type="text" id="refreshToken" name="refreshToken" value="" width="100%">
+                    <input type="text" id="user" name="user" value="" width="100%">
                   </td>
                 </tr>
 
