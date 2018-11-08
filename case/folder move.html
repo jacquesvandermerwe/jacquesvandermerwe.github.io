@@ -60,32 +60,8 @@
         console.log(response);
         accessToken = response.token;
         console.log(accessToken);
-        explorerA.show(folderIdA, accessToken, {
-          container: '.explorer-a',
-          logoUrl: "",
-          canDownload: false,
-          canDelete: false,
-          canRename: false,
-          canShare: false,
-          canSetShareAccess: false,
-          canUpload: false,
-          canCreateNewFolder: false
-
-        });
-
-        explorerB.show(folderIdB, accessToken, {
-          container: '.explorer-b',
-          logoUrl: "",
-          canDownload: false,
-          canDelete: false,
-          canRename: false,
-          canShare: false,
-          canSetShareAccess: false
-
-
-        });
-
-
+        loadExplorerA();
+        loadExplorerB();
       });
 
       $("#mover").on('submit', (function(ev) {
@@ -106,11 +82,43 @@
 
         $.ajax(settings).done(function(response) {
           console.log(response);
+          explorerA.hide();
           explorerA.clearCache();
+          explorerB.hide();
           explorerB.clearCache();
+          loadExplorerA();
+          loadExplorerB();
         });
       }));
     });
+    function loadExplorerA() {
+      explorerA.show(folderIdA, accessToken, {
+        container: '.explorer-a',
+        logoUrl: "",
+        canDownload: false,
+        canDelete: false,
+        canRename: false,
+        canShare: false,
+        canSetShareAccess: false,
+        canUpload: false,
+        canCreateNewFolder: false
+
+      });
+      function loadExplorerB() {
+        explorerB.show(folderIdB, accessToken, {
+          container: '.explorer-b',
+          logoUrl: "",
+          canDownload: false,
+          canDelete: false,
+          canRename: false,
+          canShare: false,
+          canSetShareAccess: false
+
+
+        });
+
+      }
+    }
   </script>
 
   <style>
