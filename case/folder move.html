@@ -27,6 +27,8 @@
     var sourceId;
     var targetFolder;
     var sourceType;
+    var sourceCurrent=folderIdA;
+    var targetCurrent=folderIdB;
 
     var accessToken = "";
 
@@ -105,13 +107,14 @@
 
       });
       explorerA.addListener('select', (item) => {
-
         sourceId = item[0].id;
         sourceType = item[0].type;
         if (targetFolder != null) {
           document.getElementById('moveButton').disabled = false;
         }
-        console.log(sourceId);
+      });
+      explorerA.addListener('navigate',(folder)=> {
+        sourceCurrent=folder.id;
       });
     }
       function loadExplorerB() {
@@ -125,11 +128,13 @@
           canSetShareAccess: false
         });
         explorerB.addListener('select', (item) => {
-
           targetFolder = item[0].id;
           if (sourceId != null) {
             document.getElementById('moveButton').disabled = false;
           }
+        });
+        explorerB.addListener('navigate',(folder)=> {
+          sourceCurrent=folder.id;
         });
       }
 
@@ -181,7 +186,7 @@
       <form id=mover class="form-inline" action="/create-collaboration" method="post">
 				<div class="form-group">
 				</div>
-				<button id="moveButton" type="submit" class="btn btn-primary btn-sm" style="margin-top:150px;" disabled>
+				<button id="moveButton" type="submit" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
         Move-></button>
 			</form></div>
 
