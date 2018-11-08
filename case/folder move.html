@@ -110,15 +110,23 @@
         sourceId = item[0].id;
         sourceType = item[0].type;
         if (targetFolder != null) {
-          document.getElementById('moveButton').disabled = false;
+          toggleButtonOn();
         }
       });
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
+        toggleButtonOff();
+
       });
       explorerA.addListener('preview',(file) => {
         console.log("preview:" + file.id);
       });
+    }
+    function toggleButtonOn() {
+        document.getElementById('moveButton').disabled = false;
+    }
+    function toggleButtonOff() {
+        document.getElementById('moveButton').disabled = true;
     }
       function loadExplorerB() {
         explorerB.show(targetCurrent, accessToken, {
@@ -133,11 +141,12 @@
         explorerB.addListener('select', (item) => {
           targetFolder = item[0].id;
           if (sourceId != null) {
-            document.getElementById('moveButton').disabled = false;
+            toggleButtonOn();
           }
         });
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
+          toggleButtonOff();
         });
       }
 
