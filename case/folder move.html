@@ -116,6 +116,9 @@
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
       });
+      explorerA.addListener('preview',(file) => {
+        console.log(file.id);
+      };
     }
       function loadExplorerB() {
         explorerB.show(folderIdB, accessToken, {
