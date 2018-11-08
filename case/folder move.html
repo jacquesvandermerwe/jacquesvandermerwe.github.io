@@ -94,7 +94,7 @@
       }));
     });
     function loadExplorerA() {
-      explorerA.show(folderIdA, accessToken, {
+      explorerA.show(sourceCurrent, accessToken, {
         container: '.explorer-a',
         logoUrl: "",
         canDownload: false,
@@ -118,10 +118,10 @@
       });
       explorerA.addListener('preview',(file) => {
         console.log(file.id);
-      };
+      });
     }
       function loadExplorerB() {
-        explorerB.show(folderIdB, accessToken, {
+        explorerB.show(targetCurrent, accessToken, {
           container: '.explorer-b',
           logoUrl: "",
           canDownload: false,
