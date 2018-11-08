@@ -5,23 +5,31 @@
 
       <!-- jQuery -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      
+
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      
+
       <!-- Box content explorer css and js -->
       <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.css"/>
-      <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>    
-     
+      <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>
+
   </head>
 
   <body>
-   
+
 <script>
-$(document).ready(function() {
+const folderIdA = '57567775184';
+const folderIdB = '57097679298';
+const explorerA = new Box.ContentExplorer();
+const explorerB = new Box.ContentExplorer();
+var sourceId;
+var targetFolder;
+var sourceType;
 
 var accessToken = "";
+
+$(document).ready(function() {
 
 var settings = {
   "async": true,
@@ -33,10 +41,33 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-	var obj = JSON.parse(response);
-        //Completed Getting Access Token
+  accessToken = response.token;
+  explorerA.show(folderIdA, accessToken, {
+    container: '.explorer-a',
+		logoUrl: "",
+		canDownload: false,
+		canDelete: false,
+		canRename: false,
+		canShare: false,
+		canSetShareAccess: false,
+		canUpload: false,
+		canCreateNewFolder: false
 
-        accessToken = obj.token;
+  });
+
+	explorerB.show(folderIdB, accessToken, {
+    container: '.explorer-b',
+		logoUrl: "",
+		canDownload: false,
+		canDelete: false,
+		canRename: false,
+		canShare: false,
+		canSetShareAccess: false
+
+
+  });
+
+
 });
 
 $("#mover").on('submit', (function(ev) {
@@ -67,8 +98,8 @@ $.ajax(settings).done(function (response) {
 
 <div class="container">
 	<div class="row">
-	
-<style>	
+
+<style>
 p {
     color: #54698D;
     font-family: "Lato", "Helvetica", "Arial", sans-serif;
@@ -128,38 +159,6 @@ p {
 
 </style>
 <script>
-    const folderIdA = '57567775184';
-	const folderIdB = '57097679298';
-    const explorerA = new Box.ContentExplorer();
-	const explorerB = new Box.ContentExplorer();
-	var sourceId;
-	var targetFolder;
-	var sourceType;
-
-  explorerA.show(folderIdA, 'RLf13PXvHo2wmRnQKF0EMEquO6EThi85', {
-    container: '.explorer-a',
-		logoUrl: "",
-		canDownload: false,
-		canDelete: false,
-		canRename: false,
-		canShare: false,
-		canSetShareAccess: false,
-		canUpload: false,
-		canCreateNewFolder: false
-		
-  });
-
-	explorerB.show(folderIdB, 'RLf13PXvHo2wmRnQKF0EMEquO6EThi85', {
-    container: '.explorer-b',
-		logoUrl: "",
-		canDownload: false,
-		canDelete: false,
-		canRename: false,
-		canShare: false,
-		canSetShareAccess: false
-		
-		
-  });
 
 
 	explorerA.addListener('select', (item) => {
