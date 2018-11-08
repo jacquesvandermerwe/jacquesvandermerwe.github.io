@@ -1,160 +1,228 @@
-
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <head>
-    <title>
-Move     </title>
 
-      <!-- jQuery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+  <title>Move</title>
 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      <!-- Box content explorer css and js -->
-      <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.css"/>
-      <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Box content explorer css and js -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.css" />
+  <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>
+
+</head>
+
+<body>
+
+  <script>
+    const folderIdA = '57771271224';
+    const folderIdB = '57772325388';
+    const explorerA = new Box.ContentExplorer();
+    const explorerB = new Box.ContentExplorer();
+    var sourceId;
+    var targetFolder;
+    var sourceType;
+
+    var accessToken = "";
+
+    $(document).ready(function() {
+      $("#panel-fullscreen").click(function (e) {
+              e.preventDefault();
+
+              var $this = $(this);
+
+              if ($this.children('i').hasClass('glyphicon-resize-full'))
+              {
+                  $this.children('i').removeClass('glyphicon-resize-full');
+                  $this.children('i').addClass('glyphicon-resize-small');
+              }
+              else if ($this.children('i').hasClass('glyphicon-resize-small'))
+              {
+                  $this.children('i').removeClass('glyphicon-resize-small');
+                  $this.children('i').addClass('glyphicon-resize-full');
+              }
+              $(this).closest('.panel').toggleClass('panel-fullscreen');
+          });
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6300501378",
+        "method": "GET",
+        "headers": {}
+      }
+
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        accessToken = response.token;
+        console.log(accessToken);
+        explorerA.show(folderIdA, accessToken, {
+          container: '.explorer-a',
+          logoUrl: "",
+          canDownload: false,
+          canDelete: false,
+          canRename: false,
+          canShare: false,
+          canSetShareAccess: false,
+          canUpload: false,
+          canCreateNewFolder: false
+
+        });
+
+        explorerB.show(folderIdB, accessToken, {
+          container: '.explorer-b',
+          logoUrl: "",
+          canDownload: false,
+          canDelete: false,
+          canRename: false,
+          canShare: false,
+          canSetShareAccess: false
 
 
-  </head>
+        });
 
-  <body>
 
-<script>
-var authToken;
-const folderIdA = '57647523430';
-const folderIdB = '57771271224';
-const explorerA = new Box.ContentExplorer();
-const explorerB = new Box.ContentExplorer();
-var sourceId;
-var targetFolder;
-var sourceType;
+      });
 
-$(document).ready(function() {
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6300501378",
-    "method": "GET",
-    "headers": {}
-  }
+      $("#mover").on('submit', (function(ev) {
+        var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
+        ev.preventDefault();
+        console.log("moving " + sourceId + " to " + targetFolder);
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": url,
+          "method": "PUT",
+          "headers": {
+            "Authorization": "Bearer " + accessToken,
+            "Cache-Control": "no-cache"
+          },
+          "data": "{\"parent\": {\"id\" : " + targetFolder + "}}"
+        }
 
-  $.ajax(settings).done(function (response) {
-    console.log ("Response Token:" + response.token);
-    authToken = response.token;
-    explorerA.show(folderIdA, authToken, {
-      container: '.explorer-a',
-      logoUrl: ""
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+        });
+      }));
     });
+  </script>
 
-    explorerB.show(folderIdB, authToken, {
-      container: '.explorer-b',
-      logoUrl: ""
+  <style>
+    p {
+      color: #54698D;
+      font-family: "Lato", "Helvetica", "Arial", sans-serif;
+      font-size: 14px;
+
+    }
+    .panel-actions {
+  margin-top: -20px;
+  margin-bottom: 0;
+  text-align: right;
+}
+.panel-actions a {
+  color:#333;
+}
+.panel-fullscreen {
+    display: block;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
+}
+  </style>
+
+
+  <div class="container">
+    <div class="row">
+
+
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p>Uploaded Evidence</p>
+        <h2>Fullscreen toggle</h2>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Evidence store</h3>
+                      <ul class="list-inline panel-actions">
+                          <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+                      </ul>
+                  </div>
+                  <div class="panel-body explorerA" >
+
+                  </div>
+              </div>
+      </div>
+      <div class="col col-sm-1">
+        <form id=mover class="form-inline" action="/create-collaboration" method="post">
+          <div class="form-group">
+          </div>
+          <button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move Evidence</button>
+        </form>
+      </div>
+
+      <div class="col col-sm-3">
+        <p>My Cases</p>
+        <!-- Box Content Explorer -->
+        <div class="tab-pane show active mts" style="border-style: solid; border-width: 1px; border-color: #9EB7DC; padding: 5px" role="tabpanel" id="explorer" ;>
+          <div style="height:600px; width:300px" class="explorer-b"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <style>
+    .be-search {
+      display: none;
+    }
+
+    .mts {
+      margin-top: 20px;
+    }
+
+    .mtm {
+      margin-top: 40px;
+    }
+
+    .mtl {
+      margin-top: 100px;
+    }
+
+    .mbl {
+      margin-bottom: 100px;
+    }
+
+    .mls {
+      margin-left: 10px !important;
+    }
+  </style>
+  <script>
+    explorerA.addListener('select', (item) => {
+
+      sourceId = item[0].id;
+      sourceType = item[0].type;
+      if (targetFolder != null) {
+        document.getElementById('moveButton').disabled = false;
+      }
+      console.log(sourceId);
     });
-  });
-$("#mover").on('submit', (function(ev) {
-	var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
-	ev.preventDefault();
-	console.log("moving " + sourceId + " to " + targetFolder);
-	var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": url,
-  "method": "PUT",
-  "headers": {
-    "Authorization": "Bearer " + authToken,
-    "Cache-Control": "no-cache",
-  },
-  "data": "{\"parent\": {\"id\" : " + targetFolder + "}}"
-}
+    explorerB.addListener('select', (item) => {
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
-}));
-});
+      targetFolder = item[0].id;
+      if (sourceId != null) {
+        document.getElementById('moveButton').disabled = false;
+      }
+    });
+  </script>
+</body>
 
-</script>
-<div class="container">
-	<div class="row">
-
-	</div>
-	<div class="row mtm mbl">
-		<div class="col col-md-5">
-			<h4>Uploaded evidence</h4>
-			<!-- Box Content Explorer -->
-			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
-				<div style="height:400px" class="explorer-a"></div>
-			</div>
-		</div>
-		<div class="col col-md-2">	<form id=mover class="form-inline" action="/create-collaboration" method="post">
-				<div class="form-group">
-				</div>
-				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move </button>
-			</form></div>
-
-		<div class="col col-md-5">
-			<h4>Cases</h4>
-			<!-- Box Content Explorer -->
-			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
-				<div style="height:400px" class="explorer-b"></div>
-			</div>
-		</div>
-
-	</div>
-</div>
-<style>
-.be-search{
-    display: none;
-}
-.mts {
-  margin-top: 20px;
-}
-
-.mtm {
-  margin-top: 40px;
-}
-
-.mtl {
-  margin-top: 100px;
-}
-
-.mbl {
-  margin-bottom: 100px;
-}
-
-.mls {
-  margin-left: 10px !important;
-}
-
-</style>
-<script>
-
-
-
-
-	explorerA.addListener('select', (item) => {
-
-		sourceId = item[0].id;
-		sourceType = item[0].type;
-		if(targetFolder!=null) {
-			document.getElementById('moveButton').disabled=false;
-		}
-		console.log(sourceId);
-	});
-	explorerB.addListener('select', (item) => {
-
-		targetFolder = item[0].id;
-		if(sourceId!=null) {
-			document.getElementById('moveButton').disabled=false;
-		}
-	});
-
-
-</script>
-
-
-  </body>
 </html>
