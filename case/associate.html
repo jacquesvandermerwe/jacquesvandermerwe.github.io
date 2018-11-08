@@ -42,6 +42,7 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
   accessToken = response.token;
+  console.log(accessToken);
   explorerA.show(folderIdA, accessToken, {
     container: '.explorer-a',
 		logoUrl: "",
