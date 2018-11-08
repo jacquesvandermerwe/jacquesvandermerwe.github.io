@@ -8,23 +8,42 @@ Move     </title>
 
       <!-- jQuery -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      
+
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      
+
       <!-- Box content explorer css and js -->
       <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.css"/>
       <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>
-      
-     
+
+
   </head>
 
   <body>
-   
-<script>
-$(document).ready(function() {
 
+<script>
+var authToken;
+$(document).ready(function() {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6300501378",
+    "method": "GET",
+    "headers": {}
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    var obj = response;
+    //var obj = JSON.parse(response);
+    //Completed Getting Access Token
+    console.log("Object:" + obj.token);
+    console.log ("Response Token:" + response.token);
+    authToken = obj.token;
+    //$("#accessToken").val(response.token);
+    //$("#user").val(response.user);
+  });
 $("#mover").on('submit', (function(ev) {
 	var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
 	ev.preventDefault();
@@ -35,9 +54,8 @@ $("#mover").on('submit', (function(ev) {
   "url": url,
   "method": "PUT",
   "headers": {
-    "Authorization": "Bearer wGelH3LQt26GKrCq7BZOaENW09QvJDcH",
+    "Authorization": "Bearer " + authToken,
     "Cache-Control": "no-cache",
-    "Postman-Token": "1a4454df-297d-4827-8cba-3e438e530141"
   },
   "data": "{\"parent\": {\"id\" : " + targetFolder + "}}"
 }
@@ -104,19 +122,19 @@ $.ajax(settings).done(function (response) {
 </style>
 <script>
   const folderIdA = '57647523430';
-	const folderIdB = '57647265678';
+	const folderIdB = '57771271224';
   const explorerA = new Box.ContentExplorer();
 	const explorerB = new Box.ContentExplorer();
 	var sourceId;
 	var targetFolder;
 	var sourceType;
 
-  explorerA.show(folderIdA, 'wGelH3LQt26GKrCq7BZOaENW09QvJDcH', {
+  explorerA.show(folderIdA, authToken, {
     container: '.explorer-a',
 		logoUrl: ""
   });
 
-	explorerB.show(folderIdB, 'hJLGLAA4O3gZPot3sIPURYfV3Cj4635W', {
+	explorerB.show(folderIdB, authToken, {
     container: '.explorer-b',
 		logoUrl: ""
   });
