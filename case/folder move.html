@@ -104,6 +104,15 @@
         canCreateNewFolder: false
 
       });
+      explorerA.addListener('select', (item) => {
+
+        sourceId = item[0].id;
+        sourceType = item[0].type;
+        if (targetFolder != null) {
+          document.getElementById('moveButton').disabled = false;
+        }
+        console.log(sourceId);
+      });
     }
       function loadExplorerB() {
         explorerB.show(folderIdB, accessToken, {
@@ -114,6 +123,13 @@
           canRename: false,
           canShare: false,
           canSetShareAccess: false
+        });
+        explorerB.addListener('select', (item) => {
+
+          targetFolder = item[0].id;
+          if (sourceId != null) {
+            document.getElementById('moveButton').disabled = false;
+          }
         });
       }
     }
@@ -204,24 +220,7 @@
       margin-left: 10px !important;
     }
   </style>
-  <script>
-    explorerA.addListener('select', (item) => {
 
-      sourceId = item[0].id;
-      sourceType = item[0].type;
-      if (targetFolder != null) {
-        document.getElementById('moveButton').disabled = false;
-      }
-      console.log(sourceId);
-    });
-    explorerB.addListener('select', (item) => {
-
-      targetFolder = item[0].id;
-      if (sourceId != null) {
-        document.getElementById('moveButton').disabled = false;
-      }
-    });
-  </script>
 </body>
 
 </html>
