@@ -106,6 +106,8 @@
 
         $.ajax(settings).done(function(response) {
           console.log(response);
+          explorerA.clearCache();
+          explorerB.clearCache();
         });
       }));
     });
@@ -157,8 +159,8 @@
       <form id=mover class="form-inline" action="/create-collaboration" method="post">
 				<div class="form-group">
 				</div>
-				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>
-      
+				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" style="margin-top:150px;" disabled>
+        Move to case</button>
 			</form></div>
 
 		<div class="col col-md-5">
