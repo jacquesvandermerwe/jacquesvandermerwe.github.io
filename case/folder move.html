@@ -1,7 +1,10 @@
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-    <title>Move</title>
+    <title>
+Move     </title>
 
       <!-- jQuery -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,7 +15,8 @@
       
       <!-- Box content explorer css and js -->
       <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.css"/>
-      <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>    
+      <script src="https://cdn01.boxcdn.net/platform/elements/4.4.0/en-US/explorer.js"></script>
+      
      
   </head>
 
@@ -20,24 +24,6 @@
    
 <script>
 $(document).ready(function() {
-
-var accessToken = "";
-
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6300501378",
-  "method": "GET",
-  "headers": {}
-}
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-	var obj = JSON.parse(response);
-        //Completed Getting Access Token
-
-        accessToken = obj.token;
-});
 
 $("#mover").on('submit', (function(ev) {
 	var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
@@ -49,8 +35,9 @@ $("#mover").on('submit', (function(ev) {
   "url": url,
   "method": "PUT",
   "headers": {
-    "Authorization": "Bearer " + accessToken,
-    "Cache-Control": "no-cache"
+    "Authorization": "Bearer wGelH3LQt26GKrCq7BZOaENW09QvJDcH",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "1a4454df-297d-4827-8cba-3e438e530141"
   },
   "data": "{\"parent\": {\"id\" : " + targetFolder + "}}"
 }
@@ -62,41 +49,29 @@ $.ajax(settings).done(function (response) {
 });
 
 </script>
-
-
-
 <div class="container">
 	<div class="row">
-	
-<style>	
-p {
-    color: #54698D;
-    font-family: "Lato", "Helvetica", "Arial", sans-serif;
-    font-size: 14px;
-
-}
-</style>
 
 	</div>
 	<div class="row mtm mbl">
-		<div class="col col-sm-3">
-			<p>Uploaded Evidence</p>
+		<div class="col col-md-5">
+			<h4>Uploaded evidence</h4>
 			<!-- Box Content Explorer -->
-			<div class="tab-pane show active mts" style="border-style: solid;  border-width: 1px; border-color: #9EB7DC; padding: 5px" role="tabpanel" id="explorer";>
-				<div style="height:600px ; width:300px" class="explorer-a"></div>
+			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
+				<div style="height:400px" class="explorer-a"></div>
 			</div>
 		</div>
-		<div class="col col-sm-1">	<form id=mover class="form-inline" action="/create-collaboration" method="post">
+		<div class="col col-md-2">	<form id=mover class="form-inline" action="/create-collaboration" method="post">
 				<div class="form-group">
 				</div>
-				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move Evidence</button>
+				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move </button>
 			</form></div>
 
-		<div class="col col-sm-3">
-			<p>My Cases</p>
+		<div class="col col-md-5">
+			<h4>Cases</h4>
 			<!-- Box Content Explorer -->
-			<div class="tab-pane show active mts" style="border-style: solid; border-width: 1px; border-color: #9EB7DC; padding: 5px" role="tabpanel" id="explorer";>
-				<div style="height:600px; width:300px"  class="explorer-b"></div>
+			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
+				<div style="height:400px" class="explorer-b"></div>
 			</div>
 		</div>
 
@@ -128,37 +103,22 @@ p {
 
 </style>
 <script>
-    const folderIdA = '57567775184';
-	const folderIdB = '57097679298';
-    const explorerA = new Box.ContentExplorer();
+  const folderIdA = '57647523430';
+	const folderIdB = '57647265678';
+  const explorerA = new Box.ContentExplorer();
 	const explorerB = new Box.ContentExplorer();
 	var sourceId;
 	var targetFolder;
 	var sourceType;
 
-  explorerA.show(folderIdA, 'RLf13PXvHo2wmRnQKF0EMEquO6EThi85', {
+  explorerA.show(folderIdA, 'wGelH3LQt26GKrCq7BZOaENW09QvJDcH', {
     container: '.explorer-a',
-		logoUrl: "",
-		canDownload: false,
-		canDelete: false,
-		canRename: false,
-		canShare: false,
-		canSetShareAccess: false,
-		canUpload: false,
-		canCreateNewFolder: false
-		
+		logoUrl: ""
   });
 
-	explorerB.show(folderIdB, 'RLf13PXvHo2wmRnQKF0EMEquO6EThi85', {
+	explorerB.show(folderIdB, 'hJLGLAA4O3gZPot3sIPURYfV3Cj4635W', {
     container: '.explorer-b',
-		logoUrl: "",
-		canDownload: false,
-		canDelete: false,
-		canRename: false,
-		canShare: false,
-		canSetShareAccess: false
-		
-		
+		logoUrl: ""
   });
 
 
@@ -179,6 +139,9 @@ p {
 		}
 	});
 
+
 </script>
+
+
   </body>
 </html>
