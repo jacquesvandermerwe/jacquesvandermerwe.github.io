@@ -24,6 +24,14 @@ Move     </title>
 
 <script>
 var authToken;
+const folderIdA = '57647523430';
+const folderIdB = '57771271224';
+const explorerA = new Box.ContentExplorer();
+const explorerB = new Box.ContentExplorer();
+var sourceId;
+var targetFolder;
+var sourceType;
+
 $(document).ready(function() {
   var settings = {
     "async": true,
@@ -34,15 +42,17 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
-    var obj = response;
-    //var obj = JSON.parse(response);
-    //Completed Getting Access Token
-    console.log("Object:" + obj.token);
     console.log ("Response Token:" + response.token);
-    authToken = obj.token;
-    //$("#accessToken").val(response.token);
-    //$("#user").val(response.user);
+    authToken = response.token;
+    explorerA.show(folderIdA, authToken, {
+      container: '.explorer-a',
+      logoUrl: ""
+    });
+
+    explorerB.show(folderIdB, authToken, {
+      container: '.explorer-b',
+      logoUrl: ""
+    });
   });
 $("#mover").on('submit', (function(ev) {
 	var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
@@ -121,23 +131,8 @@ $.ajax(settings).done(function (response) {
 
 </style>
 <script>
-  const folderIdA = '57647523430';
-	const folderIdB = '57771271224';
-  const explorerA = new Box.ContentExplorer();
-	const explorerB = new Box.ContentExplorer();
-	var sourceId;
-	var targetFolder;
-	var sourceType;
 
-  explorerA.show(folderIdA, authToken, {
-    container: '.explorer-a',
-		logoUrl: ""
-  });
 
-	explorerB.show(folderIdB, authToken, {
-    container: '.explorer-b',
-		logoUrl: ""
-  });
 
 
 	explorerA.addListener('select', (item) => {
