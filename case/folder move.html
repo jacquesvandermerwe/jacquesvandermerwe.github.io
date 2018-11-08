@@ -142,46 +142,33 @@
 
 
   <div class="container">
+	<div class="row">
 
-    <div class="row">
-      <div class="col-md-8">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <h3 class="panel-title">Evidence store</h3>
-                      <ul class="list-inline panel-actions">
-                          <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
-                      </ul>
-                  </div>
-                  <div class="panel-body">
-                    <div class="explorer-a">1</div>
+	</div>
+	<div class="row mtm mbl">
+		<div class="col col-md-5">
+			<h4>Uploaded evidence</h4>
+			<!-- Box Content Explorer -->
+			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
+				<div style="height:400px" class="explorer-a"></div>
+			</div>
+		</div>
+		<div class="col col-md-2">	<form id=mover class="form-inline" action="/create-collaboration" method="post">
+				<div class="form-group">
+				</div>
+				<button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move </button>
+			</form></div>
 
-                  </div>
-              </div>
-      </div>
-      <div class="col col-sm-1">
-        <form id=mover class="form-inline" action="/create-collaboration" method="post">
-          <div class="form-group">
-          </div>
-          <button id="moveButton" type="submit" class="btn btn-primary btn-sm mls" disabled>Move Evidence</button>
-        </form>
-      </div>
+		<div class="col col-md-5">
+			<h4>Cases</h4>
+			<!-- Box Content Explorer -->
+			<div class="tab-pane show active mts" style="border-style: dotted; border-color: #9EB7DC; padding: 10px" role="tabpanel" id="explorer">
+				<div style="height:400px" class="explorer-b"></div>
+			</div>
+		</div>
 
-      <div class="col-md-8">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <h3 class="panel-title">Cases</h3>
-                      <ul class="list-inline panel-actions">
-                          <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
-                      </ul>
-                  </div>
-                  <div class="panel-body">
-  <div class="explorer-a">2</div>
-                  </div>
-              </div>
-      </div>
-
-    </div>
-  </div>
+	</div>
+</div>
   <style>
     .be-search {
       display: none;
