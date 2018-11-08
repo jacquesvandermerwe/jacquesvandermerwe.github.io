@@ -115,6 +115,7 @@
       });
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
+        sourceFolder=null;
         toggleButtonOff();
 
       });
@@ -126,6 +127,7 @@
         document.getElementById('moveButton').disabled = false;
     }
     function toggleButtonOff() {
+
         document.getElementById('moveButton').disabled = true;
     }
       function loadExplorerB() {
@@ -146,6 +148,7 @@
         });
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
+          targetFolder=null;
           toggleButtonOff();
         });
       }
