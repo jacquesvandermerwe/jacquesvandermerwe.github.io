@@ -142,7 +142,8 @@
         });
         explorerB.addListener('select', (item) => {
           targetFolder = item[0].id;
-          if (sourceId != null) {
+          var targetType = item[0].type;
+          if (sourceId != null && targetType=='folder') {
             toggleButtonOn();
           }
         });
