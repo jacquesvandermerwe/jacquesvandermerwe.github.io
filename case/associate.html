@@ -146,6 +146,9 @@
           if (sourceId != null && targetType=='folder') {
             toggleButtonOn();
           }
+          else {
+            toggleButtonOff();
+          }
         });
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
