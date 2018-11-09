@@ -33,23 +33,7 @@
     var accessToken = "";
 
     $(document).ready(function() {
-      $("#panel-fullscreen").click(function (e) {
-              e.preventDefault();
 
-              var $this = $(this);
-
-              if ($this.children('i').hasClass('glyphicon-resize-full'))
-              {
-                  $this.children('i').removeClass('glyphicon-resize-full');
-                  $this.children('i').addClass('glyphicon-resize-small');
-              }
-              else if ($this.children('i').hasClass('glyphicon-resize-small'))
-              {
-                  $this.children('i').removeClass('glyphicon-resize-small');
-                  $this.children('i').addClass('glyphicon-resize-full');
-              }
-              $(this).closest('.panel').toggleClass('panel-fullscreen');
-          });
       var settings = {
         "async": true,
         "crossDomain": true,
@@ -59,7 +43,6 @@
       }
 
       $.ajax(settings).done(function(response) {
-        console.log(response);
         accessToken = response.token;
         console.log(accessToken);
         loadExplorerA();
@@ -84,6 +67,7 @@
 
         $.ajax(settings).done(function(response) {
           console.log(response);
+          $(".loader").hide();
           explorerA.hide();
           explorerA.clearCache();
           explorerB.hide();
@@ -199,7 +183,7 @@
 
 			<!-- Box Content Explorer -->
 			<div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
-				<div style="height:400px" class="explorer-a"></div>
+				<div style="height:400px" class="explorer-a"><span class='loader'><img src='ajax-loader.gif'/></span></div>
 			</div>
 		</div>
 		<div class="col col-sm-1">
@@ -213,7 +197,7 @@
 		<div class="col col-md-5">
 			<!-- Box Content Explorer -->
 			<div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
-				<div style="height:400px" class="explorer-b"></div>
+				<div style="height:400px" class="explorer-b"><span class='loader'><img src='ajax-loader.gif'/></span></div>
 			</div>
 		</div>
 
