@@ -2,6 +2,14 @@
 <head>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 
+<style>
+  p {
+      color: #54698D;
+      font-family: "Lato", "Helvetica", "Arial", sans-serif;
+      font-size: 24px;
+  }
+</style>
+
 <script>
 
     $(function() {
@@ -10,7 +18,7 @@
    var people = [];
 
    $.getJSON('events.json', function(data) {
-       $.each(source.type, function(i, f) {
+       $.each(entries.source.type, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.name + "</td>" +
            "<td>" + f.id + "</td>" + "<td>" + f.name + "</td>" + "<td>" + f.login + "</td>" + "</tr>"
            $(tblRow).appendTo("#userdata tbody");
