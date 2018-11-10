@@ -10,7 +10,7 @@
    var people = [];
 
    $.getJSON('events.json', function(data) {
-       $.each(source, function(i, f) {
+       $.each(source.type, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.name + "</td>" +
            "<td>" + f.id + "</td>" + "<td>" + f.name + "</td>" + "<td>" + f.login + "</td>" + "</tr>"
            $(tblRow).appendTo("#userdata tbody");
