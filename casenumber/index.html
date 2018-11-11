@@ -5,8 +5,9 @@
     <script src="adler32.js"></script>
     <script>
         $(document).ready(function () {
-            adler32 = ADLER32.str("SheetJS");
-            $("body").append("Hello:" + adler32);
+            var dateNow = new Date();
+            adler32 = ADLER32.str(dateNow);
+            $("body").append("PSCO-" + dateNow.toISOString() + "-" + adler32);
 
 });
     </script>
