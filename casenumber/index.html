@@ -2,19 +2,32 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="adler32.js"></script>
+    <script src="https://jacquesvandermerwe.github.io/casenumber/adler32.js"></script>
     <script>
         $(document).ready(function () {
-            var dateNow = new Date();
-            var dateString = dateNow.toDateString() + dateNow.toTimeString();
-            adler32 = ADLER32.str(dateString);
-            $("body").append("PSCO-" + dateString + "-" + adler32.digest('hex'));
 
-});
+            var dateNow = new Date();
+            var dateString = dateNow.getFullYear().toString() +
+                dateNow.getMonth().toString() +
+                dateNow.getDay().toString() +
+                dateNow.getHours().toString() +
+                dateNow.getMinutes().toString() +
+                dateNow.getSeconds().toString() +
+                dateNow.getMilliseconds().toString();
+            var dateStringCaseText = dateNow.getFullYear().toString() +
+                dateNow.getMonth().toString() +
+                dateNow.getDay().toString() +
+                dateNow.getHours().toString() +
+                dateNow.getMinutes().toString();
+            adler32 = ADLER32.str(dateString).toString();
+            adler32 = adler32 >>> 0;
+            hexString = adler32.toString(16);
+            $("body").append("PSCO-" + dateStringCaseText + "-" + hexString.toUpperCase());
+
+        });
     </script>
 </head>
 <body>
-    <p>1</p>
 
 </body>
 </html>
