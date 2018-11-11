@@ -8,12 +8,13 @@
             var dateNow = new Date();
             var dateString = dateNow.toDateString() + dateNow.toTimeString();
             adler32 = ADLER32.str(dateString);
-            $("body").append("PSCO-" + dateString + "-" + adler32);
+            $("body").append("PSCO-" + dateString + "-" + adler32.digest('hex'));
 
 });
     </script>
 </head>
 <body>
+    <p>1</p>
 
 </body>
 </html>
