@@ -6,8 +6,9 @@
     <script>
         $(document).ready(function () {
             var dateNow = new Date();
-            adler32 = ADLER32.str(dateNow);
-            $("body").append("PSCO-" + dateNow.toISOString() + "-" + adler32);
+            var dateString = dateNow.toDateString() + dateNow.toTimeString();
+            adler32 = ADLER32.str(dateString);
+            $("body").append("PSCO-" + dateString + "-" + adler32);
 
 });
     </script>
