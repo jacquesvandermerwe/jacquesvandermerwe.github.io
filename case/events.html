@@ -12,21 +12,13 @@
 
 <script>
 
-    $(function() {
+result =""; // contains your json
+for (i = 0; i < result["results"].length; i++) {
 
+<p>result["results"][i]["name"]</p>
 
-   var people = [];
+}
 
-   $.getJSON('events.json', function(data) {
-       $.each(entries.source, function(i, f) {
-          var tblRow = "<tr>" + "<td>" + f.name + "</td>" +
-           "<td>" + f.id + "</td>" + "<td>" + f.name + "</td>" + "<td>" + f.login + "</td>" + "</tr>"
-           $(tblRow).appendTo("#userdata tbody");
-     });
-
-   });
-
-});
 </script>
 </head>
 
