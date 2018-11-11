@@ -35,7 +35,11 @@
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
         container: '.container',
-        logoUrl: 'pixel.png'
+        logoUrl: 'pixel.png',
+        canDelete: false,
+        canCreateNewFolder: false,
+        canRename: false,
+        canShare: false
       });
 }
 </script>
