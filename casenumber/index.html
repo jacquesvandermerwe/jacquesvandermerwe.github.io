@@ -8,15 +8,15 @@
 
             var dateNow = new Date();
             var dateString = dateNow.getFullYear().toString() +
-                dateNow.getMonth().toString() +
-                dateNow.getDay().toString() +
+                ("0" + (dateNow.getMonth() + 1)).slice(-2) +
+                ("0" + dateNow.getDate()).slice(-2) +
                 dateNow.getHours().toString() +
                 dateNow.getMinutes().toString() +
                 dateNow.getSeconds().toString() +
                 dateNow.getMilliseconds().toString();
             var dateStringCaseText = dateNow.getFullYear().toString() +
-                dateNow.getMonth().toString() +
-                dateNow.getDay().toString() +
+                ("0" + (dateNow.getMonth() + 1)).slice(-2) +
+                ("0" + dateNow.getDate()).slice(-2) +
                 dateNow.getHours().toString() +
                 dateNow.getMinutes().toString();
             adler32 = ADLER32.str(dateString).toString();
