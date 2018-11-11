@@ -1,24 +1,24 @@
 <html>
 <head>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
-
-<style>
-  p {
-      color: #54698D;
-      font-family: "Lato", "Helvetica", "Arial", sans-serif;
-      font-size: 24px;
-  }
-</style>
+<script type="text/javascript" > </script>
 
 <script>
 
-result ="events.json"; // contains your json
-for (i = 0; i < result["results"].length; i++) {
+    $(function() {
 
-result["results"][i]["name"]
 
-}
+   var people = [];
 
+   $.getJSON('events.json', function(data) {
+       $.each(data.person, function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.firstName + "</td>" +
+           "<td>" + f.lastName + "</td>" + "<td>" + f.job + "</td>" + "<td>" + f.roll + "</td>" + "</tr>"
+           $(tblRow).appendTo("#userdata tbody");
+     });
+
+   });
+
+});
 </script>
 </head>
 
@@ -26,12 +26,12 @@ result["results"][i]["name"]
 
 <div class="wrapper">
 <div class="profile">
-   <table id= "userdata" border="0">
+   <table id= "userdata" border="2">
   <thead>
-            <th><p>Event ID/p></th>
-            <th><p>Name/p></th>
-            <th><p>Action</p></th>
-            <th><p>Timestamp</p></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>City</th>
         </thead>
       <tbody>
 

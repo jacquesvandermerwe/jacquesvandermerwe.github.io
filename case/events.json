@@ -1,12 +1,22 @@
 {
-  "results": [
-    {
-    },
-    {
-    },
-    {
-    }
-  ],
-  a:" some val",
-  b:" some val"
-}  
+   "person": [
+       {
+           "firstName": "Clark",
+           "lastName": "Kent",
+           "job": "Reporter",
+           "roll": 20
+       },
+       {
+           "firstName": "Bruce",
+           "lastName": "Wayne",
+           "job": "Playboy",
+           "roll": 30
+       },
+       {
+           "firstName": "Peter",
+           "lastName": "Parker",
+           "job": "Photographer",
+           "roll": 40
+       }
+   ]
+}
