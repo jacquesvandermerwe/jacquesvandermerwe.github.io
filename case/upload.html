@@ -2,28 +2,51 @@
 <html lang="en-US">
 <head>
     <meta charset="utf-8" />
-    <title>Box Content Uploader Demo</title>
+    <title>Upload Evidence</title>
 
-    <!-- polyfill.io only loads the polyfills your browser needs -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
-    <!-- Alternatively, use polyfill hosted on the Box CDN
-    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
-    -->
-
-    <!-- Latest version of the uploader css for your locale -->
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" />
 </head>
+<script>
+    var folderId = '57569390969';
+    var accessToken;
+    var contentExplorer = new Box.ContentExplorer();
+    var canCreateNewFolder = 'true';
+    $(document).ready(function() {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        //"url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6203007648",
+        "url": "https://bl2vhdoqzh.execute-api.eu-west-2.amazonaws.com/default/box-jwt-tokengenerator?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userId=6203007648",
+        "method": "GET",
+        "headers": {}
+      }
+
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        accessToken = response.token;
+        console.log(accessToken);
+        loadExplorer();
+      });
+    });
+    function loadExplorer() {
+      contentExplorer.show(folderId, accessToken, {
+        container: '.container',
+        logoUrl: 'personal.png',
+      });
+}
+</script>
+<style>
+  p {
+      color: #54698D;
+      font-family: "Lato", "Helvetica", "Arial", sans-serif;
+      font-size: 24px;
+  }
+</style>
 <body>
     <div class="container" style="height:600px"></div>
-    <!-- Latest version of the uploader js for your locale -->
-    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
-    <script>
-      	var folderId = '57097679298';
-      	var accessToken = 'rJS7m56duEXRZixnqqGoB7PueKeERcx3';
-      	var uploader = new Box.ContentUploader();
-      	uploader.show(folderId, accessToken, {
-            container: '.container'
-        });
-    </script>
 </body>
 </html>
