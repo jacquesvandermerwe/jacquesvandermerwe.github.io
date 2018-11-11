@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<title>Upload Evidence</title>
-<style>
-p {
-    color: #54698D;
-    font-family: "Lato", "Helvetica", "Arial", sans-serif;
-    font-size: 24px;
-
-}
-</style>
 <head>
     <meta charset="utf-8" />
-    <title>Box Content Explorer Demo</title>
+    <title>Box Content Uploader Demo</title>
 
     <!-- polyfill.io only loads the polyfills your browser needs -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
@@ -19,21 +10,19 @@ p {
     <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
     -->
 
-    <!-- Latest version of the explorer css for your locale -->
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" />
+    <!-- Latest version of the uploader css for your locale -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.css" />
 </head>
 <body>
     <div class="container" style="height:600px"></div>
-    <!-- Latest version of the explorer js for your locale -->
-    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script>
+    <!-- Latest version of the uploader js for your locale -->
+    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
     <script>
-      	var folderId = '57567775184';
-      	var accessToken = 'ptEvQOneIIWCYt2q5sSPNmt84A0QxKP5';
-      	var contentExplorer = new Box.ContentExplorer();
-      	var canCreateNewFolder = 'true';
-      	contentExplorer.show(folderId, accessToken, {
-            container: '.container',
-            logoUrl: 'pixel.png'
+      	var folderId = '57097679298';
+      	var accessToken = 'rJS7m56duEXRZixnqqGoB7PueKeERcx3';
+      	var uploader = new Box.ContentUploader();
+      	uploader.show(folderId, accessToken, {
+            container: '.container'
         });
     </script>
 </body>
