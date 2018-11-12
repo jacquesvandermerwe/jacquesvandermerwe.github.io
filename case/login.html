@@ -6,33 +6,35 @@
   <title>Police Scotland Case Manager Login Form</title>
 
 
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
 
-      <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-  $("#userlogin").on('submit', (function(ev) {
-    console.log("Form submitted");
-    var userLogin = $("#userLogin").val();
-    var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userEmail=" + userLogin;
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      //"url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6203007648",
-      "url": "https://bl2vhdoqzh.execute-api.eu-west-2.amazonaws.com/default/box-jwt-tokengenerator?" + urlParams,
-      "method": "GET",
-      "headers": {}
-    };
-    $.ajax(settings).done(function(response) {
-      console.log(response);
-      accessToken = response.token;
-      localStorage.setItem("accessToken",accessToken);
-      localStorage.setItem("userLogin",userLogin);
-      console.log(accessToken);
-      //redirect to margin
-      window.location.href='/case/main.html';
-    });
-  }));
+  $(document).ready(function() {
+    $('#userlogin').on('submit', (function(ev) {
+      console.log("Form submitted");
+      var userLogin = $("#userLogin").val();
+      var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userEmail=" + userLogin;
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        //"url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6203007648",
+        "url": "https://bl2vhdoqzh.execute-api.eu-west-2.amazonaws.com/default/box-jwt-tokengenerator?" + urlParams,
+        "method": "GET",
+        "headers": {}
+      };
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        accessToken = response.token;
+        localStorage.setItem("accessToken",accessToken);
+        localStorage.setItem("userLogin",userLogin);
+        console.log(accessToken);
+        //redirect to margin
+        window.location.href='/case/main.html';
+      });
+    }));
+  });
 
 </script>
 
