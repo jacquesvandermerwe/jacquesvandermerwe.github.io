@@ -27,6 +27,8 @@
 
       //$.ajax(settings).done(function(response) {
         //console.log(response);
+        console.log("from storage:" + localStorage.getItem("accessToken"));
+
         accessToken = localStorage.getItem("accessToken");
         console.log(accessToken);
         loadExplorer();
