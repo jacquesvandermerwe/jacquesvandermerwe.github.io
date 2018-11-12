@@ -94,6 +94,7 @@
           loadExplorerA();
           loadExplorerB();
           toggleButtonOn('undoButton');
+          toggleButtonOff('moveButton');
         });
       }));
     });
@@ -121,6 +122,8 @@
         sourceCurrent=folder.id;
         sourceFolder=null;
         toggleButtonOff('moveButton');
+        toggleButtonOff('undoButton');
+
 
       });
       explorerA.addListener('preview',(file) => {
@@ -158,6 +161,7 @@
           targetCurrent=folder.id;
           targetFolder=null;
           toggleButtonOff('moveButton');
+          toggleButtonOff('undoButton');
         });
       }
 
@@ -212,7 +216,7 @@
 				<button id="moveButton" type="submit" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
         Move-></button>
         	<button id="undoButton" type="button" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
-            Undo move</button>
+            Undo</button>
 			</form></div>
 
 		<div class="col col-md-5">
