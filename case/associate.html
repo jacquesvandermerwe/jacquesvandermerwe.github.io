@@ -128,10 +128,10 @@
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
         sourceFolder=null;
-        console.log('toggle move off, toggle undo off');
+        console.log('toggle move off, toggle undo off ' + justMovedS);
         toggleButtonOff('moveButton');
-        if(justMovedT) {
-          justMovedT=false;
+        if(justMovedS) {
+          justMovedS=false;
         }
         else {
           toggleButtonOff('undoButton');
@@ -173,7 +173,7 @@
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
           targetFolder=null;
-          console.log('toggle move off, toggle undo off');
+          console.log('toggle move off, toggle undo off ' + justMovedT);
           toggleButtonOff('moveButton');
           if(justMovedT) {
             justMovedT=false;
