@@ -54,6 +54,7 @@
       $("#undoButton").on('click',(function(ev) {
         $.ajax(undoSettings).done(function(response) {
           console.log(response);
+          reload();
         });
 
       }));
