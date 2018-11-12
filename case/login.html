@@ -12,7 +12,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   $("#userlogin").on('submit', (function(ev) {
-    var userLogin = $("#user").val();
+    console.log("Form submitted");
+    var userLogin = $("#userLogin").val();
     var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userEmail=" + userLogin;
     var settings = {
       "async": true,
@@ -72,7 +73,7 @@
         </form>
 			</div>
 
-	
+
 		</div>
 	</div>
 </div>
