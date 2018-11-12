@@ -29,9 +29,9 @@
       $.ajax(settings).done(function(response) {
         console.log(response);
         accessToken = response.token;
-        localStorage.setItem("accessToken",accessToken);
-        localStorage.setItem("userLogin",userLogin);
-        console.log("from storage:" + localStorage.getItem("accessToken"));
+        sessionStorage.setItem("accessToken",accessToken);
+        sessionStorage.setItem("userLogin",userLogin);
+        console.log("from storage:" + sessionStorage.getItem("accessToken"));
         //redirect to margin
         window.location.replace('/case/main.html');
       });
