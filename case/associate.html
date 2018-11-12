@@ -57,7 +57,7 @@
 
       }));
       $("#mover").on('submit', (function(ev) {
-        var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
+        var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId;
         ev.preventDefault();
         console.log("moving " + sourceId + " to " + targetFolder);
         var settings = {
