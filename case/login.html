@@ -31,9 +31,9 @@
         accessToken = response.token;
         localStorage.setItem("accessToken",accessToken);
         localStorage.setItem("userLogin",userLogin);
-        console.log(accessToken);
+        console.log(localStorage.getItem("accessToken"));
         //redirect to margin
-        window.location.href='/case/main.html';
+        window.location.redirect='/case/main.html';
       });
     }));
   });
