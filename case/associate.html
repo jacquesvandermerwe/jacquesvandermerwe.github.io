@@ -29,7 +29,7 @@
     var sourceType;
     var sourceCurrent=folderIdA;
     var targetCurrent=folderIdB;
-
+    var undoSettings;
     var accessToken = "";
 
     $(document).ready(function() {
@@ -44,15 +44,20 @@
       //}
 
       //$.ajax(settings).done(function(response) {
-        console.log(response);
+        //console.log(response);
         accessToken = sessionStorage.getItem("accessToken");
         console.log(accessToken);
         loadExplorerA();
         loadExplorerB();
       //});
+      $("#undoButton").on('click',(function(ev) {
+        $.ajax(undoSettings).done(function(response) {
+          console.log(response);
+        });
 
+      }));
       $("#mover").on('submit', (function(ev) {
-        var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId
+        var url = "https://api.box.com/2.0/" + sourceType + "s/" + sourceId;
         ev.preventDefault();
         console.log("moving " + sourceId + " to " + targetFolder);
         var settings = {
@@ -70,12 +75,25 @@
         $.ajax(settings).done(function(response) {
           console.log(response);
           $(".loader").hide();
+          //Show undo button and create settings for undo
+          undoSettings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.box.com/2.0/" + sourceType + "s/" + sourceId,
+            "method": "PUT",
+            "headers": {
+              "Authorization": "Bearer " + accessToken,
+              "Cache-Control": "no-cache"
+            },
+            "data": "{\"parent\": {\"id\" : " + sourceCurrent + "}}"
+          };
           explorerA.hide();
           explorerA.clearCache();
           explorerB.hide();
           explorerB.clearCache();
           loadExplorerA();
           loadExplorerB();
+          toggleButtonOn('undoButton');
         });
       }));
     });
@@ -96,25 +114,25 @@
         sourceId = item[0].id;
         sourceType = item[0].type;
         if (targetFolder != null) {
-          toggleButtonOn();
+          toggleButtonOn('moveButton');
         }
       });
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
         sourceFolder=null;
-        toggleButtonOff();
+        toggleButtonOff('moveButton');
 
       });
       explorerA.addListener('preview',(file) => {
         console.log("preview:" + file.id);
       });
     }
-    function toggleButtonOn() {
-        document.getElementById('moveButton').disabled = false;
+    function toggleButtonOn(id) {
+        document.getElementById(id).disabled = false;
     }
-    function toggleButtonOff() {
+    function toggleButtonOff(id) {
 
-        document.getElementById('moveButton').disabled = true;
+        document.getElementById(id).disabled = true;
     }
       function loadExplorerB() {
         explorerB.show(targetCurrent, accessToken, {
@@ -130,16 +148,16 @@
           targetFolder = item[0].id;
           var targetType = item[0].type;
           if (sourceId != null && targetType=='folder') {
-            toggleButtonOn();
+            toggleButtonOn('moveButton');
           }
           else {
-            toggleButtonOff();
+            toggleButtonOff('moveButton');
           }
         });
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
           targetFolder=null;
-          toggleButtonOff();
+          toggleButtonOff('moveButton');
         });
       }
 
@@ -193,6 +211,8 @@
 				</div>
 				<button id="moveButton" type="submit" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
         Move-></button>
+        	<button id="undoButton" type="button" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
+            Undo move</button>
 			</form></div>
 
 		<div class="col col-md-5">
