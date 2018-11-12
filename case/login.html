@@ -13,7 +13,7 @@
 <script>
   $(document).ready(function() {
     $('#userlogin').on('submit', (function(ev) {
-      ev.cancelDefault();
+      ev.preventDefault();
       console.log("Form submitted");
       var userLogin = $("#userLogin").val();
       var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userEmail=" + userLogin;
