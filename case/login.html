@@ -14,8 +14,8 @@
   $(document).ready(function() {
     sessionStorage.clear();
     $('#userlogin').on('submit', (function(ev) {
-      $("#signinbutton").hide();
-      $("#loader").show();
+      $("#signbutton").hide();
+      $("#loader").hide();
       ev.preventDefault();
       console.log("Form submitted");
       var userLogin = $("#userLogin").val();
@@ -52,7 +52,7 @@
   <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
 
 		<div class="login-form">
 			<div class="sign-in-htm">
@@ -71,8 +71,9 @@
 					<label for="checkLogin"><span class="icon"></span> Keep me Signed in</label>
 				</div>
 				<div class="group">
-					<input id='signinbutton' type="submit" class="button" value="Sign In">
+					<input id='signbutton' type="submit" class="button" value="Sign In">
           <img id='loader' src='ajax-loader.gif' style='display:none;'/>
+
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
