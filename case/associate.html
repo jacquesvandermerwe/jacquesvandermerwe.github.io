@@ -44,7 +44,7 @@
       //}
 
       //$.ajax(settings).done(function(response) {
-        console.log(response);
+        //console.log(response);
         accessToken = sessionStorage.getItem("accessToken");
         console.log(accessToken);
         loadExplorerA();
@@ -76,6 +76,7 @@
           explorerB.clearCache();
           loadExplorerA();
           loadExplorerB();
+          //Show undo button and create settings for undo
         });
       }));
     });
