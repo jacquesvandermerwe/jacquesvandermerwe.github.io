@@ -62,7 +62,7 @@
     });
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
-        container: '.pcontainer',
+        container: '.container',
         logoUrl: 'pixel.png',
         canDelete: false,
         canCreateNewFolder: false,
@@ -81,20 +81,17 @@
   });
   function loadSidebar() {
       	sidebar.show(sourceId, accessToken, {
-            container: '.container',
+            container: '.pcontainer',
             //isLarge: true,
             hasMetadata: true,
             hasSkills: true,
             hasProperties: true,
-             hasComments:true,
-             hasAccessStats: true,
+            hasComments:false,
+            hasAccessStats: true,
             hasVersions: true,
-            hasActivityFeed: true,
+            hasActivityFeed: false,
             hasClassification: true,
-              hasNotices: true,
-            onAccessStatsClick: () => {
-                            alert('Hello, world!');
-                        },
+            hasNotices: false
         });
   }
 </script>
