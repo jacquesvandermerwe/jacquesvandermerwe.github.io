@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    
+
 </head>
 <style>
   #main {
@@ -61,6 +61,7 @@
         accessToken = sessionStorage.getItem("accessToken");
         console.log(accessToken);
         loadExplorer();
+        $("#sidebarE").hide();
         //loadSidebar();
       //});
     });
@@ -79,12 +80,15 @@
   contentExplorer.addListener('select', (item) => {
     var sourceType = item[0].type;
     if (sourceType=='file') {
+      $("#sidebarE").show();
       sourceId = item[0].id;
       loadSidebar();
+
     }
     else {
       sidebar.clear();
       sidebar.hide();
+      $("#sidebarE").hide();
     }
   });
   function loadSidebar() {
@@ -125,10 +129,10 @@
     </div>
 
 
-    <div class="col col-md-4">
+    <div class="col col-md-4" id="sidebarE">
       <!-- Box Content Explorer -->
       <div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
-        <div style="height:400px" class="sidebar"><span class='loader'><img src='ajax-loader.gif'/></span></div>
+        <div style="height:400px" class="sidebar"></span></div>
       </div>
     </div>
 
