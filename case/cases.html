@@ -62,7 +62,7 @@
     });
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
-        container: '.container',
+        container: '.explorer',
         logoUrl: 'pixel.png',
         canDelete: false,
         canCreateNewFolder: false,
@@ -74,14 +74,14 @@
   }
   contentExplorer.addListener('select', (item) => {
     var sourceType = item[0].type;
-    if (sourceType=='file') {
+  //  if (sourceType=='file') {
       sourceId = item[0].id;
       loadSidebar();
-    }
+    //}
   });
   function loadSidebar() {
       	sidebar.show(sourceId, accessToken, {
-            container: '.pcontainer',
+            container: '.sidebar',
             //isLarge: true,
             hasMetadata: true,
             hasSkills: true,
@@ -103,9 +103,28 @@
   }
 </style>
 <body>
-    <div id="main">
-                <div id="container" class="container" style="height:800px;width:700px;"></div>
-                <div id="pcontainer" class="pcontainer" style="height:800px;width:300px;"></div>
-            </div>
+  <div class="container">
+  <div class="row">
+
+  </div>
+  <div class="row mtm mbl">
+    <div class="col col-md-8">
+
+      <!-- Box Content Explorer -->
+      <div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
+        <div style="height:400px" class="explorer"><span class='loader'><img src='ajax-loader.gif'/></span></div>
+      </div>
+    </div>
+
+
+    <div class="col col-md-4">
+      <!-- Box Content Explorer -->
+      <div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
+        <div style="height:400px" class="sidebar"><span class='loader'><img src='ajax-loader.gif'/></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
