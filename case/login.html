@@ -15,7 +15,7 @@
     sessionStorage.clear();
     $('#userlogin').on('submit', (function(ev) {
       $("#signbutton").hide();
-      $("#loader").hide();
+      $("#loader").show();
       ev.preventDefault();
       console.log("Form submitted");
       var userLogin = $("#userLogin").val();

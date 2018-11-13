@@ -9,11 +9,36 @@
     <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" />
+
+    <!-- Latest version of the sidebar css for your locale -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/sidebar.css" />
+    <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/sidebar.js"></script>
 </head>
+<style>
+  #main {
+    width: 1440px;
+    margin: 0 auto;
+}
+#container    {
+    width: 400px;
+    height: 800px;
+
+    float: left;
+}
+
+#pcontainer  {
+    width: 600px;
+
+    height: 800px;
+    margin-left: 400px;
+}
+</style>
 <script>
     var folderId = '57097679298';
+    var sourceId;
     var accessToken;
     var contentExplorer = new Box.ContentExplorer();
+    var sidebar = new Box.Sidebar();
     var canCreateNewFolder = 'true';
     $(document).ready(function() {
       //var settings = {
@@ -32,18 +57,46 @@
         accessToken = sessionStorage.getItem("accessToken");
         console.log(accessToken);
         loadExplorer();
+        //loadSidebar();
       //});
     });
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
-        container: '.container',
+        container: '.pcontainer',
         logoUrl: 'pixel.png',
         canDelete: false,
         canCreateNewFolder: false,
         canRename: false,
         canSetShareAccess: false
       });
-}
+
+      //hack HTML..
+  }
+  contentExplorer.addListener('select', (item) => {
+    var sourceType = item[0].type;
+    if (sourceType=='folder') {
+      sourceId = item[0].id;
+      loadSidebar();
+    }
+  });
+  function loadSidebar() {
+      	sidebar.show(sourceId, accessToken, {
+            container: '.container',
+            //isLarge: true,
+            hasMetadata: true,
+            hasSkills: true,
+            hasProperties: true,
+             hasComments:true,
+             hasAccessStats: true,
+            hasVersions: true,
+            hasActivityFeed: true,
+            hasClassification: true,
+              hasNotices: true,
+            onAccessStatsClick: () => {
+                            alert('Hello, world!');
+                        },
+        });
+  }
 </script>
 <style>
   p {
@@ -53,6 +106,9 @@
   }
 </style>
 <body>
-    <div class="container" style="height:600px"></div>
+    <div id="main">
+                <div id="container" class="container" style="height:800px;width:300px;"></div>
+                <div id="pcontainer" class="pcontainer" style="height:800px;width:600px;"></div>
+            </div>
 </body>
 </html>
