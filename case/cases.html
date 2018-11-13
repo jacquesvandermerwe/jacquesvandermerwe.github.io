@@ -74,10 +74,14 @@
   }
   contentExplorer.addListener('select', (item) => {
     var sourceType = item[0].type;
-  //  if (sourceType=='file') {
+    if (sourceType=='file') {
       sourceId = item[0].id;
       loadSidebar();
-    //}
+    }
+    else {
+      sidebar.clear();
+      sidebar.hide();
+    }
   });
   function loadSidebar() {
       	sidebar.show(sourceId, accessToken, {
@@ -89,7 +93,7 @@
             hasComments:false,
             hasAccessStats: true,
             hasVersions: true,
-            hasActivityFeed: false,
+            hasActivityFeed: true,
             hasClassification: true,
             hasNotices: false
         });
@@ -104,8 +108,10 @@
 </style>
 <body>
   <div class="container">
-
   <div class="row">
+
+  </div>
+  <div class="row mtm mbl">
     <div class="col col-md-8">
 
       <!-- Box Content Explorer -->
@@ -115,7 +121,7 @@
     </div>
 
 
-    <div class="col col-md-5">
+    <div class="col col-md-4">
       <!-- Box Content Explorer -->
       <div class="tab-pane show active mts" style="border: 1px solid #cdd4de; padding: 10px" role="tabpanel" id="explorer">
         <div style="height:400px" class="sidebar"><span class='loader'><img src='ajax-loader.gif'/></span></div>
