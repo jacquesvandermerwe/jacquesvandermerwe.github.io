@@ -74,7 +74,7 @@
   }
   contentExplorer.addListener('select', (item) => {
     var sourceType = item[0].type;
-    if (sourceType=='folder') {
+    if (sourceType=='file') {
       sourceId = item[0].id;
       loadSidebar();
     }
