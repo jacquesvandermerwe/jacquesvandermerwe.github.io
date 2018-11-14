@@ -49,11 +49,12 @@
         "url": "https://api.box.com/2.0/events?stream_position=now",
         "method": "GET",
         "headers": {
-          "Authorization": "Bearer " + sessionStorage.getItem("accessToken"),
+          "Authorization": "Bearer " + accessToken,
           "Cache-Control": "no-cache"
         }
     };
     $.ajax(settings).done(function (response) {
+      console.log(response);
       stream_position=response.next_stream_position;
     });
    return stream_position;
