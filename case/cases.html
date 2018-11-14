@@ -17,6 +17,7 @@
     var canCreateNewFolder = 'true';
     var selectedFolder;
     var currentSelected;
+    var currentSpan;
     $(document).ready(function() {
       //var settings = {
       //  "async": true,
@@ -75,12 +76,15 @@
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
           obj.parentNode.onclick = function(event){changeEvent(event);};
           obj.onclick = function(event){changeEvent(event);};
+          currentSpan=obj;
         }
       }
     }
     function changeEvent(ev) {
       console.log(ev);
+      obj.innerHTML="<img src='smallspinner.gif'/>";
       launchNintexFlow();
+      
       ev.cancelBubble=true;
     }
   function launchNintexFlow() {
@@ -102,6 +106,7 @@
 
 $.ajax(settings).done(function (response) {
   console.log(response);
+
 
 });
   }
