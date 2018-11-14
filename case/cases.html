@@ -41,6 +41,12 @@
         canRename: false,
         canSetShareAccess: false
       });
+      contentExplorer.addListener('select', (item) => {
+        hackDom();
+      });
+    }
+
+    function hackDom() {
       //hack dom
       var allSpans = document.getElementsByTagName('span');
       var i = 0;
@@ -54,7 +60,8 @@
           textSpan.innerHTML = 'Copfs';
         }
       }
-}
+    }
+
 </script>
 <style>
   p {
