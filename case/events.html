@@ -12,6 +12,7 @@
 
 <script>
    var stream_position = "now";
+   function getSettings() {
    var settings = {
      "async": true,
      "crossDomain": true,
@@ -22,12 +23,15 @@
        "Cache-Control": "no-cache"
      }
    };
+   return settings;
+ }
   $(document).ready(function() {
     //get stream posiution
-    $.ajax(settings).done(function (response1) {
+    $.ajax(getSettings()).done(function (response1) {
       console.log("1" + JSON.stringify(response1));
       stream_position=response1.next_stream_position;
-      $.ajax(settings).done(function (response2) {
+
+      $.ajax(getSettings()).done(function (response2) {
         console.log("2" + JSON.stringify(response2));
         stream_position=response2.next_stream_position;
       });
