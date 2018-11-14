@@ -29,13 +29,16 @@
         },
         "columns": [
           {
-            "data": "type"
-          },
-          {
-            "data": "event_id"
-          },
-          {
             "data": "event_type"
+          },
+          {
+            "data": "created"
+          },
+          {
+            "data":null,
+              render: function(data, type, row) {
+                return row.source.name;
+            }
           }
         ]});
 
@@ -50,9 +53,9 @@
 <body>
   <table id="contentlist" class="display" style="width:100%">
       <thead>
-          <th>Type</th>
-          <th>Event ID</th>
-          <th>Event Type</th>
+          <th>Event</th>
+          <th>Created</th>
+          <th>Name</th>
         </thead>
         <tbody>
         </tbody>
