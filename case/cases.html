@@ -16,6 +16,7 @@
     var contentExplorer = new Box.ContentExplorer();
     var canCreateNewFolder = 'true';
     var selectedFolder;
+    var currentSelected;
     $(document).ready(function() {
       //var settings = {
       //  "async": true,
@@ -49,7 +50,12 @@
         for(i=0;i<divs.length;i++) {
           if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
             divs[i].style.display='block';
+            currentSelected = divs[i];
+            if(currentSelected) {
+              currentSelected.style.display='none';
+            }
             console.log(divs[i].parentNode.parentNode.className);
+            hackDom();
           }
         }
 
