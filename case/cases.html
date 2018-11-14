@@ -64,6 +64,8 @@
           console.log("p1" + obj.parentNode.className);
           console.log("p2" + obj.parentNode.parentNode.className);
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
+          obj.parentNode.onclick = function(event){changeEvent(event);};
+          obj.onclick = function(event){changeEvent(event);};
         }
       }
     }
