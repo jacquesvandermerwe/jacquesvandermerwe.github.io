@@ -47,7 +47,7 @@
         var divs = document.getElementsByTagName('div');
         console.log(divs.length);
         for(i=0;i<divs.length;i++) {
-          if(divs[i].className=='bce-more-options') {
+          if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
             divs[i].style.display='block';
             console.log(divs[i].parentNode.parentNode.className);
           }
