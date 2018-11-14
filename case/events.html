@@ -10,26 +10,27 @@
 
 <script>
    var stream_position = sessionStorage.getItem("streamPosition");
-   function getSettings() {
-     var settings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
-       "method": "GET",
-       "headers": {
-         "Authorization": "Bearer " + sessionStorage.getItem("accessToken"),
-         "Cache-Control": "no-cache"
-       }
-   };
-   return settings;
- }
-  $(document).ready(function() {
-    //get stream posiution
-    $.ajax(getSettings()).done(function (response1) {
-      console.log("1" + JSON.stringify(response1));
-      stream_position=response1.next_stream_position;
-    });
 
+  $(document).ready(function() {
+    var t = $('#contentlist').DataTable({
+        "select": true,
+        "dom": "Bfrtip",
+        "pageLength": 5,
+        "ajax": "https://api.box.com/2.0/events?stream_position=" + stream_position,
+        "beforeSend" : function (request) {
+          request.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("accessToken"));
+        }.
+        "columns": [
+          {
+            "data": "name"
+          },
+          {
+            "data": "type"
+          },
+          {
+            "data": "date"
+          }
+        ]});
 
   });
 
