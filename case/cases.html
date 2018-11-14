@@ -53,11 +53,11 @@
       console.log("found " + allSpans.length);
       for(i=0;i<allSpans.length;i++) {
         var obj = allSpans[i];
-        if(obj.className=='btn-content') {
+        if(obj.innerHTML=='Share') {
           console.log("found a button");
-          var textSpan = obj.firstElementChild;
+        //  var textSpan = obj.firstElementChild;
           console.log("button text:" + textSpan.innerHTML);
-          textSpan.innerHTML = 'Copfs';
+          obj.innerHTML = 'Copfs';
         }
       }
     }
