@@ -84,7 +84,6 @@
       console.log(ev);
       currentSelected.innerHTML="<img src='smallspinner.gif'/>";
       launchNintexFlow();
-      currentSelected.innerHTML="<img src='tick.gif'/>";
       ev.cancelBubble=true;
     }
   function launchNintexFlow() {
@@ -106,6 +105,7 @@
 
 $.ajax(settings).done(function (response) {
   console.log(response);
+currentSelected.innerHTML="<img src='tick.gif'/>";
 
 
 });
