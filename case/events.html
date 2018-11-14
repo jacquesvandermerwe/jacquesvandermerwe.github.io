@@ -26,8 +26,12 @@
     //get stream posiution
     $.ajax(settings).done(function (response) {
       console.log(response);
+      stream_position=response.next_stream_position;
     });
-
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      stream_position=response.next_stream_position;
+    });
 
   });
 
