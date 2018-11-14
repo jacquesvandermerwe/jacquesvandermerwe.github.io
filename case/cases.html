@@ -6,8 +6,9 @@
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script>
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" />
+    <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
 </head>
 <script>
     var folderId = '57097679298';
@@ -59,10 +60,10 @@
           console.log("found a button");
         //  var textSpan = obj.firstElementChild;
           console.log("button text:" + obj.innerHTML);
-          //obj.innerHTML = 'Copfs';
-          console.log("p1" + obj.parentNode.tagName);
-          console.log("p2" + obj.parentNode.parentNode.tagName);
-          //obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
+          obj.innerHTML = 'Copfs';
+          console.log("p1" + obj.parentNode.className);
+          console.log("p2" + obj.parentNode.parentNode.className);
+          obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
         }
       }
     }
