@@ -15,6 +15,7 @@
     var accessToken;
     var contentExplorer = new Box.ContentExplorer();
     var canCreateNewFolder = 'true';
+    var selectedFolder;
     $(document).ready(function() {
       //var settings = {
       //  "async": true,
@@ -42,7 +43,7 @@
         canSetShareAccess: false
       });
       contentExplorer.addListener('select', (item) => {
-        //hackDom();
+        selectedFolder = item[0].id
       });
       contentExplorer.addListener('navigate', (item) => {
         hackDom();
@@ -71,9 +72,29 @@
     }
     function changeEvent(ev) {
       console.log(ev);
+      launchNintexFlow();
       ev.cancelBubble=true;
     }
+  function launchNintexFlow() {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://box-162828.workflowcloud.com/api/v1/workflow/published/4de240a7-6de1-47a9-9da6-c71e9be9de7f/swagger.json?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOV0MiLCJ3b3JrZmxvd0lkIjoiNGRlMjQwYTctNmRlMS00N2E5LTlkYTYtYzcxZTliZTlkZTdmIiwidGVuYW50SWQiOiJiYTllNDhmNS1kNjdlLTRkNjMtYmY2OS04YWRiNTBiMGRjMjMiLCJpYXQiOjE1NDIxOTc1MDF9.V0Z8scOJpS10RC-x8Dm2pa2oYwKCIUIcl9JWytIe2Ts",
+      "method": "GET",
+      "headers": {
+        "Content-Type": "application/json",
+        "cache-control": "no-cache"
+  },
+  "processData": false,
+  "data": "{\n    \"startData\": {\n        \"se_folder_id\": \"" + selectedFolder + "\"\n    }\n}"
+}
 
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  
+});
+  }
 </script>
 <style>
   p {
