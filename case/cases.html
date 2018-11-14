@@ -61,7 +61,7 @@
         //  var textSpan = obj.firstElementChild;
           console.log("button text:" + obj.innerHTML);
           obj.innerHTML = 'Copfs';
-          obj.onclick(changeEvent(event));
+          obj.parent.parent.onclick(changeEvent(event));
         }
       }
     }
