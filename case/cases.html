@@ -61,9 +61,9 @@
         //  var textSpan = obj.firstElementChild;
           console.log("button text:" + obj.innerHTML);
           obj.innerHTML = 'Copfs';
-          console.log("p1" + obj.parent.className);
-          console.log("p2" + obj.parent.parent.className);
-          obj.parent.parent.onclick(changeEvent(event));
+          console.log("p1" + obj.parentNode.className);
+          console.log("p2" + obj.parentNode.parentNode.className);
+          obj.parentNode.parentNode.onclick(changeEvent(event));
         }
       }
     }
