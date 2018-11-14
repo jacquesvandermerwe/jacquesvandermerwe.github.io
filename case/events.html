@@ -11,17 +11,17 @@
 
 
 <script>
-   var stream_position = "now";
+   var stream_position = sessionStorage.getItem("streamPosition");
    function getSettings() {
-   var settings = {
-     "async": true,
-     "crossDomain": true,
-     "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
-     "method": "GET",
-     "headers": {
-       "Authorization": "Bearer " + sessionStorage.getItem("accessToken"),
-       "Cache-Control": "no-cache"
-     }
+     var settings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
+       "method": "GET",
+       "headers": {
+         "Authorization": "Bearer " + sessionStorage.getItem("accessToken"),
+         "Cache-Control": "no-cache"
+       }
    };
    return settings;
  }
@@ -30,11 +30,6 @@
     $.ajax(getSettings()).done(function (response1) {
       console.log("1" + JSON.stringify(response1));
       stream_position=response1.next_stream_position;
-
-      $.ajax(getSettings()).done(function (response2) {
-        console.log("2" + JSON.stringify(response2));
-        stream_position=response2.next_stream_position;
-      });
     });
 
 
