@@ -42,7 +42,7 @@
         canSetShareAccess: false
       });
       contentExplorer.addListener('select', (item) => {
-        hackDom();
+        //hackDom();
       });
       contentExplorer.addListener('navigate', (item) => {
         hackDom();
@@ -63,7 +63,7 @@
           obj.innerHTML = 'Copfs';
           console.log("p1" + obj.parentNode.className);
           console.log("p2" + obj.parentNode.parentNode.className);
-          obj.parentNode.parentNode.onclick(changeEvent(event));
+          obj.parentNode.parentNode.onclick = function(event){changeEvent(event))};
         }
       }
     }
