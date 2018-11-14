@@ -41,6 +41,16 @@
         canRename: false,
         canSetShareAccess: false
       });
+      //hack dom
+      var allSpans = document.getElementsByTagName('span');
+      var i = 0;
+      for(i=0;i<allSpans.length;i++) {
+        var obj = appSpans[i];
+        if(obj.className=='btn-content') {
+          var textSpan = obj.firstElementChild;
+          textSpan.innerHTML = 'Copfs';
+        }
+      }
 }
 </script>
 <style>
