@@ -24,12 +24,12 @@
    };
   $(document).ready(function() {
     //get stream posiution
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      stream_position=response.next_stream_position;
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-        stream_position=response.next_stream_position;
+    $.ajax(settings).done(function (response1) {
+      console.log("1" + response1);
+      stream_position=response1.next_stream_position;
+      $.ajax(settings).done(function (response2) {
+        console.log("2" + response2);
+        stream_position=response2.next_stream_position;
       });
     });
 
