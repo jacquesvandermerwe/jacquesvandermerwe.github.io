@@ -19,7 +19,7 @@
         "ajax":{
           "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
           "type": "GET",
-          "headers": {"Authorization": sessionStorage.getItem("accessToken")
+          "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
           }
         },
         "columns": [
