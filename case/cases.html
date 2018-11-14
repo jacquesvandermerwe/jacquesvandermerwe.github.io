@@ -43,10 +43,17 @@
         canSetShareAccess: false
       });
       contentExplorer.addListener('select', (item) => {
-        selectedFolder = item[0].id
+        selectedFolder = item[0].id;
+        var divs = document.getElementsByTagName('div');
+        for(i=0;i<divs.length;i++) {
+          if(divs[i].className=='bce more options') {
+            divs[i].display=='block';
+          }
+        }
+
       });
       contentExplorer.addListener('navigate', (item) => {
-        hackDom();
+
       });
     }
 
@@ -104,7 +111,7 @@ $.ajax(settings).done(function (response) {
       font-family: "Lato", "Helvetica", "Arial", sans-serif;
       font-size: 24px;
   }
-  
+
 </style>
 <body>
     <div class="container" style="height:600px"></div>
