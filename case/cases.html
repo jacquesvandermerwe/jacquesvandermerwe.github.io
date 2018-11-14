@@ -61,9 +61,12 @@
         //  var textSpan = obj.firstElementChild;
           console.log("button text:" + obj.innerHTML);
           obj.innerHTML = 'Copfs';
-          obj.click(function(event) {event.cancelDefault();alert('copfs');});
+          obj.onclick(changeEvent(event));
         }
       }
+    }
+    function changeEvent(ev) {
+      console.log(ev);
     }
 
 </script>
