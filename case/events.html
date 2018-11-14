@@ -16,9 +16,10 @@
         "select": true,
         "dom": "Bfrtip",
         "pageLength": 5,
-        "ajax": "https://api.box.com/2.0/events?stream_position=" + stream_position,
-        "beforeSend" : function (request) {
-          request.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("accessToken"));
+        "ajax":{
+          "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
+          "type": "GET",
+          "headers": {"Authorization": sessionStorage.getItem("accessToken")
         },
         "columns": [
           {
