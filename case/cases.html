@@ -50,10 +50,11 @@
         for(i=0;i<divs.length;i++) {
           if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
             divs[i].style.display='block';
-            currentSelected = divs[i];
+
             if(currentSelected) {
               currentSelected.style.display='none';
             }
+            currentSelected = divs[i];
             console.log(divs[i].parentNode.parentNode.className);
             hackDom();
           }
