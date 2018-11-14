@@ -46,16 +46,13 @@
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;
         var divs = document.getElementsByTagName('div');
-        console.log(divs.length);
         for(i=0;i<divs.length;i++) {
           if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
             divs[i].style.display='block';
-
             if(currentSelected) {
               currentSelected.style.display='none';
             }
             currentSelected = divs[i];
-            console.log(divs[i].parentNode.parentNode.className);
             hackDom();
           }
         }
@@ -74,12 +71,7 @@
       for(i=0;i<allSpans.length;i++) {
         var obj = allSpans[i];
         if(obj.innerHTML=='Share') {
-          console.log("found a button");
-        //  var textSpan = obj.firstElementChild;
-          console.log("button text:" + obj.innerHTML);
-          obj.innerHTML = 'Copfs';
-          console.log("p1" + obj.parentNode.className);
-          console.log("p2" + obj.parentNode.parentNode.className);
+          obj.innerHTML = 'COPFS';
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
           obj.parentNode.onclick = function(event){changeEvent(event);};
           obj.onclick = function(event){changeEvent(event);};
