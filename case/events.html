@@ -42,9 +42,11 @@
           {
             "data":null,
             render: function(data,type,row) {
-              var date = new Date(Date.parse(row.created_at));
-              return date.toLocaleString('en-GB', { timeZone: 'UTC' });
-
+              if(row.event_type) {
+                var date = new Date(Date.parse(row.created_at));
+                return date.toLocaleString('en-GB', { timeZone: 'UTC' });
+              }
+              return "";
             }
           },
           {
@@ -53,23 +55,27 @@
                 if(row.event_type && row.event_type.startsWith('ITEM_')) {
                   return row.source.name;
                 }
-                else if(row.event_type.startsWith("COLLAB_)")){
+                else if(row.event_type && row.event_type.startsWith("COLLAB_)")){
                     return row.source.item.name;
                 }
+                return "";
             }
           },
           {
             "data":null,
               render: function(data, type, row) {
-              if(row.event_type.startsWith("COLLAB_")) {
+              if(row.event_type && row.event_type.startsWith("COLLAB_")) {
                     return row.source.accessible_by.name + " as " + row.source.role;// + " on " + row.item.type + " " + row.item.name;
                 }
+                return "";
             }
           },
           {
             "data":null,
               render: function(data, type, row) {
-                return JSON.stringify(row.source);
+                if(row.source) {
+                  return JSON.stringify(row.source);
+                }
             }
           }
         ]});
