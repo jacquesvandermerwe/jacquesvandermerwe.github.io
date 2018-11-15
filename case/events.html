@@ -53,8 +53,16 @@
                 if(row.event_type && row.event_type.startsWith('ITEM')) {
                   return row.source.name;
                 }
-                else {
-                    return "what";
+                else if(row.event_type.startsWith("COLLAB"){
+                    return row.item.name;
+                }
+            }
+          },
+          {
+            "data":null,
+              render: function(data, type, row) {
+              if(row.event_type.startsWith("COLLAB_"){
+                    return row.accesible_by.name + " as " + row.role + " on " + row.item.type + " " + row.item.name; 
                 }
             }
           },
@@ -130,6 +138,8 @@ ul.tabs{
             <th>Event</th>
             <th>Created</th>
             <th>Name</th>
+            <th>Details</th>
+
             <th>Source</th>
           </thead>
           <tbody>
