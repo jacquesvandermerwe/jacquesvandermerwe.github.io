@@ -61,8 +61,8 @@
           {
             "data":null,
               render: function(data, type, row) {
-              if(row.event_type.startsWith("COLLAB_"){
-                    return row.accesible_by.name + " as " + row.role + " on " + row.item.type + " " + row.item.name; 
+              if(row.event_type.startsWith("COLLAB_")) {
+                    return row.accesible_by.name + " as " + row.role + " on " + row.item.type + " " + row.item.name;
                 }
             }
           },
