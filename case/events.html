@@ -55,7 +55,7 @@
                 if(row.event_type && row.event_type.startsWith('ITEM_')) {
                   return row.source.name;
                 }
-                else if(row.event_type && row.event_type.startsWith("COLLAB_)")){
+                else if(row.event_type && row.event_type.startsWith("COLLAB_")){
                     return row.source.item.name;
                 }
                 return "";
