@@ -59,7 +59,10 @@
             }
           },
           {
-            "data":"source"
+            "data":null,
+              render: function(data, type, row) {
+                return JSON.stringify(row.source);
+            }
           }
         ]});
 
