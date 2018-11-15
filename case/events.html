@@ -69,15 +69,16 @@
                 }
                 return "";
             }
-          },
-          {
-            "data":null,
-              render: function(data, type, row) {
-                if(row.source) {
-                  return JSON.stringify(row.source);
-                }
-            }
           }
+          //,
+          //{
+          //  "data":null,
+          //    render: function(data, type, row) {
+          //      if(row.source) {
+          //        return JSON.stringify(row.source);
+          //      }
+          //  }
+          //}
         ]});
 
   });
@@ -146,7 +147,7 @@ ul.tabs{
             <th>Name</th>
             <th>Details</th>
 
-            <th>Source</th>
+
           </thead>
           <tbody>
           </tbody>
