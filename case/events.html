@@ -50,11 +50,11 @@
           {
             "data":null,
               render: function(data, type, row) {
-                if(row.event_type.startsWith('ITEM')) {
+                if(row.event_type && row.event_type.startsWith('ITEM')) {
                   return row.source.name;
                 }
                 else {
-
+                    return "what";
                 }
             }
           }
