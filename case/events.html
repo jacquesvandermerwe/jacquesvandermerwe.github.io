@@ -13,13 +13,13 @@
   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
 <script>
-   var stream_position = sessionStorage.getItem("streamPosition");
+   var stream_position = "0";//sessionStorage.getItem("streamPosition");
 
   $(document).ready(function() {
     var t = $('#contentlist').DataTable({
         "select": true,
         "dom": "Bfrtip",
-        "pageLength": 5,
+        "pageLength": 25,
         "ajax":{
           "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
           "type": "GET",
