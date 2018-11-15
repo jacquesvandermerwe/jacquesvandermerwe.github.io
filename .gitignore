@@ -1,6 +1,11 @@
+
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /.vs/config/applicationhost.config
+<<<<<<< HEAD
+.DS_Store
+=======
 .DS_STORE
+>>>>>>> origin/master
