@@ -31,7 +31,8 @@
     var targetCurrent=folderIdB;
     var undoSettings;
     var accessToken = "";
-
+    var justMovedS = false;
+    var justMovedT = false;
     $(document).ready(function() {
 
       //var settings = {
@@ -53,6 +54,7 @@
       $("#undoButton").on('click',(function(ev) {
         $.ajax(undoSettings).done(function(response) {
           console.log(response);
+          reload();
         });
 
       }));
@@ -87,16 +89,23 @@
             },
             "data": "{\"parent\": {\"id\" : " + sourceCurrent + "}}"
           };
-          explorerA.hide();
-          explorerA.clearCache();
-          explorerB.hide();
-          explorerB.clearCache();
-          loadExplorerA();
-          loadExplorerB();
+          reload();
+          console.log('toggle move off, toggle undo on');
           toggleButtonOn('undoButton');
+          toggleButtonOff('moveButton');
+          justMovedS=true;
+          justMovedT=true;
         });
       }));
     });
+    function reload() {
+      explorerA.hide();
+      explorerA.clearCache();
+      explorerB.hide();
+      explorerB.clearCache();
+      loadExplorerA();
+      loadExplorerB();
+    }
     function loadExplorerA() {
       explorerA.show(sourceCurrent, accessToken, {
         container: '.explorer-a',
@@ -120,7 +129,15 @@
       explorerA.addListener('navigate',(folder)=> {
         sourceCurrent=folder.id;
         sourceFolder=null;
+        console.log('toggle move off, toggle undo off ' + justMovedS);
         toggleButtonOff('moveButton');
+        if(justMovedS) {
+          justMovedS=false;
+        }
+        else {
+          toggleButtonOff('undoButton');
+        }
+
 
       });
       explorerA.addListener('preview',(file) => {
@@ -157,7 +174,14 @@
         explorerB.addListener('navigate',(folder)=> {
           targetCurrent=folder.id;
           targetFolder=null;
+          console.log('toggle move off, toggle undo off ' + justMovedT);
           toggleButtonOff('moveButton');
+          if(justMovedT) {
+            justMovedT=false;
+          }
+          else {
+            toggleButtonOff('undoButton');
+          }
         });
       }
 
@@ -211,8 +235,8 @@
 				</div>
 				<button id="moveButton" type="submit" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
         Move-></button>
-        	<button id="undoButton" type="button" class="btn btn-primary btn-sm" style="margin-top:150px;margin-left:-15px;" disabled>
-            Undo move</button>
+        	<button id="undoButton" type="button" class="btn btn-primary btn-sm" style="margin-top:10px;margin-left:-15px;" disabled>
+            <-Undo</button>
 			</form></div>
 
 		<div class="col col-md-5">

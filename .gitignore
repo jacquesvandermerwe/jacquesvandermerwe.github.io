@@ -4,4 +4,8 @@
 ################################################################################
 
 /.vs/config/applicationhost.config
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_STORE
+>>>>>>> origin/master

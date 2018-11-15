@@ -12,7 +12,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   $(document).ready(function() {
+    sessionStorage.clear();
     $('#userlogin').on('submit', (function(ev) {
+      $("#signbutton").hide();
+      $("#loader").show();
       ev.preventDefault();
       console.log("Form submitted");
       var userLogin = $("#userLogin").val();
@@ -32,11 +35,31 @@
         sessionStorage.setItem("accessToken",accessToken);
         sessionStorage.setItem("userLogin",userLogin);
         console.log("from storage:" + sessionStorage.getItem("accessToken"));
-        //redirect to margin
-        window.location.replace('/case/main.html');
+        getStreamPosition();
+
       });
     }));
   });
+  function getStreamPosition() {
+    var stream_position;
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.box.com/2.0/events?stream_position=now",
+        "method": "GET",
+        "headers": {
+          "Authorization": "Bearer " + accessToken,
+          "Cache-Control": "no-cache"
+        }
+    };
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      stream_position=response.next_stream_position;
+      sessionStorage.setItem("streamPosition",stream_position);
+      window.location.replace('/case/main.html');
+    });
+   //return stream_position;
+  }
 
 </script>
 
@@ -68,7 +91,9 @@
 					<label for="checkLogin"><span class="icon"></span> Keep me Signed in</label>
 				</div>
 				<div class="group">
-					<input type="submit" class="button" value="Sign In">
+					<input id="signbutton" type="submit" class="button" value="Sign In">
+          <img align=center id="loader" src="5.gif" style="display:none;">
+
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
