@@ -34,7 +34,9 @@
         accessToken = response.token;
         sessionStorage.setItem("accessToken",accessToken);
         sessionStorage.setItem("userLogin",userLogin);
-        console.log("from storage:" + sessionStorage.getItem("accessToken"));
+        sessionStorage.setItem("adminAccessToken",userLogin);
+        console.log("from storage access:" + sessionStorage.getItem("accessToken"));
+        console.log("from storage admin:" + sessionStorage.getItem("accessToken"));
         getStreamPosition();
 
       });

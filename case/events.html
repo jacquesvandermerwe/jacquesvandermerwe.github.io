@@ -80,7 +80,66 @@
           //  }
           //}
         ]});
-
+        var t2 = $('#contentlist2caption').DataTable({
+            "order": [[ 1, "desc" ]],
+            "select": true,
+            "dom": "Bfrtip",
+            "pageLength": 25,
+            "ajax":{
+              "url": "https://api.box.com/2.0/events?stream_type=admin_logs&event_type=FILE_MARKED_MALICIOUS",
+              "type": "GET",
+              "dataSrc": "entries",
+              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("adminAccessToken")
+              }
+            },
+            "columns": [
+              {
+                "data":null,
+                render: function(data,type,row) {
+                  if(row.event_type) {
+                    return row.source.item_name;
+                  }
+                  return "";
+                }
+              },
+              {
+                "data":null,
+                render: function(data,type,row) {
+                  if(row.event_type) {
+                    var date = new Date(Date.parse(row.created_at));
+                    return date.toLocaleString('en-GB', { timeZone: 'UTC' });
+                  }
+                  return "";
+                }
+              },
+              {
+                "data":null,
+                  render: function(data, type, row) {
+                    if(row.event_type ) {
+                      return row.created_by.name + " (" + row.created_by.login + ")";
+                    }
+                    return "";
+                }
+              },
+              {
+                "data":null,
+                  render: function(data, type, row) {
+                  if(row.event_type ) {
+                        return row.source.parent.name;
+                    }
+                    return "";
+                }
+              }
+              //,
+              //{
+              //  "data":null,
+              //    render: function(data, type, row) {
+              //      if(row.source) {
+              //        return JSON.stringify(row.source);
+              //      }
+              //  }
+              //}
+            ]});
   });
 
 
@@ -155,7 +214,19 @@ ul.tabs{
     </table>
   </div>
   <div id="tab-200" class="tab-content">
-    Malicious files
+    <table id="contentlist2" class="display" style="width:95%%">
+      <thead>
+          <th>File Name</th>
+          <th>Uploaded</th>
+          <th>Uploader</th>
+          <th>Folder</th>
+
+
+        </thead>
+        <tbody>
+        </tbody>
+
+  </table>
   </div>
 </div>
   </body>
