@@ -16,6 +16,13 @@
    var stream_position = "0";//sessionStorage.getItem("streamPosition");
 
   $(document).ready(function() {
+    $('ul.tabs li').click(function() {
+      var tab_id = $(this).attr('data-tab');
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
+      $(this).addClass('current');
+      $("#" + tab_id).addClass('current');
+    });
     var t = $('#contentlist').DataTable({
         "order": [[ 1, "desc" ]],
         "select": true,
@@ -43,7 +50,12 @@
           {
             "data":null,
               render: function(data, type, row) {
-                return row.source.name;
+                if(row.event_type.startsWith('ITEM')) {
+                  return row.source.name;
+                }
+                else {
+
+                }
             }
           }
         ]});
@@ -56,13 +68,56 @@
 <style>
 th {font-family:Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:15px;}
 td {font-family:Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:13px;}
+ul.tabs{
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+		}
+		ul.tabs li{
+			background: none;
+			color: #222;
+			display: inline-block;
+			padding: 10px 15px;
+			cursor: pointer;
+		}
+
+		ul.tabs li.current{
+			background: #ededed;
+			color: #222;
+		}
+    .tab-content{
+  			display: none;
+  			background: #ededed;
+  			padding: 15px;
+  		}
+
+  		.tab-content.current{
+  			display: inherit;
+  		}
+      .tab-content{
+  			display: none;
+  			background: #ededed;
+  			padding: 15px;
+  		}
+
+  		.tab-content.current{
+  			display: inherit;
+  		}
+      .sameline {
+        display: inline;
+      }
 </style>
 
 </head>
 
 <body>
   <div style="padding: 5 5 5 5px;">
-    <table id="contentlist" class="display" style="width:100%">
+    <ul class="tabs">
+      <li class="tab-link current" data-tab="tab-100">My Events</li>
+      <li class="tab-link" data-tab="tab-200">Malicious file events</li>
+  </ul>
+<div id="tab-100" class="tab-content current">
+      <table id="contentlist" class="display" style="width:100%">
         <thead>
             <th>Event</th>
             <th>Created</th>
@@ -73,5 +128,9 @@ td {font-family:Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:1
 
     </table>
   </div>
+  <div id="tab-200" class="tab-content1">
+    Malicious files
+  </div>
+</div>
   </body>
 </html>
