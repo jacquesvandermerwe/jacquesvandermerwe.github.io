@@ -22,7 +22,7 @@
         "dom": "Bfrtip",
         "pageLength": 25,
         "ajax":{
-          "url": "https://api.box.com/2.0/events?stream_position=" + stream_position,
+          "url": "https://api.box.com/2.0/events?limit=500&stream_position=" + stream_position,
           "type": "GET",
           "dataSrc": "entries",
           "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
