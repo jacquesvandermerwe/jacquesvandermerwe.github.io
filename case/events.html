@@ -18,14 +18,34 @@
 
   <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
   <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/sl-1.2.6/datatables.min.css"/>
 
-  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sl-1.2.6/datatables.min.js"></script>
+
+  <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
 
 <script>
    var stream_position = "0";//sessionStorage.getItem("streamPosition");
-
+  var t;
+  var modal;
   $(document).ready(function() {
+      modal = document.getElementById('myModal');
+      // Get the button that opens the modal
+      var span = document.getElementsByClassName("close")[0];
+
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
     $('ul.tabs li').click(function() {
       var tab_id = $(this).attr('data-tab');
       $('ul.tabs li').removeClass('current');
@@ -33,7 +53,7 @@
       $(this).addClass('current');
       $("#" + tab_id).addClass('current');
     });
-    var t = $('#contentlist').DataTable({
+   t = $('#contentlist').DataTable({
         "order": [[ 1, "desc" ]],
         "select": true,
         "dom": "Bfrtip",
@@ -45,6 +65,12 @@
           "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
           }
         },
+        "columnDefs": [
+         {
+           "targets": [ 4 ],
+           "visible": false,
+           "searchable": false
+         }],
         "columns": [
           {
             "data": "event_type"
@@ -80,6 +106,16 @@
                 return "";
             }
           }
+          ,
+          {
+            "data":null,
+              render: function(data, type, row) {
+              if(row.event_type && row.source.item_id) {
+                    return row.source.item_id;
+                }
+                return "";
+            }
+        }
           //,
           //{
           //  "data":null,
@@ -140,18 +176,20 @@
                     return "";
                 }
               }
-              //,
-              //{
-              //  "data":null,
-              //    render: function(data, type, row) {
-              //      if(row.source) {
-              //        return JSON.stringify(row.source);
-              //      }
-              //  }
-              //}
-            ]});
+    ]});
+    $('#contentlist tbody').on('click', 'tr', function () {
+        console.log('clicked');
+        var data = t.row( this ).data();
+        console.log("d:" + JSON.stringify(data));
+        var id = data.source.id ;
+        console.log("i:" + id);
+        var preview = new Box.Preview();
+        preview.show(id,sessionStorage.getItem("accessToken"), {
+          container: ".modal-body"
+        });
+          modal.style.display = "block";
+      });
   });
-
 
 
 </script>
@@ -198,6 +236,79 @@ ul.tabs{
       .sameline {
         display: inline;
       }
+
+      /* The Modal (background) */
+      .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 50px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 90%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+          position: relative;
+          background-color: #ffffff;
+          margin: auto;
+          height:640px;
+          padding: 0;
+          border: 1px solid #888;
+          width: 100%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+          -webkit-animation-name: animatetop;
+          -webkit-animation-duration: 0.4s;
+          animation-name: animatetop;
+          animation-duration: 0.4s
+      }
+
+      /* Add Animation */
+      @-webkit-keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+      }
+
+      @keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+      }
+
+      /* The Close Button */
+      .close {
+          color: black;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      .modal-header {
+          padding: 2px 8px;
+          background-color: #ffffff;
+          color: white;
+      }
+
+      .modal-body {padding: 2px 8px;}
+
+      .bp-header {
+        display: none;
+      }
+
+      .bp-header+.bp:not(.bp-is-fullscreen) {
+        top: 1px;
+      }
 </style>
 
 </head>
@@ -211,11 +322,19 @@ ul.tabs{
 <div id="tab-100" class="tab-content current">
       <table id="contentlist" class="display" style="width:95%%">
         <thead>
+<<<<<<< HEAD
             <th><p>Event</p>/th>
             <th><p>Created</p></th>
             <th><p>Name</p></th>
             <th><p>Details</p></th>
 
+=======
+            <th>Event</th>
+            <th>Created</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>-</th>
+>>>>>>> 2e699331016a0bfbe48cd93e9e42eeb06ba28a3a
 
           </thead>
           <tbody>
@@ -239,5 +358,17 @@ ul.tabs{
   </table>
   </div>
 </div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+
+  </div>
   </body>
 </html>
