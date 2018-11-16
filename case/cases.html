@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
 </head>
 <script>
+
     var folderId = '57097679298';
     var accessToken;
     var contentExplorer = new Box.ContentExplorer();
@@ -18,26 +19,37 @@
     var selectedFolder;
     var currentSelected;
     var currentSpan;
+    var showCopsButton = true;
+    var showVideoButton = false;
+    var objType = 'COPFS';
     $(document).ready(function() {
-      //var settings = {
-      //  "async": true,
-      //  "crossDomain": true,
-        //"url": "https://desc-transcode-function.azurewebsites.net/api/generateToken?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&client-id=r1yki89hxnzv6mrz14njndrr59dm5w0h&as-user=6203007648",
-        //"url": "https://bl2vhdoqzh.execute-api.eu-west-2.amazonaws.com/default/box-jwt-tokengenerator?code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userId=6203007648",
-        //"method": "GET",
-        //"headers": {}
-      //}
-      //$.ajax(settings).done(function(response) {
-        //console.log(response);
-        console.log("from storage:" + sessionStorage.getItem("accessToken"));
+      var modal = document.getElementById('myModal');
+
+
         accessToken = sessionStorage.getItem("accessToken");
-        console.log(accessToken);
         loadExplorer();
-      //});
+        // Get the modal
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
     });
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
-        container: '.container',
+        container: '.container-fluid',
         logoUrl: 'pixel.png',
         canDelete: false,
         canCreateNewFolder: false,
@@ -46,33 +58,68 @@
       });
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;
+        sessionStorage.setItem('selectedId',selectedFolder);
+        //if video file, show transcode button
+        console.log("Showing cops?" + showCopsButton);
+
+        if(showCopsButton) {
+            fixButton();
+            objType='COPFS';
+            hackDom('COPFS');
+        } else {
+          var name = item[0].name;
+          console.log(name + " - " + name.endsWith('mp4'));
+          if(name.endsWith('mp4') || name.endsWith('avi')) {
+            fixButton();
+            objType='Video';
+            showVideoButton=true;
+            hackDom('Video');
+
+          }
+        }
+        //check to see if video
+
+      });
+      function fixButton() {
         var divs = document.getElementsByTagName('div');
+        console.log("fixign button");
         for(i=0;i<divs.length;i++) {
           if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
+            console.log("displaying more options");
             divs[i].style.display='block';
             if(currentSelected) {
               currentSelected.style.display='none';
             }
             currentSelected = divs[i];
-            hackDom();
           }
         }
-
-      });
+      };
       contentExplorer.addListener('navigate', (item) => {
-          console.log(JSON.stringify(item));
+        showVideoButton=false;
+        console.log("Item:" + item.id + "=" + folderId);
+        if(item.id==folderId) {
+            console.log(item.id  + "=" + folderId + " setting to true");
+            showCopsButton=true;
+          }
+          else {
+            console.log(item.id  + "!=" + folderId + " setting to false");
+            showCopsButton=false;
+            currentSelected.style.display='none';
+
+          }
       });
     }
 
-    function hackDom() {
+    function hackDom(objType) {
       //hack dom
       var allSpans = document.getElementsByTagName('span');
       var i = 0;
       console.log("found " + allSpans.length);
       for(i=0;i<allSpans.length;i++) {
         var obj = allSpans[i];
-        if(obj.innerHTML=='Share') {
-          obj.innerHTML = 'COPFS';
+
+        if(obj.innerHTML=='Share' || obj.innerHTML=='COPFS') {
+          obj.innerHTML = objType;
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
           obj.parentNode.onclick = function(event){changeEvent(event);};
           obj.onclick = function(event){changeEvent(event);};
@@ -82,8 +129,13 @@
     }
     function changeEvent(ev) {
       console.log(ev);
-      currentSelected.innerHTML="<img src='smallspinner.gif'/>";
-      launchNintexFlow();
+      if(objType=='Video') {
+        document.getElementById('myModal').style.display = "block";
+      }
+      else {
+        currentSelected.innerHTML="<img src='smallspinner.gif'/>";
+        launchNintexFlow();
+      };
       ev.cancelBubble=true;
     }
   function launchNintexFlow() {
@@ -97,19 +149,20 @@
         "Content-Type": "application/json"
         //"cache-control": "no-cache",
         //"Access-Control-Allow-Headers":1"*"
-  },
-  "processData": false,
-  "data": "{\"startData\": {\"se_folder_id\": \"" + selectedFolder + "\"}}"
-}
-
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-currentSelected.innerHTML="<img src='tick.png'/>";
-
-
-});
+       },
+    "processData": false,
+    "data": "{\"startData\": {\"se_folder_id\": \"" + selectedFolder + "\"}}"
+    }
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      currentSelected.innerHTML="<img src='tick.png'/>";
+    });
   }
+    function isEvidential(folderId) {
+
+    }
+
+
 </script>
 <style>
   p {
@@ -123,9 +176,97 @@ currentSelected.innerHTML="<img src='tick.png'/>";
 .bce-btn-more-options {
   display:none;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1;  /*Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 90%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: auto;
+    height:640px;
+    padding: 0;
+    border: 1px solid #888;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 8px;
+    background-color: #ffffff;
+    color: white;
+}
+
+.modal-body {padding: 2px 8px;position:static;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 </style>
 <body>
 
-    <div class="container" style="height:600px"></div>
+    <div class="container-fluid" style="height:700px"></div>
+    <!-- The Modal -->
+
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <iframe src="transcode.html" width="100%" height="700px" border="0"/>
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
