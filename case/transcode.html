@@ -41,7 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       var preview = new Box.Preview();
       //alert("Preview:" + gaccessToken);
       $("#preview-container").show();
-
+      console.log("selected item:" + sessionStorage.getItem('selectedId'));
       preview.show(sessionStorage.getItem('selectedId'), sessionStorage.getItem('accessToken'), {
         container: '.preview-container',
         showDownload: false
