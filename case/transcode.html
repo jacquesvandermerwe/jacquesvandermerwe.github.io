@@ -37,7 +37,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
   <script>
+    var gfileId = sessionStorage.getItem('selectedId');
+    var gaccessToken=sessionStorage.getItem('accessToken');
+    var grefreshToken = "NA";
     $(document).ready(function() {
+
       var preview = new Box.Preview();
       //alert("Preview:" + gaccessToken);
       $("#preview-container").show();
@@ -47,6 +51,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         showDownload: false
       });
 
+      $(".closeModal").on('click',function(e) {
+        parent.closeModal();
+      });
       //Send Video Slice Instuctions to SQS
       $("#submitvideoslicebutton").on('click', function(e) {
         var settingsSQS = {
@@ -232,7 +239,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                  <a type="button" class="btn btn-primary" data-dismiss="modal">Close</a>
+                  <a type="button" class="btn btn-primary closeModal" data-dismiss="modal">Close</a>
                 </div>
               </div>
               <!--/.Content-->
@@ -293,8 +300,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
 
                 <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                  <a type="button" class="btn btn-primary" data-dismiss="modal">Close</a>
+                <div class="modal-footer justify-content-center" >
+                  <a type="button" class="btn btn-primary"  id='closeModal' data-dismiss="modal">Close</a>
                 </div>
               </div>
               <!--/.Content-->
