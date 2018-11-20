@@ -21,6 +21,7 @@
     var t;
     var modal;
     $(document).ready(function() {
+      $("#contentlist").hide();
       modal = document.getElementById('myModal');
       // Get the button that opens the modal
       var span = document.getElementsByClassName("close")[0];
@@ -44,7 +45,10 @@
         $(this).addClass('current');
         $("#" + tab_id).addClass('current');
       });
-
+      $(".preview").click(function() {
+        var boxId = this.box_id;
+        console.log("BoxID:" + this.box_id);
+      });
 
 
       var t2 = $('#contentlist2').DataTable({
@@ -103,21 +107,22 @@
           }
         ]
       });
-      $('#contentlist tbody').on('click', 'tr', function() {
-        console.log('clicked');
-        var data = t.row(this).data();
-        console.log("d:" + JSON.stringify(data));
-        var id = data.source.id;
-        console.log("i:" + id);
-        var preview = new Box.Preview();
-        preview.show(id, sessionStorage.getItem("accessToken"), {
-          container: ".modal-body"
-        });
-        modal.style.display = "block";
-      });
+      //$('#contentlist tbody').on('click', 'tr', function() {
+      //  console.log('clicked');
+      //  var data = t.row(this).data();
+      //  console.log("d:" + JSON.stringify(data));
+      //  var id = data.source.id;
+      //  console.log("i:" + id);
+      //  var preview = new Box.Preview();
+      //  preview.show(id, sessionStorage.getItem("accessToken"), {
+      //    container: ".modal-body"
+      //  });
+      //  modal.style.display = "block";
+      //});
       ajaxCalls();
+      $("#contentlist").show();
     });
-    var finalData;
+    var finalData=[];
     function ajaxCalls() {
       $.ajax({
         type: "GET",
@@ -127,20 +132,21 @@
         },
         success: function(data) {
           console.log('ajax ' + data.entries.length);
-          if(data.entries.length>0) {
-            finalData = data;
+          if(data.entries.length>1) {
+            $.extend(finalData,data.entries);
             stream_position=data.next_stream_position;
             ajaxCalls();
           }
           else {
             console.log('events now ' + data.entries.length);
-
+            console.log(finalData);
             loadEvents(finalData);
           }
         }
 
       });
     }
+    var i = 0;
     function loadEvents(data) {
       console.log('events');
       t = $('#contentlist').DataTable({
@@ -150,9 +156,9 @@
         "select": true,
         "dom": "Bfrtip",
         "pageLength": 15,
-        "data": data.entries,
+        "data": data,
         "columnDefs": [{
-          "targets": [4],
+          "targets": [5],
           "visible": false,
           "searchable": false
         }],
@@ -169,6 +175,15 @@
                 });
               }
               return "";
+            }
+          },
+          {
+            "data": null,
+            render: function(data, type, row) {
+              console.log("" + (i++) + ":" + row.source.type);
+              if (row.event_type && row.event_type.startsWith('ITEM_') && row.source.type=='file') {
+                  return "<img class='preview' box-id='" + row.source.id + "' src='preview_icon.png'/>";
+              }
             }
           },
           {
@@ -386,6 +401,7 @@
 
           <th>Event</th>
           <th>Created</th>
+          <th>-</th>
           <th>Name</th>
           <th>Details</th>
 
