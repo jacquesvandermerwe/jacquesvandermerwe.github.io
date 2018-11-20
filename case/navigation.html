@@ -4,6 +4,23 @@
 <head>
 <style>
 
+<script>
+
+
+// Get all document with class="document" inside the container
+var links = document.getElementsByTagName ("a");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+</script>
+
 ul {
     border: 1px solid #cdd4de;
 }
@@ -73,7 +90,7 @@ p {
 <ul>
 
 
-  <li width="140px"><p><a href="cases.html" target="main">My Cases</a></p></li>
+  <li width="140px"><p><a href="cases.html" class="active" target="main">My Cases</a></p></li>
   <li width="90px"><p><a  href="https://box-162828.workflowcloud.com/forms/83b90de6-07da-423b-998d-c3f144babd5d" target="main">Create Case</a></p></li>
   <li width="140px"><p><a href="upload.html" target="main">Upload Evidence</a></p></li>
   <li width="140px"><p><a href="search.html" target="main">Search Evidence</a></p></li>
