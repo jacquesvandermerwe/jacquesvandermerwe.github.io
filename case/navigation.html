@@ -2,25 +2,26 @@
 <html>
 <title>Navigation Menu</title>
 <head>
-<style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 <script>
+  $(document).ready(function() {
+    var links = document.getElementsByTagName("a");
 
-
-// Get all document with class="document" inside the container
-var links = document.getElementsByTagName ("a");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < links.length; i++) {
+console.log(links.length);
+for(var i = 0; i < links.length; i++) {
+  console.log(links[i].innerHTML);
   links[i].addEventListener("click", function() {
     var current = document.getElementsByClassName("active");
-    current.className = current.className.replace("active", "");
+    console.log(this.innerHTML);
+    current[0].className = current[0].className.replace("active", "");
     this.className = "active";
   });
 }
-
+});
 </script>
-
+<style>
 ul {
     border: 1px solid #cdd4de;
 }

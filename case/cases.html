@@ -22,7 +22,15 @@
     var showCopsButton = true;
     var showVideoButton = false;
     var objType = 'COPFS';
-
+    var testResponseInterceptor = (response /* https://github.com/axios/axios#request-config */) => {
+      	console.log(JSON.stringify(response));
+    		if(response.type) {
+    			if(response.type=='error' && response.status=='401') {
+    				console.log(JSON.stringify(response));
+    			}
+    		}
+    	return response;
+    };
     function closeModal() {
       document.getElementById('myModal').style.display = "none";
       document.getElementById('myframe').src='blank.html' ;
@@ -55,7 +63,9 @@
         canDelete: false,
         canCreateNewFolder: false,
         canRename: false,
-        canSetShareAccess: false
+        canSetShareAccess: false,
+        responseInterceptor:testResponseInterceptor,
+
       });
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;

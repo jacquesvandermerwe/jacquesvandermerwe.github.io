@@ -27,7 +27,7 @@ p {
 
 body {
     font-family: Arial;
-
+}
 * {
     box-sizing: border-box;
 }
@@ -67,9 +67,10 @@ form.example::after {
 <script>
   var t;
   $(document).ready(function() {
+    $("#searchres").hide();
     $("#search").on('submit', (function(ev) {
       ev.preventDefault();
-
+      $("#searchres").show();
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val());;
         t.ajax.type='GET';
@@ -79,6 +80,7 @@ form.example::after {
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
+           "searching": false,
            "dom": "Bfrtip",
            "pageLength": 15,
            "ajax":{
@@ -88,6 +90,12 @@ form.example::after {
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
              }
            },
+           "columnDefs": [
+            {
+              "targets": [ 6 ],
+              "visible": false,
+              "searchable": false
+            }],
            "columns": [
              {
                "data": "type"
@@ -99,11 +107,27 @@ form.example::after {
                "data":"name"
              },
              {
-               "data":"size"
+               "data":null,
+                 render:function(data,type,row) {
+                  if(row.size>0) {
+                    return humanFileSize(row.size);
+                  }
+                  else {
+                    return row.size;
+                  }
+                }
+
              }
              ,
              {
-               "data":"created_by.id",
+               "data":null,
+                 render:function(data,type,row) {
+                   var date = new Date(Date.parse(row.modified_at));
+                   return date.toLocaleString('en-GB', { timeZone: 'UTC' });
+                 }
+             },
+             {
+               "data":"modified_by.name",
              },
              {
              "data": null,
@@ -116,6 +140,10 @@ form.example::after {
          }
         }));
     });
+    function humanFileSize(size) {
+    var i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+};
 </script>
 
 </head>
@@ -123,19 +151,20 @@ form.example::after {
 
 <div class="container-fluid">
   <div class="row">
-
     <form id='search' class="example" action="#">
     <input id='searchText' type="text" placeholder="Search across multiple content repositories... " name="search">
     <button type="submit"><i class="fa fa-search"></i></button>
   </form>
+
 </div>
-<div class="row">
+<div id='searchres' class="row">
   <table id="contentlist" class="display" style="width:95%%">
     <thead>
         <th>Type</th>
         <th>ID</th>
         <th>Name</th>
         <th>Size</th>
+        <th>Modified</th>
         <th>Modified By</th>
         <th>Source</th>
 
