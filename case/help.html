@@ -2,6 +2,7 @@
 <title>POV Help</title>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Help</title>
 
     <!-- polyfill.io only loads the polyfills your browser needs -->
@@ -15,6 +16,29 @@
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.58.1/en-US/preview.css" />
 </head>
 <style>
+
+  .collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
 
   p {
       color: #54698D;
@@ -48,59 +72,57 @@
 
 <p>Below you will find a description and instructions for all of the key application functions:</p>
 
-<p>My Cases</p>
+<button class="collapsible">My Cases</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
+<button class="collapsible">Create Case</button>
+<div class="content">
+ <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
-Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
+<button class="collapsible">Upload Evidence</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
-Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
+<button class="collapsible">Associate Evidence</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
+<button class="collapsible">External Agencies</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
-  <p>Create Case</p>
+<button class="collapsible">Case Events</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
+<button class="collapsible">Social Evidence</button>
+<div class="content">
+  <p>Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention. Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.</p>
+</div>
 
-Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
-
-
-
-  <p>Upload Evidence</p>
-
-
-  Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
-
-  Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
-
-  <p>Search Evidence</p>
-
-
-  Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
-
-  Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
-
-
-  <p>Associate Evidence</p>
-
-
-  Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
-
-  Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
-
-
-  <p>External Agencies</p>
-
-
-  Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
-
-  Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
-
-  <p>Case Events</p>
-
-
-  Box is an enterprise content management platform that solves simple and complex challenges, from sharing and accessing files on mobile devices to sophisticated business processes like data governance and retention.
-
-  Since 2005, Box has made it easier for people to securely share ideas, collaborate and get work done faster. Today, more than 41 million users and 85,000 businesses — including 69% of the Fortune 500 — trust Box to manage content in the cloud.
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
 
   <body>
 </html>
