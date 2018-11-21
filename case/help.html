@@ -38,7 +38,7 @@
 <div class="preview-container" style="height:400px; width:600px;" align="centre"></div>
 <script>
     var preview = new Box.Preview();
-    preview.show('353488669862', 'UFBP0gQCBpSHgMizOKQoMgWKm7gZ9bRb', {
+    preview.show('353488669862', sessionStorage.getItem('accessToken'), {
         container: '.preview-container',
         showDownload: true
     });
