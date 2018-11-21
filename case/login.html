@@ -17,6 +17,8 @@
   personalFolderMap.set('desc.pov+pro2@gmail.com','57877806382');
   personalFolderMap.set('desc.pov+pro3@gmail.com','57569390969');
 
+  //Change this to change Application context
+  var clientId="r1yki89hxnzv6mrz14njndrr59dm5w0h";
   //Main case folders
   var caseFolderId = '57097679298';
 
@@ -30,7 +32,7 @@
       ev.preventDefault();
       console.log("Form submitted");
       var userLogin = $("#userLogin").val();
-      var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=r1yki89hxnzv6mrz14njndrr59dm5w0h&userEmail=" + userLogin;
+      var urlParams = "code=Jq4te0OgMV6LCHpC0NrJu91aZpS/M0x56e6MzZdROAEL2kdkocaLmA==&clientId=" + clientId + "&userEmail=" + userLogin;
       console.log(urlParams);
       var settings = {
         "async": true,
