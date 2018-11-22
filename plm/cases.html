@@ -2,15 +2,14 @@
 <html lang="en-US">
 <head>
     <meta charset="utf-8" />
-    <title>My Cases</title>
+    <title></title>
 
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.css" />
-  <script src="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.js"></script>
+    <script src="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.js"></script>
 </head>
 <script>
 
@@ -26,14 +25,6 @@
     var objType = 'COPFS';
     var contentSidebar = new Box.ContentSidebar();
 
-    var testResponseInterceptor = (response /* https://github.com/axios/axios#request-config */) => {
-    		if(response.type) {
-    			if(response.type=='error' && response.status=='401') {
-    				console.log(JSON.stringify(response));
-    			}
-    		}
-    	return response;
-    };
     function closeModal() {
       document.getElementById('myModal').style.display = "none";
       document.getElementById('myframe').src='blank.html' ;
@@ -63,52 +54,33 @@
       contentExplorer.show(folderId, accessToken, {
         container: '.ct',
         logoUrl: 'pixel.png',
-        canDelete: false,
-        canCreateNewFolder: false,
+        canDelete: true,
+        canCreateNewFolder: true,
         canRename: false,
-        canSetShareAccess: false,
-        responseInterceptor:testResponseInterceptor,
-
+        canSetShareAccess: true,
+        showAnnotations:true
       });
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;
         sessionStorage.setItem('selectedId',selectedFolder);
         //if video file, show transcode button
-        console.log("Showing cops?" + showCopsButton);
-
-        if(showCopsButton) {
-            fixButton();
-            objType='COPFS';
-            hackDom('COPFS');
-        } else {
-          var name = item[0].name;
-          console.log(name + " - " + name.endsWith('mp4'));
-          if(name.endsWith('mp4') || name.endsWith('avi')) {
-            fixButton();
-            objType='Video';
-            showVideoButton=true;
-            hackDom('Video');
-
-          }
-        }
-        console.log(item[0].type);
-        if(item[0].type=='file' ) {
-          console.log("Showing sidebar");
-            contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
-              container: '.sb',
+        if(item[0].type=='file' || 1==1 ) {
+          contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
+            container: '.sb',
              //defaultView: 'metadata',
-              hasMetadata: true,
-            hasSkills: true,
-            hasProperties: true,
-            hasAccessStats: true,
-          //  hasVersions: true,
-            hasActivityFeed: true
-          });
+            hasMetadata: true,
+          hasSkills: true,
+          hasProperties: true,
+          hasAccessStats: true,
+        //  hasVersions: true,
+          hasActivityFeed: true,
+        });
         }
         else {
           contentSidebar.hide();
           contentSidebar.clearCache();
         }
+
         //check to see if video
 
       });
@@ -127,6 +99,8 @@
         }
       };
       contentExplorer.addListener('navigate', (item) => {
+        contentSidebar.hide();
+        contentSidebar.clearCache();
         showVideoButton=false;
         console.log("Item:" + item.id + "=" + folderId);
         if(item.id==folderId) {
@@ -209,11 +183,12 @@
 .bce-btn-more-options {
   display:none;
 }
-.DraftEditor-editorContainer {
-  width:250px;
-  height:36px;
+.metadata-instance-editor-no-instances--call-out{
+  font-size:12px;
 }
-
+.metadata-instance-editor-no-instances--how-add-template {
+  font-size:10px;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -284,21 +259,32 @@
     background-color: #5cb85c;
     color: white;
 }
+section {
+    width: 100%;
+    height: 700px;
+    margin: auto;
+    padding: 1px;
+    overflow-x: hidden;
+}
+div#one {
+    width: 70%;
+    height: 700px;
+    float: left;
+    overflow-x: hidden;
+}
+div#two {
+    margin-left: 0%;
+    height: 700px;
+    overflow-x: hidden;
+}
+
 </style>
-<body>
+<body style="overflow-x: hidden;">
+  <section>
+    <div id="one" class="ct">></div>
+    <div id="two" class="sb"></div>
+</section>
 
-    <div class="container-fluid" style="height:700px">
-      <div class="row">
-        <div class="col col-md-8" style="height:700px">
-          <div class="ct" style="height:700px"></div>
-        </div>
-        <div class="col col-sm-4" style="height:700px">
-          <div class="sb" style="height:700px"></div>
-        </div>
-      </div>
-
-
-    </div>
     <!-- The Modal -->
 
 
