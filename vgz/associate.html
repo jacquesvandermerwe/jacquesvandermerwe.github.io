@@ -20,8 +20,10 @@
 <body>
 
   <script>
-    const folderIdA = '57569390969';
-    const folderIdB = '57097679298';
+    console.log('map:' + JSON.parse(sessionStorage.getItem('folderMap')));
+    console.log('user:' + sessionStorage.getItem('userLogin'));
+    const folderIdA = new Map(JSON.parse(sessionStorage.getItem('folderMap'))).get(sessionStorage.getItem('userLogin'));
+    const folderIdB = sessionStorage.getItem("caseFolderId");
     const explorerA = new Box.ContentExplorer();
     const explorerB = new Box.ContentExplorer();
     var sourceId;

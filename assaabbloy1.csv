@@ -1,0 +1,65 @@
+source.type,source.id,source.name,source.login,created_by.type,created_by.id,created_by.name,created_by.login,created_at,event_id,event_type,ip_address,type
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T21:33:43+00:00,ad358c3f-353c-4343-9424-ab78a98be0b8,ADD_LOGIN_ACTIVITY_DEVICE,81.30.47.37,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T21:34:31+00:00,b96b7662-7884-4d24-acb1-186c91ac9d70,LOGIN,81.30.47.37,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T21:34:46+00:00,5ebc696e-5a47-4cb4-a010-3b40bd7cb5f0,ADD_LOGIN_ACTIVITY_DEVICE,81.30.47.37,event
+user,3445252385,ManUser1,jvandermerwe+manuser1@box.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T22:07:32+00:00,7c31073f-0456-4321-b1bc-e47abe2f3f95,EDIT_USER,Unknown IP,event
+user,6482751899,Ned,dumbledo@box.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T22:09:19+00:00,1a05b92d-f4b6-4681-80ff-b9609ba89bec,NEW_USER,Unknown IP,event
+user,6482751899,Ned,dumbledo@box.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-19T22:11:16+00:00,547a251a-dbcd-4aec-8ad9-793729da38f5,DELETE_USER,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,2,Unknown User,,2018-11-21T07:25:19+00:00,1b4d36d7-ff58-4e1a-9c77-aa3be4ff4a14,FAILED_LOGIN,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,2,Unknown User,,2018-11-21T07:25:38+00:00,4abeb973-506a-4df5-8600-18380d5a65ea,FAILED_LOGIN,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,2,Unknown User,,2018-11-21T07:25:57+00:00,9362316b-31fc-4eae-be11-298e641656b0,FAILED_LOGIN,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T07:52:22+00:00,7b249e17-faf6-431d-aebf-b627a1e4a7b6,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+application,,Box CLI - JVDM,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T07:53:26+00:00,bfa0ac23-1c8d-43d4-b04d-1f365b25d6b4,APPLICATION_PUBLIC_KEY_ADDED,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T07:55:59+00:00,a9a49c11-cbc1-4dd4-8885-4b845d67e7d9,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:07:03+00:00,bfaa23cf-fb66-442e-b7c5-bb227a635a3c,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:09:42+00:00,85742f3f-60d3-4d6e-83a6-b399e0e19a44,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:11:08+00:00,81094559-5a5b-4d81-9eab-e1b9a28930df,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:20:53+00:00,dba5469a-b70a-4a52-b19a-e27046b15bc5,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:21:00+00:00,8105354d-08ec-4a60-b0fa-8c9048e2930b,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T08:21:45+00:00,8d848257-5529-4147-a48a-7d0d447dae76,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T11:08:05+00:00,6460200b-8db1-4f1f-a8ea-b63c00a0160f,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T11:09:59+00:00,9c5c1fb1-7fa5-4126-bb94-fb09e3d3db91,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T11:10:20+00:00,26972a34-4c15-482b-90f2-51bfd121f86d,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T11:26:20+00:00,ebf9be77-efa3-42e2-93de-38209d8db39c,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T11:26:32+00:00,82091547-a20c-40fd-9d44-78a5fb4a3b69,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T12:40:30+00:00,df440727-a632-4e57-b405-2a145e808cb7,APPLICATION_CREATED,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T12:40:30+00:00,12a17f0d-360a-49df-a01d-5820a8d88a51,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+application,,UI Elements,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T12:40:46+00:00,ecfc9c41-3d96-4335-8074-5a189265ac8b,APPLICATION_PUBLIC_KEY_ADDED,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T12:43:57+00:00,4138686c-8a90-4271-8eb2-067b18566f96,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,6496594897,UI Elements,AutomationUser_701662_Hef2LUkVcd@boxdevedition.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T12:52:35+00:00,198a91f6-11bc-4260-8f56-22bc83060f50,NEW_USER,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:24:19+00:00,15a9214c-e13c-4651-afb7-25af09fd9a0e,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:32:46+00:00,a7ad2f79-7207-48de-9b85-fa00162cf583,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:32:56+00:00,c59433dd-692b-425d-9587-adb2c162a8ae,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:33:57+00:00,60a13ace-66c4-4632-a6f5-c3635434f67e,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:04+00:00,d6a0e85a-0a7b-448f-8209-f7ffac39b293,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:09+00:00,d3eff76a-a656-4d0f-a1a8-51b047a18d2d,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:14+00:00,294f7fd3-885b-49f1-ad03-597960eb9c78,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:19+00:00,4d3d06c5-1632-4b67-a884-823c9612e725,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:38+00:00,cd5cf0f5-4bd2-430b-9c93-8671b21e1447,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:38+00:00,cfda92bf-0d25-4c9f-9d96-2d8ca08f711b,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:48+00:00,4a91db17-2803-44f2-813c-58179285d4a8,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:48+00:00,dc967e94-a2cc-4769-9fb4-3cd79e5783d9,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:53+00:00,da1a2705-685c-47db-a34f-70dd1ed1c0a3,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:54+00:00,d0c8eb9c-8ef8-4645-8baa-42eb31223408,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:58+00:00,719c7878-b03d-4a32-b65f-1f5556dc7261,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:34:58+00:00,0b695f8e-208f-4c33-b48a-117f710ee745,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:35:03+00:00,226018b3-55c2-428d-bb44-e60059d422ca,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:35:03+00:00,9ec23c62-fa08-429c-9178-73ee1b74fb98,COPY,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:35:14+00:00,a8624ac6-076f-40ab-8d65-e9052655aff7,DELETE,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:35:14+00:00,913db1ec-715a-4c52-86c2-31bb995dd6bd,DELETE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:38:58+00:00,4e36b7f0-acf7-4275-9396-b2ae5e56935e,REMOVE_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:38:58+00:00,a4b59f61-91c1-452b-85ec-38d5543a93b3,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:39:38+00:00,3158a45b-9ef8-4df0-aeef-cb7eb27bb583,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:51:57+00:00,23f392ea-1d69-420f-8f1a-c26f4fba061c,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:53:02+00:00,d8cf71fc-9dcf-4a9f-8350-6797ee7d5e64,REMOVE_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:53:02+00:00,3f8d6fdc-94d3-4970-bb53-9892e47d8de7,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:53:48+00:00,f7bbe1da-e061-4d28-952d-cb1492271d5f,REMOVE_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:53:48+00:00,a23c3440-9189-43f1-8dcb-dc978b7fb566,ADD_LOGIN_ACTIVITY_DEVICE,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:54:35+00:00,97fa75c7-d207-4704-85d9-b068c6e49e8e,PREVIEW,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T13:54:41+00:00,6f5404b6-d6a2-46b9-96e3-3cb9ee012d79,PREVIEW,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T18:33:56+00:00,2ed6975b-3d55-4eb3-b6f7-3c5ce696f2f1,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T18:35:06+00:00,f46cd5f9-08c6-4edb-bf8c-4726dd6dd23d,UPLOAD,Unknown IP,event
+,,,,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T18:35:07+00:00,18712a4b-e4c5-406f-a0a1-b9921e4c27ea,UPLOAD,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T20:35:21+00:00,49e64d8f-9da2-49b5-be54-e3ee9958105b,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,user,3657896739,App User 2,AppUser_569286_lklwNWb1p6@boxdevedition.com,2018-11-21T20:37:33+00:00,6845018c-d0f0-44f9-b2d5-9131dae47029,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event
+user,3312464263,Vertium Postmaster,postmaster@vertium.com,user,3312464263,Vertium Postmaster,postmaster@vertium.com,2018-11-21T20:39:49+00:00,8d93896f-add4-4ff2-a698-cbdc8ea0ba8d,USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,Unknown IP,event

@@ -11,8 +11,19 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+  //Mapping of users and personal folders
+  var personalFolderMap = new Map();
+  personalFolderMap.set('desc.pov+pro@gmail.com','57569390969');
+  personalFolderMap.set('desc.pov+pro2@gmail.com','57877806382');
+  personalFolderMap.set('desc.pov+pro3@gmail.com','57569390969');
+
+  //Main case folders
+  var caseFolderId = '57097679298';
+
   $(document).ready(function() {
     sessionStorage.clear();
+    sessionStorage.setItem('folderMap',JSON.stringify(Array.from(personalFolderMap.entries())));
+    sessionStorage.setItem('caseFolderId',caseFolderId);
     $('#userlogin').on('submit', (function(ev) {
       $("#signbutton").hide();
       $("#loader").show();
@@ -58,7 +69,7 @@
       console.log(response);
       stream_position=response.next_stream_position;
       sessionStorage.setItem("streamPosition",stream_position);
-      window.location.replace('/vgz/main.html');
+      window.location.replace('/case/main.html');
     });
    //return stream_position;
   }
