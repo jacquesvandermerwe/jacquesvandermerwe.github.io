@@ -58,13 +58,23 @@
         canCreateNewFolder: true,
         canRename: false,
         canSetShareAccess: true,
-        showAnnotations:true
+        showAnnotations:true,
+        contentPreviewProps: {
+          contentSidebarProps: {
+            container: '.sb',
+             //defaultView: 'metadata',
+            hasMetadata: true,
+          hasSkills: true,
+          hasProperties: true,
+          hasAccessStats: true
+          }
+        }
       });
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;
         sessionStorage.setItem('selectedId',selectedFolder);
         //if video file, show transcode button
-        if(item[0].type=='file' || 1==1 ) {
+        if(item[0].type=='file' && 1==2 ) {
           contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
             container: '.sb',
              //defaultView: 'metadata',
