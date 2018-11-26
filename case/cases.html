@@ -112,7 +112,7 @@
           }
         }
         console.log(item[0].type);
-        if(item[0].type=='file'  && 1==2) {
+        if(item[0].type=='file'  && 1==1) {
           console.log("Showing sidebar");
             contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
               container: '.sb',
@@ -314,7 +314,7 @@
 
     <div class="container-fluid" style="height:700px">
       <div class="row">
-        <div class="col col-md-10" style="height:700px">
+        <div id="mainview" class="col col-md-12" style="height:700px">
           <div class="ct" style="height:700px"></div>
         </div>
         <div class="col col-sm-4" style="height:700px">

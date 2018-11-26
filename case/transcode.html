@@ -51,14 +51,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         container: '.preview-container',
         showDownload: false
       });
+      var duration;
       preview.addListener('pause', (data) => {
-        console.log(data);
+        console.log(preview);
+        console.log(preview.viewer.mediaEl.currentTime);
+        duration=preview.viewer.mediaEl.duration;
         //set random Value
         if(inPause) {
-          $("#bookmarkendtime").val('0:20');
+          $("#bookmarkendtime").val(preview.viewer.mediaEl.currentTime);
         }
         else {
-          $("#bookmarkstarttime").val('0:10');
+          $("#bookmarkstarttime").val(preview.viewer.mediaEl.currentTime);
           inPause=true;
         }
         $("#bend").show();
@@ -175,11 +178,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       });
       $("#submitbutton-bookmark").on('click', function(e) {
+        $("#submitbutton-bookmark").hide();
+        $("#spinner").attr("src","smallspinner.gif");
+        $("#spinner").show();
         var settngs = {
           "async": true,
           "crossDomain": true,
-          "url": " https://7hev8ivfij.execute-api.eu-west-2.amazonaws.com/default/box-updateskills-card?token="+sessionStorage.getItem("accessToken"),
-          "data":'{"bookmarkstarttime":' + $("#bookmarkstarttime").val() + ',"bookmarkendtime":' + $("#bookmarkendtime").val() + ',"bookmarkname":"' + $("#bookmarkname").val() + '"}',
+          "dataType":"json",
+          "url": " https://7hev8ivfij.execute-api.eu-west-2.amazonaws.com/default/box-updateskills-card?token="+sessionStorage.getItem("accessToken") + "&id=" + sessionStorage.getItem("selectedId"),
+          "data":'{"bookmarkstarttime":' + $("#bookmarkstarttime").val() + ',"bookmarkendtime":' + $("#bookmarkendtime").val() + ',"bookmarkname":"' + $("#bookmarkname").val() + '","duration":"' + duration + '"}',
           "method": "POST",
           "headers": {
             //"Content-Type": "application/application-json"
@@ -188,8 +195,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
 
         $.ajax(settngs).done(function(response) {
+          $("#bookmarkstarttime").val("0.00");
+          $("#bookmarkendtime").val("0.00");
+          inPause = false;
+          $("#bookmarkname").val("");
+          console.log("Done");
+          $("#spinner").attr("src","tick.png");
+          $("#submitbutton-bookmark").show();
           console.log(response);
-
         });
       });
 
@@ -240,7 +253,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <li class="nav-item">
             <a class="nav-link" id="frameextract-tab" data-toggle="tab" href="#frameextract" role="tab" aria-controls="frameextract" aria-selected="false">Frame Extraction</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" id="bookmark-tab" data-toggle="tab" href="#bookmark" role="tab" aria-controls="bookmark" aria-selected="false">Bookmark</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -516,6 +531,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </tbody>
           </table>
           <button type="button" id="submitbutton-bookmark" name="submitbutton-bookmark" class="btn btn-primary">Add bookmark</button>
+          <img src='smallspinner.gif' id='spinner' style="display:none;"/>
         </div>
 
       </div>
