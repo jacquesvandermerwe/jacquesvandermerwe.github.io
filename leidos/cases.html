@@ -9,6 +9,8 @@
     <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.css" />
+  <script src="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.js"></script>
 </head>
 <script>
 
@@ -22,7 +24,16 @@
     var showCopsButton = true;
     var showVideoButton = false;
     var objType = 'COPFS';
+    var contentSidebar = new Box.ContentSidebar();
 
+    var testResponseInterceptor = (response /* https://github.com/axios/axios#request-config */) => {
+    		if(response.type) {
+    			if(response.type=='error' && response.status=='401') {
+    				console.log(JSON.stringify(response));
+    			}
+    		}
+    	return response;
+    };
     function closeModal() {
       document.getElementById('myModal').style.display = "none";
       document.getElementById('myframe').src='blank.html' ;
@@ -50,12 +61,34 @@
     });
     function loadExplorer() {
       contentExplorer.show(folderId, accessToken, {
-        container: '.container-fluid',
+        container: '.ct',
         logoUrl: 'pixel.png',
         canDelete: false,
         canCreateNewFolder: false,
         canRename: false,
-        canSetShareAccess: false
+        canSetShareAccess: false,
+        responseInterceptor:testResponseInterceptor,
+        contentPreviewProps: {
+        contentSidebarProps: {
+          container: '.sb',
+           //defaultView: 'metadata',
+          hasMetadata: true,
+        hasSkills: true,
+        hasProperties: true,
+        hasAccessStats: true,
+        defaultView:'skills'
+        }
+      }
+
+      });
+      contentExplorer.addListener('pause',(item) => {
+        console.log('pause');
+      });
+      contentExplorer.addListener('preview',(item) => {
+        console.log("Hiding sidebar");
+        contentSidebar.hide();
+
+        console.log('preview');
       });
       contentExplorer.addListener('select', (item) => {
         selectedFolder = item[0].id;
@@ -78,6 +111,26 @@
 
           }
         }
+        console.log(item[0].type);
+        if(item[0].type=='file'  && 1==2) {
+          console.log("Showing sidebar");
+            contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
+              container: '.sb',
+             defaultView: 'metadata',
+              hasMetadata: true,
+            hasSkills: false,
+            hasProperties: true,
+            hasAccessStats: true,
+            hasActivityFeed: true,
+            hasClassification:true,
+            hasVersions:true,
+            hasNotices:true
+          });
+        }
+        else {
+          contentSidebar.hide();
+          contentSidebar.clearCache();
+        }
         //check to see if video
 
       });
@@ -86,9 +139,11 @@
         console.log("fixign button");
         for(i=0;i<divs.length;i++) {
           if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
-            console.log("displaying more options");
+            console.log("displaying more options:" + divs[i].innerHTML);
             divs[i].style.display='block';
-            if(currentSelected) {
+            if(currentSelected && currentSelected!=divs[i]) {
+              console.log("hiding currentSelected:" + currentSelected.innerHTML);
+
               currentSelected.style.display='none';
             }
             currentSelected = divs[i];
@@ -105,6 +160,7 @@
           else {
             console.log(item.id  + "!=" + folderId + " setting to false");
             showCopsButton=false;
+            console.log("hiding currentSelected");
             currentSelected.style.display='none';
 
           }
@@ -119,7 +175,7 @@
       for(i=0;i<allSpans.length;i++) {
         var obj = allSpans[i];
 
-        if(obj.innerHTML=='Share' || obj.innerHTML=='COPFS') {
+        if(obj.innerHTML=='Share' || obj.innerHTML=='COPFS'  || obj.innerHTML=='Video') {
           obj.innerHTML = objType;
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
           obj.parentNode.onclick = function(event){changeEvent(event);};
@@ -177,6 +233,10 @@
 }
 .bce-btn-more-options {
   display:none;
+}
+.DraftEditor-editorContainer {
+  width:250px;
+  height:36px;
 }
 
 /* The Modal (background) */
@@ -252,7 +312,18 @@
 </style>
 <body>
 
-    <div class="container-fluid" style="height:700px"></div>
+    <div class="container-fluid" style="height:700px">
+      <div class="row">
+        <div class="col col-md-10" style="height:700px">
+          <div class="ct" style="height:700px"></div>
+        </div>
+        <div class="col col-sm-4" style="height:700px">
+          <div class="sb" style="height:700px"></div>
+        </div>
+      </div>
+
+
+    </div>
     <!-- The Modal -->
 
 
