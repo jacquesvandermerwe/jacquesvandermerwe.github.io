@@ -37,6 +37,7 @@
     function closeModal() {
       document.getElementById('myModal').style.display = "none";
       document.getElementById('myframe').src='blank.html' ;
+      contentExplorer.clearCache();
     }
     $(document).ready(function() {
 
@@ -87,6 +88,7 @@
       contentExplorer.addListener('preview',(item) => {
         console.log("Hiding sidebar");
         contentSidebar.hide();
+        contentExplorer.clearCache();
 
         console.log('preview');
       });
@@ -189,6 +191,8 @@
       if(objType=='Video') {
         document.getElementById('myframe').src='transcode.html?' + sessionStorage.getItem('selectedId') ;
         document.getElementById('myModal').style.display = "block";
+        contentExplorer.clearCache();
+
       }
       else {
         currentSelected.innerHTML="<img src='smallspinner.gif'/>";
