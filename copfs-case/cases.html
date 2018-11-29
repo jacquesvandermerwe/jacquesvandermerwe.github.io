@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>My Cases</title>
+
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.css" />
+  <script src="https://cdn01.boxcdn.net/platform/elements/7.0.0/en-US/sidebar.js"></script>
+</head>
+<script>
+
+    var folderId = sessionStorage.getItem("caseFolderId");
+    var accessToken;
+    var contentExplorer = new Box.ContentExplorer();
+    var canCreateNewFolder = 'true';
+    var selectedFolder;
+    var currentSelected;
+    var currentSpan;
+    var showCopsButton = true;
+    var showVideoButton = false;
+    var objType = 'ASSIGN';
+    var contentSidebar = new Box.ContentSidebar();
+
+    var testResponseInterceptor = (response /* https://github.com/axios/axios#request-config */) => {
+    		if(response.type) {
+    			if(response.type=='error' && response.status=='401') {
+    				console.log(JSON.stringify(response));
+    			}
+    		}
+    	return response;
+    };
+    function closeModal() {
+      document.getElementById('myModal').style.display = "none";
+      document.getElementById('myframe').src='blank.html' ;
+      contentExplorer.clearCache();
+    }
+    $(document).ready(function() {
+
+        accessToken = sessionStorage.getItem("accessToken");
+        loadExplorer();
+        // Get the modal
+
+
+
+      // When the user clicks on <span> (x), close the modal
+      document.getElementsByClassName("close")[0].onclick = function() {
+          document.getElementById('myModal').style.display = "none";
+          document.getElementById('myframe').src='blank.html' ;
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == document.getElementById('myModal')) {
+              document.getElementById('myModal').style.display = "none";
+          }
+      }
+    });
+    function loadExplorer() {
+      contentExplorer.show(folderId, accessToken, {
+        container: '.ct',
+        logoUrl: 'pixel.png',
+        canDelete: false,
+        canCreateNewFolder: false,
+        canRename: false,
+        canSetShareAccess: false,
+        responseInterceptor:testResponseInterceptor,
+        contentPreviewProps: {
+        contentSidebarProps: {
+          container: '.sb',
+           //defaultView: 'metadata',
+          hasMetadata: true,
+        hasSkills: true,
+        hasProperties: true,
+        hasAccessStats: true,
+        defaultView:'skills'
+        }
+      }
+
+      });
+      contentExplorer.addListener('pause',(item) => {
+        console.log('pause');
+      });
+      contentExplorer.addListener('preview',(item) => {
+        console.log("Hiding sidebar");
+        contentSidebar.hide();
+        contentExplorer.clearCache();
+
+        console.log('preview');
+      });
+      contentExplorer.addListener('select', (item) => {
+        selectedFolder = item[0].id;
+        sessionStorage.setItem('selectedId',selectedFolder);
+        //if video file, show transcode button
+        console.log("Showing cops?" + showCopsButton);
+
+        if(showCopsButton) {
+            fixButton();
+            objType='ASSIGN';
+            hackDom('ASSIGN');
+        } else {
+          var name = item[0].name;
+          console.log(name + " - " + name.endsWith('mp4'));
+          if(name.endsWith('mp4') || name.endsWith('avi')) {
+            fixButton();
+            objType='Video';
+            showVideoButton=true;
+            hackDom('Video');
+
+          }
+        }
+        console.log(item[0].type);
+        if(item[0].type=='file'  && 1==1) {
+          console.log("Showing sidebar");
+            contentSidebar.show(selectedFolder, sessionStorage.getItem('accessToken'), {
+              container: '.sb',
+             defaultView: 'metadata',
+              hasMetadata: true,
+            hasSkills: false,
+            hasProperties: true,
+            hasAccessStats: true,
+            hasActivityFeed: true,
+            hasClassification:true,
+            hasVersions:true,
+            hasNotices:true
+          });
+        }
+        else {
+          contentSidebar.hide();
+          contentSidebar.clearCache();
+        }
+        //check to see if video
+
+      });
+      function fixButton() {
+        var divs = document.getElementsByTagName('div');
+        console.log("fixign button");
+        for(i=0;i<divs.length;i++) {
+          if(divs[i].className=='bce-more-options' && divs[i].parentNode.parentNode.className.includes('bce-item-row-selected')) {
+            console.log("displaying more options:" + divs[i].innerHTML);
+            divs[i].style.display='block';
+            if(currentSelected && currentSelected!=divs[i]) {
+              console.log("hiding currentSelected:" + currentSelected.innerHTML);
+
+              currentSelected.style.display='none';
+            }
+            currentSelected = divs[i];
+          }
+        }
+      };
+      contentExplorer.addListener('navigate', (item) => {
+        showVideoButton=false;
+        console.log("Item:" + item.id + "=" + folderId);
+        if(item.id==folderId) {
+            console.log(item.id  + "=" + folderId + " setting to true");
+            showCopsButton=true;
+          }
+          else {
+            console.log(item.id  + "!=" + folderId + " setting to false");
+            showCopsButton=false;
+            console.log("hiding currentSelected");
+            currentSelected.style.display='none';
+
+          }
+      });
+    }
+
+    function hackDom(objType) {
+      //hack dom
+      var allSpans = document.getElementsByTagName('span');
+      var i = 0;
+      console.log("found " + allSpans.length);
+      for(i=0;i<allSpans.length;i++) {
+        var obj = allSpans[i];
+
+        if(obj.innerHTML=='Share' || obj.innerHTML=='ASSIGN'  || obj.innerHTML=='Video') {
+          obj.innerHTML = objType;
+          obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
+          obj.parentNode.onclick = function(event){changeEvent(event);};
+          obj.onclick = function(event){changeEvent(event);};
+          currentSpan=obj;
+        }
+      }
+    }
+    function changeEvent(ev) {
+      console.log(ev);
+      if(objType=='Video') {
+        document.getElementById('myframe').src='transcode.html?' + sessionStorage.getItem('selectedId') ;
+        document.getElementById('myModal').style.display = "block";
+        contentExplorer.clearCache();
+
+      }
+      else {
+        currentSelected.innerHTML="<img src='smallspinner.gif'/>";
+        launchNintexFlow();
+      };
+      ev.cancelBubble=true;
+    }
+  function launchNintexFlow() {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      //"url": "https://box-162828.workflowcloud.com/api/v1/workflow/published/4de240a7-6de1-47a9-9da6-c71e9be9de7f/swagger.json?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOV0MiLCJ3b3JrZmxvd0lkIjoiNGRlMjQwYTctNmRlMS00N2E5LTlkYTYtYzcxZTliZTlkZTdmIiwidGVuYW50SWQiOiJiYTllNDhmNS1kNjdlLTRkNjMtYmY2OS04YWRiNTBiMGRjMjMiLCJpYXQiOjE1NDIxOTc1MDF9.V0Z8scOJpS10RC-x8Dm2pa2oYwKCIUIcl9JWytIe2Ts",
+      "url": "https://box-162828.workflowcloud.com/api/v1/workflow/published/4de240a7-6de1-47a9-9da6-c71e9be9de7f/instances?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOV0MiLCJ3b3JrZmxvd0lkIjoiNGRlMjQwYTctNmRlMS00N2E5LTlkYTYtYzcxZTliZTlkZTdmIiwidGVuYW50SWQiOiJiYTllNDhmNS1kNjdlLTRkNjMtYmY2OS04YWRiNTBiMGRjMjMiLCJpYXQiOjE1NDIyMDQyNDZ9.EpDwRhaL3ievSI23gw3l_KvcyCPwlmiGNV-G5Ll4F6g",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+        //"cache-control": "no-cache",
+        //"Access-Control-Allow-Headers":1"*"
+       },
+    "processData": false,
+    "data": "{\"startData\": {\"se_folder_id\": \"" + selectedFolder + "\"}}"
+    }
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      currentSelected.innerHTML="<img src='tick.png'/>";
+    });
+  }
+    function isEvidential(folderId) {
+
+    }
+
+
+</script>
+<style>
+  p {
+      color: #54698D;
+      font-family: "Lato", "Helvetica", "Arial", sans-serif;
+      font-size: 24px;
+  }
+.bce-more-options {
+  display:none;
+}
+.bce-btn-more-options {
+  display:none;
+}
+.DraftEditor-editorContainer {
+  width:250px;
+  height:36px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1;  /*Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 90%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: auto;
+    height:640px;
+    padding: 0;
+    border: 1px solid #888;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 8px;
+    background-color: #ffffff;
+    color: white;
+}
+
+.modal-body {padding: 2px 8px;position:static;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+</style>
+<body>
+
+    <div class="container-fluid" style="height:700px">
+      <div class="row">
+        <div id="mainview" class="col col-md-12" style="height:700px">
+          <div class="ct" style="height:700px"></div>
+        </div>
+        <div class="col col-sm-4" style="height:700px">
+          <div class="sb" style="height:700px"></div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- The Modal -->
+
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <iframe id='myframe' src="blank.html" width="100%" height="700px" border="0"/>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
