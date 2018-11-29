@@ -174,6 +174,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       var result = Number(pieces[0]) * 60 + Number(pieces[1]);
       return (result.toFixed(0));
     }
+	
+
+	
+	function addField (argument) {
+        var myTable = document.getElementById("bookmark-table");
+        var currentIndex = myTable.rows.length;
+        var currentRow = myTable.insertRow(-1);
+		var titleBox = document.createElement("label");
+        titleBox.setAttribute("name", "bookmark-title" + currentIndex);
+        var linksBox = document.createElement("input");
+        linksBox.setAttribute("name", "bookmark1" + currentIndex);
+		var offsetButton = document.createElement("button");
+        offsetButton.setAttribute("name", "offsetButton" + currentIndex);
+ 
+        var addRowBox = document.createElement("input");
+        addRowBox.setAttribute("type", "button");
+        addRowBox.setAttribute("value", "Add another line");
+        addRowBox.setAttribute("onclick", "addField();");
+        addRowBox.setAttribute("class", "button");
+
+        var currentCell = currentRow.insertCell(-1);
+		titleBox.textContent = "Bookmark time reference";
+        currentCell.appendChild(titleBox);
+		
+		currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(linksBox);
+		
+		currentCell = currentRow.insertCell(-1);
+		offsetButton.textContent = "Jump to offset";
+		currentCell.appendChild(offsetButton);
+
+    }
+		$("#applybookmarks").on('click', function(e) {
+		
+	});
+	
   </script>
 
 </head>
@@ -214,7 +250,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <li class="nav-item">
             <a class="nav-link" id="frameextract-tab" data-toggle="tab" href="#frameextract" role="tab" aria-controls="frameextract" aria-selected="false">Frame Extraction</a>
           </li>
-
+		  <li class="nav-item">
+            <a class="nav-link" id="bookmark-tab" data-toggle="tab" href="#bookmark" role="tab" aria-controls="bookmark" aria-selected="false">Bookmarking</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -423,6 +461,59 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </tbody>
             </table>
             <button type="button" id="submitbutton-frame" name="submitbutton-frame" class="btn btn-primary">Extract Frames</button>
+          </div>
+		  
+		  
+		        <div class="tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
+            <!-- Central Modal Medium Info -->
+            <div class="modal fade" id="frameExtractContentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAudio" aria-hidden="true">
+              <div class="modal-dialog modal-notify modal-info" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                  <!--Header-->
+                  <div class="modal-header bg-primary">
+                    <p class="heading lead text-white">Bookmarking</p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                  </div>
+
+                  <!--Body-->
+                
+                  <!--Footer-->
+                  <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-primary" data-dismiss="modal">Close</a>
+                  </div>
+                </div>
+                <!--/.Content-->
+              </div>
+            </div>
+            <!-- Central Modal Medium Info-->
+            <table class="table table-striped table-bordered table-hover" id="bookmark-table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Option</th>
+                  <th>Value</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+					<td type="label" id="bookmark-title" name="bookmark-title">Bookmark time reference</td>
+					<td>
+						<input type="text" id="bookmark-time" name="bookmark1">
+					</td>
+					<td>
+						<input type="button" name="offsetButton" value="Jump to offset" onclick="jumpToOffset();">
+					</td>
+					 
+                </tr>
+         
+              </tbody>
+            </table>
+			<td><input type="button" class="btn btn-primary" value="Add another bookmark" onclick="addField();"></td>
+            <button type="button" id="applybookmarks" name="applybookmarks" class="btn btn-primary">Apply All Bookmarks</button>
           </div>
 
 
