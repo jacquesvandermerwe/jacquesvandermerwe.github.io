@@ -202,6 +202,7 @@ form.example::after {
            "pageLength": 15,
            "ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+             //"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath%27",
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
