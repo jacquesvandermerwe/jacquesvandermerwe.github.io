@@ -52,7 +52,7 @@ form.example button {
     border-left: none;
     cursor: pointer;
 }
-
+ 
 form.example button:hover {
     background: #343859;
 }
@@ -189,7 +189,8 @@ form.example::after {
       ev.preventDefault();
       $("#searchres").show();
       if(t) {
-        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+        //t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+		t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27");
         t.ajax.type='GET';
         t.ajax.reload();
       }
@@ -201,7 +202,8 @@ form.example::after {
            "dom": "Bfrtip",
            "pageLength": 15,
            "ajax":{
-             "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+             //"url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+			 "url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val(),
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
