@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
 
 <style>
-
+ 
 p {
     color: #54698D;
     font-family: "Lato", "Helvetica", "Arial", sans-serif;
@@ -190,7 +190,7 @@ form.example::after {
       $("#searchres").show();
       if(t) {
         //t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
-		t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27");
+		t.ajax.url("//descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27");
         t.ajax.type='GET';
         t.ajax.reload();
       }
@@ -203,7 +203,7 @@ form.example::after {
            "pageLength": 15,
            "ajax":{
              //"url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
-			 "url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val(),
+			 "url": "//descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val(),
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
