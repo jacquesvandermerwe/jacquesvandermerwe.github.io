@@ -209,11 +209,13 @@ form.example::after {
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")*/
 			"ajax":{
+			"type": "GET",
+			"xhrFields": {withCredentials: true},
 			"url": SPSearchUrl,
+			"async": false,
 			"crossDomain": true,
-			"data": {username: "DESTEST\ldadmin", password: "Q3ZihvcmDyW$"},
-            "method": "GET",
-			"contentType": "application/json",
+			"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
+            "contentType": "application/json",
             "headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken") } 
         			 
              //}
