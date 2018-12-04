@@ -210,8 +210,10 @@ form.example::after {
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")*/
 			"ajax":{
 			"url": SPSearchUrl,
+			"data": {username: "DESTEST\ldadmin", password: "Q3ZihvcmDyW$"},
             "method": "GET",
-            "headers": { "Accept": "application/json; odata=verbose" } 
+			"contentType": "application/json",
+            "headers": { "Accept": "application/json" } 
         			 
              //}
            },
