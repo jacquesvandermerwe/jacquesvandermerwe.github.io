@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Evidence Mapping</title>
+    <title>Suggested Evidence Map Using Box Meta-Data</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -23,17 +23,17 @@
     <script>
 
       function initMap() {
-        var myLatLng = {lat: -3.24, lng: 55.93};
+        var myLatLng = {lat: 55.951068, lng: -3.190434 };
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 12,
           center: myLatLng
         });
 
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          title: 'Hello World!'
+          title: 'Evidence Mapping with Box Meta-Data'
         });
       }
     </script>
