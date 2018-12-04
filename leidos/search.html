@@ -190,7 +190,7 @@ form.example::after {
       $("#searchres").show();
       if(t) {
         //t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
-		t.ajax.url("https://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27");
+		t.ajax.url("https://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText") + "&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27");
         t.ajax.type='GET';
         t.ajax.reload();
       }
