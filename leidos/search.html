@@ -211,8 +211,9 @@ form.example::after {
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
 			"ajax":{
 			"type": "GET",
-			"xhrFields": {withCredentials: true},
+			
 			"url": SPTestURL,
+			"xhrFields": {withCredentials: true},
 			//"async": false,
 			//"crossDomain": true,
 			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
