@@ -167,7 +167,7 @@ form.example::after {
   var t;
   var modal;
   var SPSearchUrl = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27";
-	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27"
+	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath, DocId, FileType, Size, Created, ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
   
   $(document).ready(function() {
     modal = document.getElementById('myModal');
@@ -213,7 +213,7 @@ form.example::after {
 			"type": "GET",
 			
 			"url": SPTestURL,
-			"xhrFields": {withCredentials: true},
+			//"xhrFields": {withCredentials: true},
 			//"async": false,
 			//"crossDomain": true,
 			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
