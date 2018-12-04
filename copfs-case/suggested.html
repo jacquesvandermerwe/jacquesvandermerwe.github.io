@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
 
 <style>
- 
+
 p {
     color: #54698D;
     font-family: "Lato", "Helvetica", "Arial", sans-serif;
@@ -45,16 +45,16 @@ form.example button {
     float: left;
     width: 20%;
     padding: 10px;
-    background: #343859;
+    background: #ccb7ca;
     color: white;
     font-size: 17px;
-    border: 1px solid #cdd4de;
+    border: 1px solid #ccb7ca;
     border-left: none;
     cursor: pointer;
 }
- 
+
 form.example button:hover {
-    background: #343859;
+    background: #757575;
 }
 
 form.example::after {
@@ -166,9 +166,7 @@ form.example::after {
 <script>
   var t;
   var modal;
-  var SPSearchUrl = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27";
-	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
-  
+
   $(document).ready(function() {
     modal = document.getElementById('myModal');
     // Get the button that opens the modal
@@ -179,7 +177,7 @@ form.example::after {
     span.onclick = function() {
       modal.style.display = "none";
     }
- 
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
@@ -190,38 +188,24 @@ form.example::after {
     $("#search").on('submit', (function(ev) {
       ev.preventDefault();
       $("#searchres").show();
-     /* if(t) {
+      if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
         t.ajax.type='GET';
         t.ajax.reload();
       }
-      else {}*/
-	  
-	  //{
+      else {
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
            "searching": false,
            "dom": "Bfrtip",
            "pageLength": 15,
-           /*"ajax":{
+           "ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
              "type": "GET",
              "dataSrc": "entries",
-             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
-			"ajax":{
-			"type": "GET",
-			
-			"url": SPTestURL,
-			//"xhrFields": {withCredentials: true},
-			//"async": false,
-			//"crossDomain": true,
-			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
-            "contentType": "application/json",
-            //"headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken")}
-			"headers": { "Accept": "application/json"} 
-        			 
-             
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
+             }
            },
            "columnDefs": [
             {
@@ -288,7 +272,7 @@ form.example::after {
              }
 
            ]});
-         //}*/
+         }
         }));
         $('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
