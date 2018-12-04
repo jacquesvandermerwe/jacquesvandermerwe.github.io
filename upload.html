@@ -25,18 +25,29 @@
 
   
       var folderId = '56730436611';
-      var accessToken = 'KSLBdNTIZjspcunQWLXmUXRspPklBq5E';
+      var accessToken = 'dSYLfo2C0fI7GLDy5W4gmiWDxEQWH0KE';
       var uploader = new Box.ContentUploader();
 
     var renameFile = (config) => {
-	//console.log(JSON.stringify(config));
+  //console.log(JSON.stringify(config));
+  if (config.method=='options') {
+    //alert("Response:" + config.method + " Status:" + config.status);
+
+    var fileName =config.data.name.substring(0,config.data.name.lastIndexOf("."));
+				var ext = config.data.name.substring(config.data.name.lastIndexOf(".")+1);
+				var oldName=config.data.name;
+        //jsonRep.name = "My Custome Name " + (new Date().toISOString()) + "_." + ext;
+        config.data.name = "My Custome Name_." + ext;     
+    return config;
+  }
 	if(config.method=='post') {
 			//add timestamp to name to mimic existing functionality
 			var jsonRep = JSON.parse(config.data.attributes);
 				var fileName =jsonRep.name.substring(0,jsonRep.name.lastIndexOf("."));
 				var ext = jsonRep.name.substring(jsonRep.name.lastIndexOf(".")+1);
 				var oldName=jsonRep.name;
-				jsonRep.name = "My Custome Name " + (new Date().toISOString()) + "_." + ext;
+        //jsonRep.name = "My Custome Name " + (new Date().toISOString()) + "_." + ext;
+        jsonRep.name = "My Custome Name_." + ext;     
 				var newAttributes = JSON.stringify(jsonRep);
 				config.data.attributes = newAttributes;
 				//console.log(config.url + " - replacing with:" + conflictsMap.get(oldName));

@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
 
 <style>
-
+ 
 p {
     color: #54698D;
     font-family: "Lato", "Helvetica", "Arial", sans-serif;
@@ -52,7 +52,7 @@ form.example button {
     border-left: none;
     cursor: pointer;
 }
-
+ 
 form.example button:hover {
     background: #343859;
 }
@@ -188,12 +188,14 @@ form.example::after {
     $("#search").on('submit', (function(ev) {
       ev.preventDefault();
       $("#searchres").show();
-      if(t) {
+     /* if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
         t.ajax.type='GET';
         t.ajax.reload();
       }
-      else {
+      else {}*/
+	  
+	  //{
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
@@ -272,7 +274,7 @@ form.example::after {
              }
 
            ]});
-         }
+         //}*/
         }));
         $('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
