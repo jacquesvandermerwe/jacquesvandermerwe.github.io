@@ -210,6 +210,8 @@ form.example::after {
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")*/
 			"ajax":{
 			"url": SPSearchUrl,
+			"crossDomain": true,
+			"datatype"= "json",
 			"data": {username: "DESTEST\ldadmin", password: "Q3ZihvcmDyW$"},
             "method": "GET",
 			"contentType": "application/json",
