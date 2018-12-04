@@ -199,26 +199,26 @@ form.example::after {
 	  //{
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
-          /* "select": true,
+           "select": true,
            "searching": false,
            "dom": "Bfrtip",
            "pageLength": 15,
-           "ajax":{
+           /*"ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
              "type": "GET",
              "dataSrc": "entries",
-             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")*/
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
 			"ajax":{
 			"type": "GET",
-			"xhrFields": {withCredentials: true},
+			//"xhrFields": {withCredentials: true},
 			"url": SPSearchUrl,
-			"async": false,
-			"crossDomain": true,
-			"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
-            "contentType": "application/json",
+			//"async": false,
+			//"crossDomain": true,
+			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
+            //"contentType": "application/json",
             "headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken") } 
         			 
-             //}
+             
            },
            "columnDefs": [
             {
