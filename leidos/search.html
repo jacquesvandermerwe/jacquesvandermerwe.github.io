@@ -203,7 +203,7 @@ form.example::after {
            "pageLength": 15,
            "ajax":{
              //"url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
-			 "url": "https://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val(),
+			 "url": "https://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText"),
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
