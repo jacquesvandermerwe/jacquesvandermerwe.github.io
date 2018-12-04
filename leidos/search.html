@@ -166,6 +166,7 @@ form.example::after {
 <script>
   var t;
   var modal;
+  var SPSearchUrl = "https://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27";
 
   $(document).ready(function() {
     modal = document.getElementById('myModal');
@@ -198,7 +199,7 @@ form.example::after {
 	  //{
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
-           "select": true,
+          /* "select": true,
            "searching": false,
            "dom": "Bfrtip",
            "pageLength": 15,
@@ -206,7 +207,12 @@ form.example::after {
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
              "type": "GET",
              "dataSrc": "entries",
-             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")*/
+			"ajax":{
+			"url": SPSearchUrl,
+            "method": "GET",
+            "headers": { "Accept": "application/json; odata=verbose" },
+        			 
              }
            },
            "columnDefs": [
