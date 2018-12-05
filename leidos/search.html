@@ -243,10 +243,9 @@ form.example::after {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
              },*/
-				 "data": null,
-               render: function(data, type, row) {
-                  return JSON.stringify(row);
-               }, {
+				{
+               "data":"Title"
+             }, {
                "data":"OriginalPath"
              }, {
                "data":"DocId"
