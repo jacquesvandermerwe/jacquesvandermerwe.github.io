@@ -227,12 +227,12 @@ form.example::after {
            },
           "columnDefs": [
             {
-              "targets": [1, 7 ],
+              "targets": [0, 6 ],
               "visible": true,
               "searchable": true
             }],
            "columns": [
-             {
+             /*{
                "data": "type"
               },
              {
@@ -242,7 +242,7 @@ form.example::after {
                "data": null, render(data,type,row) {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
-             },
+             },*/
 				{
                "data":"Title"
              }, {
@@ -259,9 +259,9 @@ form.example::after {
              },
 			  {
                "data":"ModifiedBy"
-             },
-			 //}
-             {
+             //},
+			 }
+            /* {
                "data":null,
                  render:function(data,type,row) {
                   if(row.metadata) {
@@ -301,7 +301,7 @@ form.example::after {
                render: function(data, type, row) {
                   return JSON.stringify(row);
                }
-             }
+             }*/
 
            ]});
          }
