@@ -243,9 +243,10 @@ form.example::after {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
              },*/
-				{
-               "data":"Title"
-             }, {
+				 "data": null,
+               render: function(data, type, row) {
+                  return JSON.stringify(row);
+               }, {
                "data":"OriginalPath"
              }, {
                "data":"DocId"
@@ -337,7 +338,7 @@ form.example::after {
 
 </div>
 <div id='searchres' class="row">
-  <table id="contentlist" class="display" style="width:95%%">
+  <!--table id="contentlist" class="display" style="width:95%%">
     <thead>
         <th>Type</th>
         <th>ID</th>
@@ -354,7 +355,7 @@ form.example::after {
       <tbody>
       </tbody>
 
-</table>
+</table-->
   <table id="spcontentlist" class="display" style="width:95%">
     <thead>
         <th>Title</th>
