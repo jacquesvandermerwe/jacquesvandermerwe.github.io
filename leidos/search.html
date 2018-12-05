@@ -227,7 +227,7 @@ form.example::after {
            },
           "columnDefs": [
             {
-              "targets": [1, 2 ],
+              "targets": [1, 7 ],
               "visible": false,
               "searchable": false
             }],
@@ -243,12 +243,22 @@ form.example::after {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
              },*/
-
-             {
+				{
+               "data":"Title"
+             }, {
+               "data":"OriginalPath"
+             }, {
+               "data":"DocId"
+             }, {
+               "data":"FileType"
+             }, {
                "data":""
              },
+             {
+               "data":"Created"
+             },
 			  {
-               "data":""
+               "data":"ModifiedBy"
              //},
 			 }
             /* {
@@ -349,7 +359,11 @@ form.example::after {
     <thead>
         <th>Title</th>
         <th>Original Path</th>
-
+		<th>DocId</th>
+		<th>File Type</th>
+		<th>Size</th>
+		<th>Created</th>
+		<th>Modified By</th>
       </thead>
       <tbody>
       </tbody>
