@@ -198,11 +198,11 @@ form.example::after {
       else {}*/
 	  
 	  //{
-        t = $('#contentlist').DataTable({
+        t = $('#spcontentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
            "searching": false,
-           "dom": "Bfrtip",
+           //"dom": "Bfrtip",
            //"pageLength": 15,
            /*"ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
@@ -244,6 +244,9 @@ form.example::after {
 
              {
                "data":"Title"
+             },
+			  {
+               "data":"OriginalPath"
              },
             /* {
                "data":null,
@@ -333,6 +336,16 @@ form.example::after {
         <th>Modified By</th>
         <th>Source</th>
 
+
+      </thead>
+      <tbody>
+      </tbody>
+
+</table>
+  <table id="spcontentlist" class="display" style="width:95%">
+    <thead>
+        <th>Title</th>
+        <th>Original Path</th>
 
       </thead>
       <tbody>
