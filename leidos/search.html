@@ -213,7 +213,7 @@ form.example::after {
 			"ajax":{
 			"type": "GET",
 			//"url": SPTestURL,
-			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='http://sp-web1/QueryPropertiesTemplate/queryparametertemplate.xml'",
+			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 			//"xhrFields": {withCredentials: true},
 			//"async": false,
 			//"crossDomain": true,
