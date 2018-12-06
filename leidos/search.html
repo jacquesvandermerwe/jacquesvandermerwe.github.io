@@ -251,9 +251,10 @@ form.example::after {
                "data":"DocId"
              }, {
                "data":"FileType"
-             }, {
-               "data":""
-             },
+             },  {
+               "data": null, render(data,type,row) {
+                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
+               },
              {
                "data":"Created"
              },
