@@ -75,7 +75,7 @@
       console.log(response);
       stream_position=response.next_stream_position;
       sessionStorage.setItem("streamPosition",stream_position);
-      if (userLogin.includes("triage"))
+      if (String(userLogin).includes("triage"))
       {window.location.replace('/copfs-case/main.html');
       } else {
         window.location.replace('/copfs-case/main-worker.html');
