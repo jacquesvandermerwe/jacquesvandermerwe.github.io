@@ -23,7 +23,7 @@
     var currentSpan;
     var showCopsButton = true;
     var showVideoButton = false;
-    var objType = 'ASSIGN';
+    var objType = 'INDEX';
     var contentSidebar = new Box.ContentSidebar();
 
     var testResponseInterceptor = (response /* https://github.com/axios/axios#request-config */) => {
@@ -100,8 +100,8 @@
 
         if(showCopsButton) {
             fixButton();
-            objType='ASSIGN';
-            hackDom('ASSIGN');
+            objType='INDEX';
+            hackDom('INDEX');
         } else {
           var name = item[0].name;
           console.log(name + " - " + name.endsWith('mp4'));
@@ -177,7 +177,7 @@
       for(i=0;i<allSpans.length;i++) {
         var obj = allSpans[i];
 
-        if(obj.innerHTML=='Share' || obj.innerHTML=='ASSIGN'  || obj.innerHTML=='Video') {
+        if(obj.innerHTML=='Share' || obj.innerHTML=='INDEX'  || obj.innerHTML=='Video') {
           obj.innerHTML = objType;
           obj.parentNode.parentNode.onclick = function(event){changeEvent(event);};
           obj.parentNode.onclick = function(event){changeEvent(event);};
