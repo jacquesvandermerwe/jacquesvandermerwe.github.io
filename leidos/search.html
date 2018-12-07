@@ -192,7 +192,7 @@ form.example::after {
       ev.preventDefault();
       $("#searchres").show();
       if(t) {
-        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+        t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
         t.ajax.type='GET';
         t.ajax.reload();
       }
@@ -227,12 +227,12 @@ form.example::after {
            },
           "columnDefs": [
             {
-              "targets": [1, 7 ],
+              "targets": [0, 6 ],
               "visible": true,
               "searchable": true
             }],
            "columns": [
-             {
+             /*{
                "data": "type"
               },
              {
@@ -242,7 +242,7 @@ form.example::after {
                "data": null, render(data,type,row) {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
-             },
+             },*/
 				{
                "data":"Title"
              }, {
@@ -251,17 +251,18 @@ form.example::after {
                "data":"DocId"
              }, {
                "data":"FileType"
-             }, {
-               "data":""
-             },
+             },  {
+               "data": null, render(data,type,row) {
+                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";}
+			   },
              {
                "data":"Created"
              },
 			  {
                "data":"ModifiedBy"
-             },
-			 //}
-             {
+             //},
+			 }
+            /* {
                "data":null,
                  render:function(data,type,row) {
                   if(row.metadata) {
@@ -301,7 +302,7 @@ form.example::after {
                render: function(data, type, row) {
                   return JSON.stringify(row);
                }
-             }
+             }*/
 
            ]});
          }
@@ -337,7 +338,7 @@ form.example::after {
 
 </div>
 <div id='searchres' class="row">
-  <table id="contentlist" class="display" style="width:95%%">
+  <!--table id="contentlist" class="display" style="width:95%%">
     <thead>
         <th>Type</th>
         <th>ID</th>
@@ -354,7 +355,7 @@ form.example::after {
       <tbody>
       </tbody>
 
-</table>
+</table-->
   <table id="spcontentlist" class="display" style="width:95%">
     <thead>
         <th>Title</th>
