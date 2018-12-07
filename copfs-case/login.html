@@ -76,11 +76,12 @@
       console.log(response);
       stream_position=response.next_stream_position;
       sessionStorage.setItem("streamPosition",stream_position);
-      console.log("casefolder:" + personalFolderMap.get($("#userLogin").val()));
-      sessionStorage.setItem('caseFolderId',personalFolderMap.get($("#userLogin").val()));
+
       if ($("#userLogin").val().includes("triage"))
       {window.location.replace('/copfs-case/main.html');
       } else {
+        console.log("casefolder:" + personalFolderMap.get($("#userLogin").val()));
+        sessionStorage.setItem('caseFolderId',personalFolderMap.get($("#userLogin").val()));
         window.location.replace('/copfs-case/main-worker.html');
       }
 
