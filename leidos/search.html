@@ -187,22 +187,41 @@ form.example::after {
       }
     }
 	
-    $("#searchres").hide();
-    $("#search").on('submit', (function(ev) {
-      ev.preventDefault();
-      $("#searchres").show();
-      if(t) {
-        t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
-        t.ajax.type='GET';
-        t.ajax.reload();
-      }
-      else //{}
+	$(document).ready(function() {
+	
+	$('#spcontentlist').DataTable({
+	 "ajax": 
+	 {
+		"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
+		"type": "GET",
+		"contentType": "application/json",
+		"headers": { "Accept": "application/json"} 
+	 }
+	});
+	});
+	
+	
+	
+	
+	
+	
+	
+ //   $("#searchres").hide();
+ //   $("#search").on('submit', (function(ev) {
+ //     ev.preventDefault();
+ //     $("#searchres").show();
+ //     if(t) {
+ //       t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
+ //       t.ajax.type='GET';
+ //       t.ajax.reload();
+ //     }
+ //     else //{}
 	  
-	  {
-        t = $('#spcontentlist').DataTable({
+//	  {
+//        t = $('#spcontentlist').DataTable({
           // "order": [[ 1, "desc" ]],
-           "select": true,
-           "searching": false,
+//           "select": true,
+//           "searching": false,
            //"dom": "Bfrtip",
            //"pageLength": 15,
            /*"ajax":{
@@ -210,50 +229,50 @@ form.example::after {
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
-			"ajax":{
-			"type": "GET",
+//			"ajax":{
+//			"type": "GET",
 			//"url": SPTestURL,
-			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
+//			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 			//"xhrFields": {withCredentials: true},
 			//"async": false,
 			//"crossDomain": true,
 			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
-			"dataSrc": "",
-            "contentType": "application/json",
-			"timeout": 3600 *5,
+//			"dataSrc": "",
+//            "contentType": "application/json",
+//			"timeout": 3600 *5,
             //"headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken")}
-			"headers": { "Accept": "application/json"} 
+//			"headers": { "Accept": "application/json"} 
         			 
                 
-           },
-          "columnDefs": [
-            {
-              "targets": [0, 6 ],
-              "visible": true,
-              "searchable": true
-            }],
-           "columns": [
+//          },
+//          "columnDefs": [
+//            {
+//              "targets": [0, 6 ],
+//              "visible": true,
+//              "searchable": true
+//            }],
+//           "columns": [
         
-          	{
-               "data":"Title"
+//          	{
+//               "data":"Title"
 
-             }
-			 , {
-               "data":"OriginalPath"
-             }, {
-               "data":"DocId"
-             }, {
-               "data":"FileType"
-             },  {
-               "data":"Size"
-			   },
-             {
-               "data":"Created"
-             },
-			  {
-               "data":"ModifiedBy"
+//            }
+//			 , {
+//               "data":"OriginalPath"
+//             }, {
+//               "data":"DocId"
+//             }, {
+//               "data":"FileType"
+//             },  {
+//               "data":"Size"
+//			   },
+//             {
+//               "data":"Created"
+//             },
+//			  {
+//               "data":"ModifiedBy"
              //},
-			 }
+//			 }
 			 
 			 
             /* {
@@ -299,10 +318,10 @@ form.example::after {
              }*/
 
           // ]
-		   });
-         }
-        }));
-        $('#contentlist tbody').on('click', 'td', function() {
+//		   });
+//         }
+//       }));
+        /*$('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
           var data = t.row(this.parentNode).data();
           console.log("d:" + JSON.stringify(data));
@@ -313,12 +332,12 @@ form.example::after {
             container: ".modal-body"
           });
           modal.style.display = "block";
-        });
+        });*/
     });
-    function humanFileSize(size) {
+ /*   function humanFileSize(size) {
     var i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};
+};*/
 </script>
 
 </head>
