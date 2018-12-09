@@ -167,7 +167,7 @@ form.example::after {
   var t;
   var modal;
   var SPSearchUrl = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27";
-	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
+	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27pol1%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
   
   $(document).ready(function() {
     modal = document.getElementById('myModal');
@@ -192,7 +192,7 @@ form.example::after {
 	$('#spcontentlist').DataTable({
 	 "ajax": 
 	 {
-		"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
+		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 		"type": "GET",
 		"dataSrc": "entries",
 		"contentType": "application/json",
