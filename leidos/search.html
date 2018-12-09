@@ -228,10 +228,10 @@ form.example::after {
            },
           "columnDefs": [
             {
-              "targets": [0, 6 ],
+              "targets": [0, 1 ],
               "visible": true,
               "searchable": true
-            }],
+            }]/*,
            "columns": [
              /*{
                "data": "type"
@@ -243,7 +243,7 @@ form.example::after {
                "data": null, render(data,type,row) {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
-             },*/
+             },
 				{
                "data":null, render:function(data,type,row)
 			   {
@@ -256,7 +256,7 @@ form.example::after {
 					return "No Title Found"
 				}
 			   }
-             }/*, {
+             }, {
                "data":"OriginalPath"
              }, {
                "data":"DocId"
@@ -312,9 +312,9 @@ form.example::after {
                render: function(data, type, row) {
                   return JSON.stringify(row);
                }
-             }*/
+             }
 
-           ]});
+           ]})*/;
          }
         }));
         $('#contentlist tbody').on('click', 'td', function() {
