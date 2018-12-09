@@ -231,33 +231,14 @@ form.example::after {
               "targets": [0, 6 ],
               "visible": true,
               "searchable": true
-            }]*///,
-          // "columns": [
-             /*{
-               "data": "type"
-              },
-             {
-               "data":"id"
-             },
-             {
-               "data": null, render(data,type,row) {
-                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
-               }
-             },*/
-				//{
-              // "data":null, render:function(data,type,row)
-			 //  {
-			  // if(row.Title)
-			//	{
-			//		return row.Title
-			//	}
-			//	else
-			//	{
-			//		return "No Title Found"
-			//	}
-			//   }
-             //}
-			 /*, {
+            }],*/
+           "columns": [
+        
+          	{
+               "data":"Title"
+
+             }
+			 , {
                "data":"OriginalPath"
              }, {
                "data":"DocId"
@@ -272,7 +253,9 @@ form.example::after {
 			  {
                "data":"ModifiedBy"
              //},
-			 }*/
+			 }
+			 
+			 
             /* {
                "data":null,
                  render:function(data,type,row) {
