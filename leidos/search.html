@@ -195,7 +195,7 @@ form.example::after {
 		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 		"type": "GET",
 		"dataSrc":  function ( json ) {
-      for ( var i=0, i=json.data.length , i++ ) {
+      for ( int i=0, i=json.data.length , i++ ) {
         json.data[i][0] = '<a href="/message/'+json.data[i][0]+'>Title</a>';
       }
       return json.data;
