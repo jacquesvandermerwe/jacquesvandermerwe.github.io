@@ -228,11 +228,11 @@ form.example::after {
            },
           "columnDefs": [
             {
-              "targets": [0, 1 ],
+              "targets": [0, 6 ],
               "visible": true,
               "searchable": true
-            }]/*,
-           "columns": [
+            }]//,
+          // "columns": [
              /*{
                "data": "type"
               },
@@ -243,20 +243,21 @@ form.example::after {
                "data": null, render(data,type,row) {
                    return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
                }
-             },
-				{
-               "data":null, render:function(data,type,row)
-			   {
-			   if(row.Title)
-				{
-					return row.Title
-				}
-				else
-				{
-					return "No Title Found"
-				}
-			   }
-             }, {
+             },*/
+				//{
+              // "data":null, render:function(data,type,row)
+			 //  {
+			  // if(row.Title)
+			//	{
+			//		return row.Title
+			//	}
+			//	else
+			//	{
+			//		return "No Title Found"
+			//	}
+			//   }
+             //}
+			 /*, {
                "data":"OriginalPath"
              }, {
                "data":"DocId"
@@ -312,10 +313,11 @@ form.example::after {
                render: function(data, type, row) {
                   return JSON.stringify(row);
                }
-             }
+             }*/
 
-           ]});*/
-         });
+          // ]
+		   });
+         }
         }));
         $('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
