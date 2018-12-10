@@ -320,13 +320,14 @@ form.example::after {
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
                     docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
-					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
+					/*docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
 					created = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Created")].Value'));
-					modBy = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="ModifiedBy")].Value'));
+					modBy = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="ModifiedBy")].Value'));*/
                     var rowNode = t
-                    .row.add([title, docURL, docID, fileType, size, created, modBy])
+                    //.row.add([title, docURL, docID, fileType, size, created, modBy])
+					.row.add([title, docURL])
                     .draw()
                     .node();
                 }
@@ -374,11 +375,11 @@ form.example::after {
     <thead>
         <th>Title</th>
         <th>Original Path</th>
-		<th>DocId</th>
+		<!--th>DocId</th>
 		<th>File Type</th>
 		<th>Size</th>
 		<th>Created</th>
-		<th>Modified By</th>
+		<th>Modified By</th-->
       </thead>
       <tbody>
       </tbody>
