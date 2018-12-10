@@ -196,73 +196,39 @@ form.example::after {
 	  
       
     function loadItems() {    
-		var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27pol1%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
+			var jsonSP;
+            var title;
+            var docURL;
+            var t = $('#spcontentlist').DataTable();
+            $.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
+			function (json) {
+            //$.getJSON("sp.json", function (json) 
+			{
+                console.log(json); // this will show the info it in firebug console
+                jsonSP = json;
+                console.log(jsonSP); // this will show the info it in firebug console
+                console.log(jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
+                var arr = jsonPath(jsonSP, '$..Cells');
+                console.log(arr.length);
+                for (var i = 0; i < arr.length; i++) {
+                    title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
+                    docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
+					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
+					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
+					size = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
+					created = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Created")].Value'));
+					modBy = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="ModifiedBy")].Value'));
+                    var rowNode = t
+                    .row.add([title, docURL, docID, fileType, size, created, modBy])
+                    .draw()
+                    .node();
+                }
 
-        $.ajax({    
-            url: SPTestURL,    
-            type: "GET",    
-            dataType: "json",
-			contentType: "application/json",			
-            headers: {    
-                "accept": "application/json;odata=verbose"    
-            },    
-            success: mySuccHandler,    
-            error: myErrHandler    
-        });    
+            }); 
     }    
 
 
-	 
-    function mySuccHandler(data) {    
-        try { 
-             
-            $('#spcontentlist').DataTable({    
-                  
-                "aaData": getItems(),    
-                "aoColumns": [  
-                {    
-                    "mData": "Title"  
-				},   
-                {    
-                    "mData": "OriginalPath"    
-                },   
-                {    
-                    "mData": "DocId"    
-                },   
-                {    
-                    "mData": "Size"    
-                },  
-                {    
-                    "mData": "Created"    
-                },  
-				{    
-                    "mData": "Modifiedby"    
-                } 				
-                ]
-			
-            });    
-        } catch (e) {    
-            alert(e.message);    
-        }    
-    }    
-         
-    function myErrHandler(data, errMessage) {    
-        alert("Error: " + errMessage);    
-    }   
-
-  function getItems(data){
-	console.log("get items|");
-      var query = data; 
-	  console.log("query: "+ query);
-      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
-	  console.log("resultsCount: "+ resultsCount);
-      for(var i = 0; i < resultsCount;i++) {
-          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
-		  console.log("row: "+ row);
-          var taskName = row.Cells.results[3].Value;
-          console.log("taskName: "+ taskName);
-      }   
-  };
+   
 	
 /*	$(document).ready(function() {
 	
