@@ -188,10 +188,9 @@ form.example::after {
     $("#searchres").hide();
     $("#search").on('submit', (function(ev) {
 	
-		var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
       ev.preventDefault();
       $("#searchres").show();
-	  loadItems(); 
+	   
 	  
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
@@ -199,6 +198,7 @@ form.example::after {
 		t.ajax.reload();
       }
       else {
+	  loadItems();
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
@@ -299,7 +299,8 @@ form.example::after {
 };
 
     function loadItems() {
-
+	
+			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
             var title;
             var docURL;
