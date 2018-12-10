@@ -251,7 +251,8 @@ form.example::after {
     }   
 
   function getItems(data){
-      var query = data.d.query; 
+	console.log("get items|");
+      var query = data; 
 	  console.log("query: "+ query);
       var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
 	  console.log("resultsCount: "+ resultsCount);
