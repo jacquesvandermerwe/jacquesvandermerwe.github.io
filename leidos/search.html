@@ -194,13 +194,45 @@ form.example::after {
 	 {
 		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 		"type": "GET",
-		"dataSrc": "this.Value()",
+		"dataSrc": function(json){
+              return json.data.data;
+          },
 		"contentType": "application/json",
 		"headers": { "Accept": "application/json"} 
 	 }
 	 
 	
-	});
+	    "columns": [
+             {
+               "data": "Title"
+              },
+             {
+               "data":"OriginalPath"
+             },
+             {
+               "data": "DocId";
+               }
+             },
+
+             {
+               "data":"FileType"
+             },
+             {
+               "data":"Size"
+
+             },
+             {
+               "data":"Created"
+             }
+             ,
+             {
+               "data":"ModifiedBy"
+             },
+             {
+               "data":"Created",
+             }
+
+           ]});
 	});
 	
 	
