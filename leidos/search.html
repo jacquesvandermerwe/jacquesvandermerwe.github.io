@@ -216,8 +216,8 @@ form.example::after {
                     title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
 					console.log("Title: "+title);
 					console.log("i: "+i);
-					console.log("jsonPath: "+jsonPath);
-					console.log("jsonSP: "+jsonSP);
+					//console.log("jsonPath: "+jsonPath);
+					console.log(jsonSP);
                     docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
 					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
