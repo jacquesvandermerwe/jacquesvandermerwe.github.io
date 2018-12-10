@@ -194,16 +194,27 @@ form.example::after {
 	 {
 		"type": "GET",
 		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
-		"dom": "Bfrtip",
-		"dataSrc": "",
+		"dataSrc": function (json) {
+						var return_data = new Array();
+						for(var i=0;i< json.length; i++){
+						return_data.push({
+						'title': json[i].Title
+			
+        })
+      }
+	  console.log(SPTestURL);
+      return return_data;
+	  
+    },
+          
 		"contentType": "application/json",
 		"headers": { "Accept": "application/json"} 
 	 },
 	
 	    "columns": [
              {
-               "data": "Cells.Title"
-              }//,
+               "data": "title"
+              },
              /*{
                "data":"OriginalPath"
              },
