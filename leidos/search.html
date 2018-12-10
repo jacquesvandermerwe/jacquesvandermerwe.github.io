@@ -15,11 +15,10 @@
 
   <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
-  
-     <script type="text/javascript" src="jsonpath-0.8.0.js"></script>
+      <script type="text/javascript" src="jsonpath-0.8.0.js"></script>
 
 <style>
- 
+
 p {
     color: #54698D;
     font-family: "Lato", "Helvetica", "Arial", sans-serif;
@@ -54,7 +53,7 @@ form.example button {
     border-left: none;
     cursor: pointer;
 }
- 
+
 form.example button:hover {
     background: #343859;
 }
@@ -168,7 +167,7 @@ form.example::after {
 <script>
   var t;
   var modal;
-  
+
   $(document).ready(function() {
     modal = document.getElementById('myModal');
     // Get the button that opens the modal
@@ -179,149 +178,63 @@ form.example::after {
     span.onclick = function() {
       modal.style.display = "none";
     }
- 
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     }
-	
-	
-	
-    $(document).ready(function() {    
-        loadItems();    
-    });    
-      
+    $("#searchres").hide();
+    $("#search").on('submit', (function(ev) {
+
+      ev.preventDefault();
+      $("#searchres").show();
+	  loadItems(); 
 	  
-      
-    function loadItems() {    
-			var jsonSP;
-            var title;
-            var docURL;
-            var t = $('#spcontentlist').DataTable();
-            $.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol1'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
-			function (json) {
-            //$.getJSON("sp.json", function (json) 
-			{
-                console.log(json); // this will show the info it in firebug console
-                jsonSP = json;
-                console.log(jsonSP); // this will show the info it in firebug console
-                console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
-                var arr = jsonPath(jsonSP, '$..Cells');
-                console.log(arr.length);
-                for (var i = 0; i < arr.length; i++) {
-                    title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.[' + i + '].Cells.[' + i + '][?(@.Key=="Title")].Value'));
-                    docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
-					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
-					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
-					size = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
-					created = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Created")].Value'));
-					modBy = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="ModifiedBy")].Value'));
-                    var rowNode = t
-                    .row.add([title, docURL, docID, fileType, size, created, modBy])
-                    .draw()
-                    .node();
-                }
-			}	
-
-        }); 
-		
-    }    
-
-
-   
-	
-/*	$(document).ready(function() {
-	
-	$('#spcontentlist').DataTable({
-	 "ajax": 
-	 {
-		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
-		"type": "GET",
-		"dataSrc": "",
-		"contentType": "application/json",
-		"headers": { "Accept": "application/json"} 
-	 }
-	});
-	});
-	*/
-	
-	
-	
-	
-	
-	
- //   $("#searchres").hide();
- //   $("#search").on('submit', (function(ev) {
- //     ev.preventDefault();
- //     $("#searchres").show();
- //     if(t) {
- //       t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
- //       t.ajax.type='GET';
- //       t.ajax.reload();
- //     }
- //     else //{}
-	  
-//	  {
-//        t = $('#spcontentlist').DataTable({
+      if(t) {
+        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+        t.ajax.type='GET';
+		t.ajax.reload();
+      }
+      else {
+        t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
-//           "select": true,
-//           "searching": false,
-           //"dom": "Bfrtip",
-           //"pageLength": 15,
-           /*"ajax":{
+           "select": true,
+           "searching": false,
+           "dom": "Bfrtip",
+           "pageLength": 15,
+           "ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+             //"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath%27",
              "type": "GET",
              "dataSrc": "entries",
-             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
-//			"ajax":{
-//			"type": "GET",
-			//"url": SPTestURL,
-//			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
-			//"xhrFields": {withCredentials: true},
-			//"async": false,
-			//"crossDomain": true,
-			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
-//			"dataSrc": "",
-//            "contentType": "application/json",
-//			"timeout": 3600 *5,
-            //"headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken")}
-//			"headers": { "Accept": "application/json"} 
-        			 
-                
-//          },
-//          "columnDefs": [
-//            {
-//              "targets": [0, 6 ],
-//              "visible": true,
-//              "searchable": true
-//            }],
-//           "columns": [
-        
-//          	{
-//               "data":"Title"
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
+             }
+           },
+           "columnDefs": [
+            {
+              "targets": [1, 8 ],
+              "visible": false,
+              "searchable": false
+            }],
+           "columns": [
+             {
+               "data": "type"
+              },
+             {
+               "data":"id"
+             },
+             {
+               "data": null, render(data,type,row) {
+                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
+               }
+             },
 
-//            }
-//			 , {
-//               "data":"OriginalPath"
-//             }, {
-//               "data":"DocId"
-//             }, {
-//               "data":"FileType"
-//             },  {
-//               "data":"Size"
-//			   },
-//             {
-//               "data":"Created"
-//             },
-//			  {
-//               "data":"ModifiedBy"
-             //},
-//			 }
-			 
-			 
-            /* {
+             {
+               "data":"name"
+             },
+             {
                "data":null,
                  render:function(data,type,row) {
                   if(row.metadata) {
@@ -361,13 +274,12 @@ form.example::after {
                render: function(data, type, row) {
                   return JSON.stringify(row);
                }
-             }*/
+             }
 
-          // ]
-//		   });
-//         }
-//       }));
-        /*$('#contentlist tbody').on('click', 'td', function() {
+           ]});
+         }
+        }));
+        $('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
           var data = t.row(this.parentNode).data();
           console.log("d:" + JSON.stringify(data));
@@ -378,12 +290,51 @@ form.example::after {
             container: ".modal-body"
           });
           modal.style.display = "block";
-        });*/
+        });
     });
- /*   function humanFileSize(size) {
+    function humanFileSize(size) {
     var i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};*/
+};
+
+    function loadItems() {
+
+			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + $("#searchText").val() + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
+			var jsonSP;
+            var title;
+            var docURL;
+            var t = $('#spcontentlist').DataTable();
+        // 	$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol1'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
+		//	function (json) {
+            $.getJSON(spSearch, function (json) 
+			{
+                console.log(json); // this will show the info it in firebug console
+                jsonSP = json;
+                console.log(jsonSP); // this will show the info it in firebug console
+                console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
+                var arr = jsonPath(jsonSP, '$..Cells');
+                console.log(arr.length);
+                for (var i = 0; i < arr.length; i++) {
+                    title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
+                    docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
+					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
+					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
+					size = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
+					created = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Created")].Value'));
+					modBy = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="ModifiedBy")].Value'));
+                    var rowNode = t
+                    .row.add([title, docURL, docID, fileType, size, created, modBy])
+                    .draw()
+                    .node();
+                }
+			}	
+
+        }); 
+		
+    }    
+
+
+
 </script>
 
 </head>
@@ -398,7 +349,7 @@ form.example::after {
 
 </div>
 <div id='searchres' class="row">
-  <!--table id="contentlist" class="display" style="width:95%%">
+  <table id="contentlist" class="display" style="width:95%">
     <thead>
         <th>Type</th>
         <th>ID</th>
@@ -415,8 +366,8 @@ form.example::after {
       <tbody>
       </tbody>
 
-</table-->
-  <table id="spcontentlist" class="display" style="width:95%">
+</table>
+<table id="spcontentlist" class="display" style="width:95%">
     <thead>
         <th>Title</th>
         <th>Original Path</th>
@@ -428,19 +379,7 @@ form.example::after {
       </thead>
       <tbody>
       </tbody>
-	   <tfoot>
-            <tr>
-                 <th>Title</th>
-        <th>Original Path</th>
-		<th>DocId</th>
-		<th>File Type</th>
-		<th>Size</th>
-		<th>Created</th>
-		<th>Modified By</th>
-
-            </tr>
-        </tfoot>
-
+	  
 </table>
 </div>
 <div id="myModal" class="modal">
