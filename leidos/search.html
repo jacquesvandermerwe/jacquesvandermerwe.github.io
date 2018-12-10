@@ -217,23 +217,26 @@ form.example::after {
              
             $('#spcontentlist').DataTable({    
                   
-                "aaData": "",    
+                //"aaData": "",    
                 "aoColumns": [  
                 {    
                     "mData": "Title"  
 				},   
                 {    
-                    "mData": "Position"    
+                    "mData": "OriginalPath"    
                 },   
                 {    
-                    "mData": "Office"    
+                    "mData": "DocId"    
                 },   
                 {    
-                    "mData": "Age"    
+                    "mData": "Size"    
                 },  
                 {    
-                    "mData": "Joining_x0020_date"    
-                }             
+                    "mData": "Created"    
+                },  
+				{    
+                    "mData": "Modifiedby"    
+                }  				
                 ]
 			
             });    
