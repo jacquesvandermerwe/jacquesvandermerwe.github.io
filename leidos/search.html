@@ -213,14 +213,16 @@ form.example::after {
     }    
       
     function mySuccHandler(data) {    
-        try {    
+        try { 
+console.log("in try");		
               
             $('#spcontentlist').DataTable({    
                   
                 "aaData": data.d.results,    
                 "aoColumns": [  
                 {    
-                    "mData": "Title"    
+                    "mData": "Title"  
+				
                 },   
                 {    
                     "mData": "Position"    
