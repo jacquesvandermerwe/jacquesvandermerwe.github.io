@@ -15,7 +15,7 @@
 
   <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
-      <script type="text/javascript" src="jsonpath-0.8.0.js"></script>
+  <script type="text/javascript" src="jsonpath-0.8.0.js"></script>
 
 <style>
 
@@ -33,7 +33,7 @@ body {
     box-sizing: border-box;
 }
 
-.spcontentlist_filter{display: none}
+.spcontentlist_filter{display: none !important}
 
 form.example input[type=text] {
     padding: 10px;
@@ -314,7 +314,8 @@ form.example::after {
                 console.log(json); // this will show the info it in firebug console
                 jsonSP = json;
                 console.log(jsonSP); // this will show the info it in firebug console
-                console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
+                //console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
+				console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Properties.results')); // this will show the info it in firebug console
                 var arr = jsonPath(jsonSP, '$..Cells');
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
