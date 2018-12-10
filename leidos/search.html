@@ -167,7 +167,7 @@ form.example::after {
   var t;
   var modal;
   var SPSearchUrl = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27";
-	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
+	var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27pol1%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
   
   $(document).ready(function() {
     modal = document.getElementById('myModal');
@@ -187,22 +187,119 @@ form.example::after {
       }
     }
 	
-    $("#searchres").hide();
-    $("#search").on('submit', (function(ev) {
-      ev.preventDefault();
-      $("#searchres").show();
-      if(t) {
-        t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
-        t.ajax.type='GET';
-        t.ajax.reload();
-      }
-      else //{}
+	
+	
+    $(document).ready(function() {    
+        loadItems();    
+    });    
+      
 	  
-	  {
-        t = $('#spcontentlist').DataTable({
+      
+    function loadItems() {    
+		var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27pol1%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
+
+        $.ajax({    
+            url: SPTestURL,    
+            type: "GET",    
+            dataType: "json",
+			contentType: "application/json",			
+            headers: {    
+                "accept": "application/json;odata=verbose"    
+            },    
+            success: mySuccHandler,    
+            error: myErrHandler    
+        });    
+    }    
+
+
+	 
+    function mySuccHandler(data) {    
+        try { 
+             
+            $('#spcontentlist').DataTable({    
+                  
+                "aaData": getItems(),    
+                "aoColumns": [  
+                {    
+                    "mData": "Title"  
+				},   
+                {    
+                    "mData": "OriginalPath"    
+                },   
+                {    
+                    "mData": "DocId"    
+                },   
+                {    
+                    "mData": "Size"    
+                },  
+                {    
+                    "mData": "Created"    
+                },  
+				{    
+                    "mData": "Modifiedby"    
+                } 				
+                ]
+			
+            });    
+        } catch (e) {    
+            alert(e.message);    
+        }    
+    }    
+         
+    function myErrHandler(data, errMessage) {    
+        alert("Error: " + errMessage);    
+    }   
+
+  function getItems(data){
+	console.log("get items|");
+      var query = data; 
+	  console.log("query: "+ query);
+      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
+	  console.log("resultsCount: "+ resultsCount);
+      for(var i = 0; i < resultsCount;i++) {
+          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
+		  console.log("row: "+ row);
+          var taskName = row.Cells.results[3].Value;
+          console.log("taskName: "+ taskName);
+      }   
+  };
+	
+/*	$(document).ready(function() {
+	
+	$('#spcontentlist').DataTable({
+	 "ajax": 
+	 {
+		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
+		"type": "GET",
+		"dataSrc": "",
+		"contentType": "application/json",
+		"headers": { "Accept": "application/json"} 
+	 }
+	});
+	});
+	*/
+	
+	
+	
+	
+	
+	
+ //   $("#searchres").hide();
+ //   $("#search").on('submit', (function(ev) {
+ //     ev.preventDefault();
+ //     $("#searchres").show();
+ //     if(t) {
+ //       t.ajax.url("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27");
+ //       t.ajax.type='GET';
+ //       t.ajax.reload();
+ //     }
+ //     else //{}
+	  
+//	  {
+//        t = $('#spcontentlist').DataTable({
           // "order": [[ 1, "desc" ]],
-           "select": true,
-           "searching": false,
+//           "select": true,
+//           "searching": false,
            //"dom": "Bfrtip",
            //"pageLength": 15,
            /*"ajax":{
@@ -210,58 +307,52 @@ form.example::after {
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")}*/
-			"ajax":{
-			"type": "GET",
+//			"ajax":{
+//			"type": "GET",
 			//"url": SPTestURL,
-			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
+//			"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 			//"xhrFields": {withCredentials: true},
 			//"async": false,
 			//"crossDomain": true,
 			//"data": {username: "ldadmin", password: "Q3ZihvcmDyW$"},
-			"dataSrc": "",
-            "contentType": "application/json",
+//			"dataSrc": "",
+//            "contentType": "application/json",
+//			"timeout": 3600 *5,
             //"headers": { "Accept": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("accessToken")}
-			"headers": { "Accept": "application/json"} 
+//			"headers": { "Accept": "application/json"} 
         			 
-               
-           },
-          "columnDefs": [
-            {
-              "targets": [0, 6 ],
-              "visible": true,
-              "searchable": true
-            }],
-           "columns": [
-             /*{
-               "data": "type"
-              },
-             {
-               "data":"id"
-             },
-             {
-               "data": null, render(data,type,row) {
-                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
-               }
-             },*/
-				{
-               "data":"Title"
-             }, {
-               "data":"OriginalPath"
-             }, {
-               "data":"DocId"
-             }, {
-               "data":"FileType"
-             },  {
-               "data": null, render(data,type,row) {
-                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";}
-			   },
-             {
-               "data":"Created"
-             },
-			  {
-               "data":"ModifiedBy"
+                
+//          },
+//          "columnDefs": [
+//            {
+//              "targets": [0, 6 ],
+//              "visible": true,
+//              "searchable": true
+//            }],
+//           "columns": [
+        
+//          	{
+//               "data":"Title"
+
+//            }
+//			 , {
+//               "data":"OriginalPath"
+//             }, {
+//               "data":"DocId"
+//             }, {
+//               "data":"FileType"
+//             },  {
+//               "data":"Size"
+//			   },
+//             {
+//               "data":"Created"
+//             },
+//			  {
+//               "data":"ModifiedBy"
              //},
-			 }
+//			 }
+			 
+			 
             /* {
                "data":null,
                  render:function(data,type,row) {
@@ -304,10 +395,11 @@ form.example::after {
                }
              }*/
 
-           ]});
-         }
-        }));
-        $('#contentlist tbody').on('click', 'td', function() {
+          // ]
+//		   });
+//         }
+//       }));
+        /*$('#contentlist tbody').on('click', 'td', function() {
           console.log('clicked:' + this.parentNode.className);
           var data = t.row(this.parentNode).data();
           console.log("d:" + JSON.stringify(data));
@@ -318,12 +410,12 @@ form.example::after {
             container: ".modal-body"
           });
           modal.style.display = "block";
-        });
+        });*/
     });
-    function humanFileSize(size) {
+ /*   function humanFileSize(size) {
     var i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};
+};*/
 </script>
 
 </head>

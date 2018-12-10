@@ -17,13 +17,14 @@
   personalFolderMap.set('desc.pov+copfstriage@gmail.com','59533539532');
   personalFolderMap.set('desc.pov+copfstriage2@gmail.com','59531657626');
   personalFolderMap.set('desc.pov+copfstriage3@gmail.com','59529791553');
-  personalFolderMap.set('desc.pov+copfscase1@gmail.com','0');
-  personalFolderMap.set('desc.pov+copfscase2@gmail.com','0');
+  personalFolderMap.set('desc.pov+copfscase1@gmail.com','60027387521');
+  personalFolderMap.set('desc.pov+copfscase2@gmail.com','60025375652');
 
 
   //Change this to change Application context
   var clientId="r1yki89hxnzv6mrz14njndrr59dm5w0h";
   //Main case folders
+
   var caseFolderId = '58221328881';
 
   $(document).ready(function() {
@@ -75,7 +76,15 @@
       console.log(response);
       stream_position=response.next_stream_position;
       sessionStorage.setItem("streamPosition",stream_position);
-      window.location.replace('/copfs-case/main.html');
+
+      if ($("#userLogin").val().includes("triage"))
+      {window.location.replace('/copfs-case/main.html');
+      } else {
+        console.log("casefolder:" + personalFolderMap.get($("#userLogin").val()));
+        sessionStorage.setItem('caseFolderId',personalFolderMap.get($("#userLogin").val()));
+        window.location.replace('/copfs-case/main-worker.html');
+      }
+
     });
   }
 </script>
