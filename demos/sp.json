@@ -1,0 +1,2807 @@
+{
+    "d": {
+        "query": {
+            "__metadata": {
+                "type": "Microsoft.Office.Server.Search.REST.SearchResult"
+            },
+            "ElapsedTime": 55,
+            "PrimaryQueryResult": {
+                "__metadata": {
+                    "type": "Microsoft.Office.Server.Search.REST.QueryResult"
+                },
+                "CustomResults": {
+                    "__metadata": {
+                        "type": "Collection(Microsoft.Office.Server.Search.REST.CustomResult)"
+                    },
+                    "results": []
+                },
+                "QueryId": "f77bb21e-73e0-46ce-9791-c822d9bf3ab8",
+                "QueryRuleId": "00000000-0000-0000-0000-000000000000",
+                "RefinementResults": null,
+                "RelevantResults": {
+                    "__metadata": {
+                        "type": "Microsoft.Office.Server.Search.REST.RelevantResults"
+                    },
+                    "GroupTemplateId": null,
+                    "ItemTemplateId": null,
+                    "Properties": {
+                        "results": [
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "GenerationId",
+                                "Value": "9223372036854775806",
+                                "ValueType": "Edm.Int64"
+                            },
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "indexSystem",
+                                "Value": "",
+                                "ValueType": "Edm.String"
+                            },
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "ExecutionTimeMs",
+                                "Value": "31",
+                                "ValueType": "Edm.Int32"
+                            },
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "QueryModification",
+                                "Value": "pol* -ContentClass=urn:content-class:SPSPeople",
+                                "ValueType": "Edm.String"
+                            },
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "RenderTemplateId",
+                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js",
+                                "ValueType": "Edm.String"
+                            },
+                            {
+                                "__metadata": {
+                                    "type": "SP.KeyValue"
+                                },
+                                "Key": "piPageImpressionBlockType",
+                                "Value": "2",
+                                "ValueType": "Edm.Byte"
+                            }
+                        ]
+                    },
+                    "ResultTitle": null,
+                    "ResultTitleUrl": null,
+                    "RowCount": 10,
+                    "Table": {
+                        "__metadata": {
+                            "type": "SP.SimpleDataTable"
+                        },
+                        "Rows": {
+                            "results": [
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "7.09734439849854",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "97",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "Search Website - Police",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "html",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T14:20:37.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "<c0>pol1</c0> \r\n  \r\n12/6/2018 12:20 PM DESTEST\\ldadmin <ddd/> <c0>police6</c0> \r\n  \r\n12/6/2018 2:20 PM DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "20;16",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "20",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "0_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.33985710144043",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "116",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "police3",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/police3.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "10",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T14:20:37.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/police3.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T14:20:37.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": "2",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": "2",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "1_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "102",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol1",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol1.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "10",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol1.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "2_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "103",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol2",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol2.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "23",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol2.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "3_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "104",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol3",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol3.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "10",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol3.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "4_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "105",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol4",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol4.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "10",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol4.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "5_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "106",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol5.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "23",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:47.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol5.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:47.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "6_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "107",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "pol6",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/pol6.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "23",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/pol6.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T12:20:48.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "7_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "114",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "police1",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/police1.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "10",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T14:20:38.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/police1.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T14:20:38.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "8_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "__metadata": {
+                                        "type": "SP.SimpleDataRow"
+                                    },
+                                    "Cells": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Rank",
+                                                "Value": "6.31822109222412",
+                                                "ValueType": "Edm.Double"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DocId",
+                                                "Value": "115",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Title",
+                                                "Value": "police2",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "OriginalPath",
+                                                "Value": "http://sp-web1/Police/police2.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileType",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Size",
+                                                "Value": "23",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Created",
+                                                "Value": "2018-12-06T14:20:38.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ModifiedBy",
+                                                "Value": "DESTEST\\ldadmin",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "SecondaryFileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Author",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Path",
+                                                "Value": "http://sp-web1/Police/police2.txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Description",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "EditorOWSUSER",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "LastModifiedTime",
+                                                "Value": "2018-12-06T14:20:38.0000000Z",
+                                                "ValueType": "Edm.DateTime"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "CollapsingStatus",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int64"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedSummary",
+                                                "Value": "",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "HitHighlightedProperties",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "FileExtension",
+                                                "Value": "txt",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsLifeTime",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ParentLink",
+                                                "Value": "http://sp-web1/Police/Forms/AllItems.aspx",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ViewsRecent",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "IsContainer",
+                                                "Value": "false",
+                                                "ValueType": "Edm.Boolean"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "DisplayAuthor",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "docaclmeta",
+                                                "Value": null,
+                                                "ValueType": "Null"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeIdList",
+                                                "Value": "5",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "PartitionId",
+                                                "Value": "0c37852b-34d0-418e-91c6-2ac25af4be5b",
+                                                "ValueType": "Edm.Guid"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "UrlZone",
+                                                "Value": "0",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "Culture",
+                                                "Value": "en-US",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ResultTypeId",
+                                                "Value": "5",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "piSearchResultId",
+                                                "Value": "9_1",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "TotalRows": 13,
+                    "TotalRowsIncludingDuplicates": 13
+                },
+                "SpecialTermResults": null
+            },
+            "Properties": {
+                "results": [
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "RowLimit",
+                        "Value": "10",
+                        "ValueType": "Edm.Int32"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "SourceId",
+                        "Value": "8413cd39-2156-4e00-b54d-11efd9abdb89",
+                        "ValueType": "Edm.Guid"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "CorrelationId",
+                        "Value": "9f99aa9e-0cce-20bc-dfd6-456817ef2f93",
+                        "ValueType": "Edm.Guid"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "WasGroupRestricted",
+                        "Value": "false",
+                        "ValueType": "Edm.Boolean"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "IsPartial",
+                        "Value": "false",
+                        "ValueType": "Edm.Boolean"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "piPageImpression",
+                        "Value": "13002_3041_1033",
+                        "ValueType": "Edm.String"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "IsCached",
+                        "Value": "true",
+                        "ValueType": "Edm.Boolean"
+                    },
+                    {
+                        "__metadata": {
+                            "type": "SP.KeyValue"
+                        },
+                        "Key": "SerializedQuery",
+                        "Value": "<Query Culture=\"en-US\" EnableStemming=\"True\" EnablePhonetic=\"False\" EnableNicknames=\"False\" IgnoreAllNoiseQuery=\"True\" SummaryLength=\"180\" MaxSnippetLength=\"180\" DesiredSnippetLength=\"90\" KeywordInclusion=\"0\" QueryText=\"pol*\" QueryTemplate=\"\" TrimDuplicates=\"True\" Site=\"c3bfe97c-036c-4c92-9e66-0677257904ed\" Web=\"fd90e4d9-1fee-4f76-ba4a-c07788eb9b87\" KeywordType=\"True\" HiddenConstraints=\"\" />",
+                        "ValueType": "Edm.String"
+                    }
+                ]
+            },
+            "SecondaryQueryResults": {
+                "__metadata": {
+                    "type": "Collection(Microsoft.Office.Server.Search.REST.QueryResult)"
+                },
+                "results": [
+                    {
+                        "CustomResults": {
+                            "__metadata": {
+                                "type": "Collection(Microsoft.Office.Server.Search.REST.CustomResult)"
+                            },
+                            "results": [
+                                {
+                                    "GroupTemplateId": null,
+                                    "ItemTemplateId": null,
+                                    "Properties": {
+                                        "results": [
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "ExecutionTimeMs",
+                                                "Value": "31",
+                                                "ValueType": "Edm.Int32"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "QueryModification",
+                                                "Value": "pol*",
+                                                "ValueType": "Edm.String"
+                                            },
+                                            {
+                                                "__metadata": {
+                                                    "type": "SP.KeyValue"
+                                                },
+                                                "Key": "RenderTemplateId",
+                                                "Value": "~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js",
+                                                "ValueType": "Edm.String"
+                                            }
+                                        ]
+                                    },
+                                    "ResultTitle": "PERSONAL FAVORITES",
+                                    "ResultTitleUrl": null,
+                                    "Table": {
+                                        "__metadata": {
+                                            "type": "SP.SimpleDataTable"
+                                        },
+                                        "Rows": {
+                                            "results": []
+                                        }
+                                    },
+                                    "TableType": "PersonalFavoriteResults"
+                                }
+                            ]
+                        },
+                        "QueryId": "PersonalFavorite Query",
+                        "QueryRuleId": "563b0322-36af-4bcd-a400-00e5e81e0b31",
+                        "RefinementResults": null,
+                        "RelevantResults": null,
+                        "SpecialTermResults": null
+                    }
+                ]
+            },
+            "SpellingSuggestion": "",
+            "TriggeredRules": {
+                "__metadata": {
+                    "type": "Collection(Edm.Guid)"
+                },
+                "results": []
+            }
+        }
+    }
+}
