@@ -192,7 +192,8 @@ form.example::after {
     $(document).ready(function() {    
         loadItems();    
     });    
-        
+      
+	  
       
     function loadItems() {    
         //var siteUrl = _spPageContextInfo.siteAbsoluteUrl;    
@@ -212,14 +213,7 @@ form.example::after {
         });    
     }    
 
-	function getItems(data){
-      var query = data.d.query; 
-      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
-      for(var i = 0; i < resultsCount;i++) {
-          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
-          var Title = row.Cells.results[2].Value;
-          console.log(Title);
-      }   	
+
 	 
     function mySuccHandler(data) {    
         try { 
@@ -258,7 +252,14 @@ form.example::after {
         alert("Error: " + errMessage);    
     }   
 
-	
+	function getItems(data){
+      var query = data.d.query; 
+      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
+      for(var i = 0; i < resultsCount;i++) {
+          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
+          var Title = row.Cells.results[2].Value;
+          console.log(Title);
+      } };  		
 	
 	
 	
