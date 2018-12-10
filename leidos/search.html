@@ -311,12 +311,11 @@ form.example::after {
 		//	function (json) {
             $.getJSON(spSearch, function (json) 
 			{
-                console.log(json); // this will show the info it in firebug console
+                //console.log(json); // this will show the info it in firebug console
                 jsonSP = json;
-                console.log(jsonSP); // this will show the info it in firebug console
-                //console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
-				console.log(jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Properties.results')); // this will show the info it in firebug console
-                var arr = jsonPath(jsonSP, '$..Cells');
+                //console.log(jsonSP); // this will show the info it in firebug console
+                console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
+			    var arr = jsonPath(jsonSP, '$..Cells');
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
