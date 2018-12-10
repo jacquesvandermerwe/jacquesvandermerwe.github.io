@@ -254,9 +254,9 @@ form.example::after {
 
 	function getItems(data){
       var query = data.d.query; 
-      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
-      for(var i = 0; i < resultsCount;i++) {
-          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
+     //var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
+     // for(var i = 0; i < resultsCount;i++) {
+          var row = query.Table.Rows.results[i];
           var Title = row.Cells.results[2].Value;
           console.log(Title);
       } };  		
