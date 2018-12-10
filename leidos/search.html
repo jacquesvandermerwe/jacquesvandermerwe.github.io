@@ -202,7 +202,8 @@ form.example::after {
         $.ajax({    
             url: SPTestURL,    
             type: "GET",    
-            dataType: "json",    
+            dataType: "json",
+			contentType: "application/json",			
             headers: {    
                 "accept": "application/json;odata=verbose"    
             },    
