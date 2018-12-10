@@ -196,8 +196,6 @@ form.example::after {
 	  
       
     function loadItems() {    
-        //var siteUrl = _spPageContextInfo.siteAbsoluteUrl;    
-        //var oDataUrl = siteUrl + "/_api/web/lists/getbytitle('EmployeeInfo')/items?$select=Title,Position,Office,Age,Joining_x0020_date";    
 		var SPTestURL = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27pol1%27&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'"
 
         $.ajax({    
@@ -252,17 +250,18 @@ form.example::after {
         alert("Error: " + errMessage);    
     }   
 
-	function getItems(data){
+  function getItems(data){
       var query = data.d.query; 
-     //var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
-     // for(var i = 0; i < resultsCount;i++) {
-          var row = query.Table.Rows.results[i];
-          var Title = row.Cells.results[2].Value;
-          console.log(Title);
-      //} 
-	  };  		
-	
-	
+	  console.log("query: "+ query);
+      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
+	  console.log("resultsCount: "+ resultsCount);
+      for(var i = 0; i < resultsCount;i++) {
+          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
+		  console.log("row: "+ row);
+          var taskName = row.Cells.results[3].Value;
+          console.log("taskName: "+ taskName);
+      }   
+  },
 	
 /*	$(document).ready(function() {
 	
