@@ -194,7 +194,7 @@ form.example::after {
 	 {
 		"url": SPTestURL, //"http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='" + $("#searchText").val() + "'"+"&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'",
 		"type": "GET",
-		"dataSrc": Value(),
+		"dataSrc": this.Value(),
 		"contentType": "application/json",
 		"headers": { "Accept": "application/json"} 
 	 }
