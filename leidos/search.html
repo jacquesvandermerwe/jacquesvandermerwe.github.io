@@ -211,20 +211,29 @@ form.example::after {
             error: myErrHandler    
         });    
     }    
-      
+
+	function getItems(data){
+      var query = data.d.query; 
+      var resultsCount = query.PrimaryQueryResult.RelevantResults.RowCount;
+      for(var i = 0; i < resultsCount;i++) {
+          var row = query.PrimaryQueryResult.RelevantResults.Table.Rows.results[i];
+          var Title = row.Cells.results[2].Value;
+          console.log(Title);
+      }   	
+	 
     function mySuccHandler(data) {    
         try { 
              
             $('#spcontentlist').DataTable({    
                   
-                "aaData": [{"userID":"1","userName":"name1"},{"userID":"2","userName":"name2"},{"userID":"3","userName":"name3"}],    
+                "aaData": getItems,    
                 "aoColumns": [  
                 {    
-                    "mData": "userID"  
+                    "mData": "Title"  
 				},   
                 {    
-                    "mData": "userName"    
-                }/*,   
+                    "mData": "OriginalPath"    
+                },   
                 {    
                     "mData": "DocId"    
                 },   
@@ -236,7 +245,7 @@ form.example::after {
                 },  
 				{    
                     "mData": "Modifiedby"    
-                } */ 				
+                } 				
                 ]
 			
             });    
