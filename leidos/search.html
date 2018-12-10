@@ -214,16 +214,14 @@ form.example::after {
       
     function mySuccHandler(data) {    
         try { 
-console.log("in try");		
-              
+             
             $('#spcontentlist').DataTable({    
                   
-                "aaData": data.d.results,    
+                "aaData": [Cells.Key, Cells.Value],    
                 "aoColumns": [  
                 {    
                     "mData": "Title"  
-				
-                },   
+				},   
                 {    
                     "mData": "Position"    
                 },   
@@ -237,7 +235,7 @@ console.log("in try");
                     "mData": "Joining_x0020_date"    
                 }             
                 ]
-console.log(aoColumns);				
+			
             });    
         } catch (e) {    
             alert(e.message);    
