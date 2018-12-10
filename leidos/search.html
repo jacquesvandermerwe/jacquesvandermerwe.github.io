@@ -202,9 +202,9 @@ form.example::after {
             var title;
             var docURL;
             var t = $('#spcontentlist').DataTable();
-            $.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
+            //$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
 			function (json) {
-            //$.getJSON("sp.json", function (json) 
+            $.getJSON("sp.json", function (json) 
 			{
                 console.log(json); // this will show the info it in firebug console
                 jsonSP = json;
@@ -213,12 +213,12 @@ form.example::after {
                 var arr = jsonPath(jsonSP, '$..Cells');
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
-                    title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[' + i + '][?(@.Key=="Title")].Value'));
+                    title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
 					console.log("Title: "+title);
 					console.log("i: "+i);
 					//console.log("jsonPath: "+jsonPath);
 					console.log(jsonSP);
-                    docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[' + i + '][?(@.Key=="OriginalPath")].Value'));
+                    docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
 					docID = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
