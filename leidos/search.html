@@ -277,6 +277,7 @@ form.example::after {
              }
 
            ]});
+		   loadItems();
          }
         }));
         $('#contentlist tbody').on('click', 'td', function() {
@@ -310,7 +311,7 @@ form.example::after {
             var created;
             var modBy;
 						
-            var t = $('#contentlist').DataTable();
+            //var t = $('#spcontentlist').DataTable();
             $.getJSON(spSearch, function (json) 
 			{
                 jsonSP = json;
