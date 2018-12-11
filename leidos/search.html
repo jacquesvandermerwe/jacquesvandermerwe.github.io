@@ -324,7 +324,7 @@ form.example::after {
 			{
                 //console.log(json); // this will show the info it in firebug console
                 jsonSP = json;
-                //console.log(jsonSP); // this will show the info it in firebug console
+                console.log(jsonSP); // this will show the info it in firebug console
                 console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
 			    var arr = jsonPath(jsonSP, '$..Cells');
                 console.log(arr.length);
@@ -343,7 +343,7 @@ form.example::after {
 					}
 					else
 					{
-					var createdDate = "N/A";
+					var createdDate = "";
 					}
 					
 					
