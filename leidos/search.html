@@ -330,7 +330,18 @@ form.example::after {
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
-                    docURL = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
+                    docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
+					
+					if (docURLHolder != null)
+					{
+						var split = docURLHolder.Split("http://sp-web1");
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/" + split[1];
+					}
+					else
+					{
+					docURL = "No Valid URL Available"
+					}
+					
 					docID = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
@@ -343,7 +354,8 @@ form.example::after {
 					}
 					else
 					{
-					var createdDate = "";
+					var date = new Date();
+					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
 					}
 					
 					
