@@ -191,7 +191,7 @@ form.example::after {
       ev.preventDefault();
       $("#searchres").show();
 	  loadItems();
-	  loadBoxItems();
+	 // loadBoxItems();
 	  
   /*    if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
@@ -299,7 +299,7 @@ form.example::after {
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
 };
 
-function loadBoxItems(){
+/*function loadBoxItems(){
 
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
@@ -308,9 +308,8 @@ function loadBoxItems(){
       }
       else {
 	
-        //t = $('#contentlist').DataTable({
-		t = $('#contentlist')({
-          // "order": [[ 1, "desc" ]],
+        t = $('#contentlist').DataTable({
+		          // "order": [[ 1, "desc" ]],
            "select": true,
            "searching": false,
            "dom": "Bfrtip",
@@ -390,15 +389,9 @@ function loadBoxItems(){
 		   
          }
 
+}*/
 
-
-
-
-}
-
-
-
-    function loadItems() {
+function loadItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
@@ -412,6 +405,89 @@ function loadBoxItems(){
             var modBy;
 						
             var t = $('#contentlist').DataTable();
+			
+			
+			t = $('#contentlist').DataTable({
+		          // "order": [[ 1, "desc" ]],
+           "select": true,
+           "searching": false,
+           "dom": "Bfrtip",
+           "pageLength": 15,
+           "ajax":{
+             "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+             "type": "GET",
+             "dataSrc": "entries",
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
+             }
+           },
+           "columnDefs": [
+            {
+              "targets": [1, 8 ],
+              "visible": false,
+              "searchable": false
+            }],
+           "columns": [
+             {
+               "data": "type"
+              },
+             {
+               "data":"id"
+             },
+             {
+               "data": null, render(data,type,row) {
+                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
+               }
+             },
+
+             {
+               "data":"name"
+             },
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                  if(row.metadata) {
+                    return row.metadata.enterprise.caseInformation.caseId;
+                  }
+                  else {
+                    return "N/A";
+                  }
+                }
+
+             },
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                  if(row.size>0) {
+                    return humanFileSize(row.size);
+                  }
+                  else {
+                    return row.size;
+                  }
+                }
+
+             }
+             ,
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                   var date = new Date(Date.parse(row.modified_at));
+                   return date.toLocaleString('en-GB', { timeZone: 'UTC' });
+                 }
+             },
+             {
+               "data":"modified_by.name",
+             },
+             {
+             "data": null,
+               render: function(data, type, row) {
+                  return JSON.stringify(row);
+               }
+             }
+
+           ]});
+			
+			
+			
             $.getJSON(spSearch, function (json) 
 			{
                 jsonSP = json;
