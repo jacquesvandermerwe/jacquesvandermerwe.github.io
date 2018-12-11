@@ -309,12 +309,14 @@ form.example::after {
 			//var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
             var title;
-            var docURL;
+            var docURLHolder;
+			var docURL;
             var docID;
             var fileType;
             var size;
             var created;
             var modBy;
+			
             var t = $('#spcontentlist').DataTable();
         // 	$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol1'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
 		//	function (json) {
@@ -328,7 +330,8 @@ form.example::after {
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
-                    docURL = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
+                    docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
+					docURL = "<a href=" + docURLHolder + ">" + title + "</a>";
 					docID = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
@@ -382,11 +385,11 @@ form.example::after {
 <table id="spcontentlist" class="display" style="width:95%">
     <thead>
         <th>Title</th>
-        <th>Original Path</th>
-		<th>DocId</th>
+        <th>URL</th>
+		<th>Document ID</th>
 		<th>File Type</th>
-		<th>Size</th>
-		<th>Created</th>
+		<th>File Size (kB)</th>
+		<th>Created Date</th>
 		<th>Modified By</th>
       </thead>
       <tbody>
