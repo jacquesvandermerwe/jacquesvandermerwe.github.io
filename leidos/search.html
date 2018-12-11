@@ -190,15 +190,31 @@ form.example::after {
 	
       ev.preventDefault();
       $("#searchres").show();
-	  loadItems();
+	  loadSPItems();
+	  loadBoxItems();
 	  
-      if(t) {
-        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
-        t.ajax.type='GET';
-		t.ajax.reload();
-      }
-      else {
-	
+
+        }));
+        $('#contentlist tbody').on('click', 'td', function() {
+          console.log('clicked:' + this.parentNode.className);
+          var data = t.row(this.parentNode).data();
+          console.log("d:" + JSON.stringify(data));
+          var id = data.id;
+          console.log("i:" + id);
+          var preview = new Box.Preview();
+          preview.show(id, sessionStorage.getItem("accessToken"), {
+            container: ".modal-body"
+          });
+          modal.style.display = "block";
+        });
+    });
+    function humanFileSize(size) {
+    var i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+};
+
+function loadBoxItems(){
+
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
@@ -278,27 +294,14 @@ form.example::after {
 
            ]});
 		
-         }
-        }));
-        $('#contentlist tbody').on('click', 'td', function() {
-          console.log('clicked:' + this.parentNode.className);
-          var data = t.row(this.parentNode).data();
-          console.log("d:" + JSON.stringify(data));
-          var id = data.id;
-          console.log("i:" + id);
-          var preview = new Box.Preview();
-          preview.show(id, sessionStorage.getItem("accessToken"), {
-            container: ".modal-body"
-          });
-          modal.style.display = "block";
-        });
-    });
-    function humanFileSize(size) {
-    var i = Math.floor( Math.log(size) / Math.log(1024) );
-    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};
+         
 
-    function loadItems() {
+
+}
+
+
+
+    function loadSPItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
