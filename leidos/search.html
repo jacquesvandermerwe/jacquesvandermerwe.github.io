@@ -331,11 +331,13 @@ form.example::after {
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
                     docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value')).toString();
-					
+					console.log("docURLHolder: "+docURLHolder);
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
+						console.log("split: "+split);
 						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/" + split[1];
+						console.log("docURL: "+docUrl);
 					}
 					else
 					{
