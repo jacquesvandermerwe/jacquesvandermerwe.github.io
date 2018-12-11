@@ -310,7 +310,7 @@ form.example::after {
             var created;
             var modBy;
 						
-            var t = $('#spcontentlist').DataTable();
+            var t = $('#contentlist').DataTable();
             $.getJSON(spSearch, function (json) 
 			{
                 jsonSP = json;
@@ -347,7 +347,7 @@ form.example::after {
 					
 					modBy = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="ModifiedBy")].Value'));
                     var rowNode = t
-                    .row.add([title, docURL, docID, fileType, size, createdDate, modBy])
+                    .row.add([fileType,docID,"", title, "", size, createdDate, modBy, "SP"])
                     .draw()
                     .node();
                 }
