@@ -333,7 +333,7 @@ form.example::after {
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
 					created = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Created")].Value'));
 					
-					if (created != null)
+					if (created != "")
 					{
 					var date = new Date(Date.parse(created));
 					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
@@ -341,7 +341,7 @@ form.example::after {
 					else
 					{
 					var date = new Date();
-					var createdDate = date;
+					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
 					}
 					
 					
