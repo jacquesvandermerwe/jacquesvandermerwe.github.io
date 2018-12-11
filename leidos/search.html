@@ -335,8 +335,16 @@ form.example::after {
 					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
 					created = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Created")].Value'));
+					
+					if (created != null)
+					{
 					var date = new Date(Date.parse(created));
 					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+					}
+					else
+					{
+					var createdDate = "N/A";
+					}
 					
 					
 					modBy = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="ModifiedBy")].Value'));
