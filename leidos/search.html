@@ -330,15 +330,18 @@ form.example::after {
                 console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
-                    docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
-					docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/police/" + title + "." + fileType + "'>" + title + "</a>";
+                    docURL = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
 					docID = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
 					created = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Created")].Value'));
+					var date = new Date(Date.parse(created));
+					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+					
+					
 					modBy = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="ModifiedBy")].Value'));
                     var rowNode = t
-                    .row.add([title, docURL, docID, fileType, size, created, modBy])
+                    .row.add([title, docURL, docID, fileType, size, createdDate, modBy])
                     .draw()
                     .node();
                 }
