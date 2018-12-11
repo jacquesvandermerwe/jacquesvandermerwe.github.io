@@ -334,7 +334,7 @@ form.example::after {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
                     docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
 					
-					urlSplit = docURLHolder.split("http://sp-web1/")
+					urlSplit = docURLHolder.split("http://sp-web1/");
 					
 					docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/" + urlSplit[1] + "'>" + title + "</a>";
 					
