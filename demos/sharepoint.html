@@ -16,6 +16,8 @@
             var jsonSP;
             var title;
             var docURL;
+            var description;
+            var filesize;
             var t = $('#example').DataTable();
             //$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", function (json) {
             $.getJSON("sp.json", function (json) {
@@ -28,20 +30,13 @@
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Title")].Value'));
                     docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="OriginalPath")].Value'));
+                    description = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Description")].Value'));
+                    filesize = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[' + i + '].Cells.results[?(@.Key=="Size")].Value'));
                     var rowNode = t
-                    .row.add([title, docURL])
+                    .row.add([title, docURL, description, filesize])
                     .draw()
                     .node();
                 }
-
-                title = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[0].Cells.results[?(@.Key=="Title")].Value'));
-                docURL = (jsonPath(jsonSP, '$.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results[0].Cells.results[?(@.Key=="OriginalPath")].Value'));
-
-
-                var rowNode = t
-                    .row.add([title, docURL])
-                    .draw()
-                    .node();
 
 
             });
@@ -65,6 +60,8 @@
             <tr>
                 <th>Title</th>
                 <th>URL</th>
+                <th>Description</th>
+                <th>File Size</th>
 
             </tr>
         </thead>
@@ -72,7 +69,8 @@
             <tr>
                 <th>Title</th>
                 <th>URL</th>
-
+                <th>Description</th>
+                <th>File Size</th>
             </tr>
         </tfoot>
     </table>
