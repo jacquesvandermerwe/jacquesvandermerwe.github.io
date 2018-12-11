@@ -317,8 +317,6 @@ form.example::after {
             var created;
             var modBy;
 			
-			var split;
-			
             var t = $('#spcontentlist').DataTable();
         // 	$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol1'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
 		//	function (json) {
@@ -333,11 +331,7 @@ form.example::after {
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
                     docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value'));
-					
-					urlSplit = docURLHolder.split("http://sp-web1/");
-					
-					docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/" + urlSplit[1] + "'>" + title + "</a>";
-					
+					docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com/police/" + title + "." + fileType + "'>" + title + "</a>";
 					docID = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="DocId")].Value'));
 					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
 					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
