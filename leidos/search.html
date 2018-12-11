@@ -191,7 +191,116 @@ form.example::after {
       ev.preventDefault();
       $("#searchres").show();
 	  loadItems();
+	  loadBoxItems();
 	  
+  /*    if(t) {
+        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+        t.ajax.type='GET';
+		t.ajax.reload();
+      }
+      else {
+	
+        t = $('#contentlist').DataTable({
+          // "order": [[ 1, "desc" ]],
+           "select": true,
+           "searching": false,
+           "dom": "Bfrtip",
+           "pageLength": 15,
+           "ajax":{
+             "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
+             "type": "GET",
+             "dataSrc": "entries",
+             "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
+             }
+           },
+           "columnDefs": [
+            {
+              "targets": [1, 8 ],
+              "visible": false,
+              "searchable": false
+            }],
+           "columns": [
+             {
+               "data": "type"
+              },
+             {
+               "data":"id"
+             },
+             {
+               "data": null, render(data,type,row) {
+                   return "<img class='preview' box-id='" + row.id + "' src='preview_icon.png'/>";
+               }
+             },
+
+             {
+               "data":"name"
+             },
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                  if(row.metadata) {
+                    return row.metadata.enterprise.caseInformation.caseId;
+                  }
+                  else {
+                    return "N/A";
+                  }
+                }
+
+             },
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                  if(row.size>0) {
+                    return humanFileSize(row.size);
+                  }
+                  else {
+                    return row.size;
+                  }
+                }
+
+             }
+             ,
+             {
+               "data":null,
+                 render:function(data,type,row) {
+                   var date = new Date(Date.parse(row.modified_at));
+                   return date.toLocaleString('en-GB', { timeZone: 'UTC' });
+                 }
+             },
+             {
+               "data":"modified_by.name",
+             },
+             {
+             "data": null,
+               render: function(data, type, row) {
+                  return JSON.stringify(row);
+               }
+             }
+
+           ]});
+		   
+         }*/
+        }));
+        $('#contentlist tbody').on('click', 'td', function() {
+          console.log('clicked:' + this.parentNode.className);
+          var data = t.row(this.parentNode).data();
+          console.log("d:" + JSON.stringify(data));
+          var id = data.id;
+          console.log("i:" + id);
+          var preview = new Box.Preview();
+          preview.show(id, sessionStorage.getItem("accessToken"), {
+            container: ".modal-body"
+          });
+          modal.style.display = "block";
+        });
+    });
+    function humanFileSize(size) {
+    var i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+};
+
+function loadBoxItems(){
+
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
         t.ajax.type='GET';
@@ -277,26 +386,16 @@ form.example::after {
              }
 
            ]});
-		   loadItems();
+		   
          }
-        }));
-        $('#contentlist tbody').on('click', 'td', function() {
-          console.log('clicked:' + this.parentNode.className);
-          var data = t.row(this.parentNode).data();
-          console.log("d:" + JSON.stringify(data));
-          var id = data.id;
-          console.log("i:" + id);
-          var preview = new Box.Preview();
-          preview.show(id, sessionStorage.getItem("accessToken"), {
-            container: ".modal-body"
-          });
-          modal.style.display = "block";
-        });
-    });
-    function humanFileSize(size) {
-    var i = Math.floor( Math.log(size) / Math.log(1024) );
-    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};
+
+
+
+
+
+}
+
+
 
     function loadItems() {
 	
@@ -311,7 +410,7 @@ form.example::after {
             var created;
             var modBy;
 						
-            //var t = $('#spcontentlist').DataTable();
+            var t = $('#spcontentlist').DataTable();
             $.getJSON(spSearch, function (json) 
 			{
                 jsonSP = json;
