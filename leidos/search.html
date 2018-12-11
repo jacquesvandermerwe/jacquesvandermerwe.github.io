@@ -4,21 +4,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/sl-1.2.6/datatables.min.css"/>
 
+<script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
+<script type="text/javascript" src="jsonpath-0.8.0.js"></script>
 
-  <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-  <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/sl-1.2.6/datatables.min.css"/>
-
-<!--script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/sl-1.2.6/datatables.min.js"></script-->
-
-  <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
-  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
-  <script type="text/javascript" src="jsonpath-0.8.0.js"></script>
-
-      <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   
 <style>
 
@@ -212,7 +207,6 @@ form.example::after {
            "pageLength": 15,
            "ajax":{
              "url": "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation",
-             //"url": "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=%27police%27&selectproperties=%27Title,OriginalPath%27",
              "type": "GET",
              "dataSrc": "entries",
              "headers": {"Authorization": "Bearer " + sessionStorage.getItem("accessToken")
@@ -306,7 +300,6 @@ form.example::after {
     function loadItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
-			//var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol*'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
             var title;
             var docURLHolder;
@@ -318,26 +311,17 @@ form.example::after {
             var modBy;
 						
             var t = $('#spcontentlist').DataTable();
-        // 	$.getJSON("http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext='pol1'&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'", 
-		//	function (json) {
             $.getJSON(spSearch, function (json) 
 			{
-                //console.log(json); // this will show the info it in firebug console
                 jsonSP = json;
-                console.log(jsonSP); // this will show the info it in firebug console
-                console.log(jsonPath(jsonSP, '$.d.PrimaryQueryResult.RelevantResults.Table.Rows.results')); // this will show the info it in firebug console
 			    var arr = jsonPath(jsonSP, '$..Cells');
-                console.log(arr.length);
                 for (var i = 0; i < arr.length; i++) {
                     title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
                     docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value')).toString();
-					console.log("docURLHolder: "+docURLHolder);
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
-						console.log("split: "+split);
 						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
-						console.log("docURL: "+docURL);
 					}
 					else
 					{
@@ -367,7 +351,6 @@ form.example::after {
                     .draw()
                     .node();
                 }
-			//}	
 
         }); 
 		
