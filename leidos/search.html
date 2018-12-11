@@ -394,6 +394,7 @@ form.example::after {
 function loadItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
+			var boxSearch = "https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation"
 			var jsonSP;
             var title;
             var docURLHolder;
@@ -404,10 +405,11 @@ function loadItems() {
             var created;
             var modBy;
 						
-            //var t = $('#contentlist').DataTable();
+            var t = $('#contentlist').DataTable();
 			
 			
-			var t = $('#contentlist').DataTable({
+			//t = $('#contentlist').DataTable({
+			$.getJSON(boxSearch, function (json) {
 		          // "order": [[ 1, "desc" ]],
            "select": true,
            "searching": false,
@@ -484,7 +486,7 @@ function loadItems() {
                }
              }
 
-           ];
+           ]});
 			
 			
 			
@@ -529,8 +531,7 @@ function loadItems() {
                     .node();
                 }
 
-        });
-});		
+        }); 
 		
     }    
 
