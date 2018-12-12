@@ -14,6 +14,8 @@
 
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script>
   
 <style>
 
@@ -360,10 +362,14 @@ function loadBoxItems(){
 				
 					$('#spcontentlist').on('click', function() {
 					var data = docFullURL;
-					modal.body = data;
-					modal.style.display = "block";
-			
+					$.createModal({
+						title:'My Title',
+						closeButton:true,
+						scrollable:true
+						});
+						return false;    
 					});
+
 
         }); 
 		
