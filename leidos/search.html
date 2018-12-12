@@ -361,6 +361,11 @@ function loadBoxItems(){
 					$('#spcontentlist tbody').on('click', function() {
 					var data = docURLHolder;
 					console.log("data: " + data);
+					var id = data.id;
+					console.log("i:" + id);
+					   preview.show(id, sessionStorage.getItem(data), {
+						container: ".modal-body"
+						});
 					modal.style.display = "block";
 					});
 
