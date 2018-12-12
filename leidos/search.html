@@ -209,7 +209,8 @@ form.example::after {
         });
 		
 		$('#spcontentlist tbody').on('click', function() {
-        
+         var data = t.row(this.parentNode).data();
+          console.log("d:" + JSON.stringify(data));
 		modal.style.display = "block";
         });
 		
