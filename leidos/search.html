@@ -15,7 +15,6 @@
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <style>
 
 p {
@@ -191,36 +190,15 @@ form.example::after {
 	
       ev.preventDefault();
       $("#searchres").show();
-	  loadSPItems();
-	  loadBoxItems();
+	  loadItems();
 	  
-
-        }));
-        $('#contentlist tbody').on('click', 'td', function() {
-          console.log('clicked:' + this.parentNode.className);
-          var data = t.row(this.parentNode).data();
-          console.log("d:" + JSON.stringify(data));
-          var id = data.id;
-          console.log("i:" + id);
-          var preview = new Box.Preview();
-          preview.show(id, sessionStorage.getItem("accessToken"), {
-            container: ".modal-body"
-          });
-          modal.style.display = "block";
-        });
-		
-
-		
-    });
-    function humanFileSize(size) {
-    var i = Math.floor( Math.log(size) / Math.log(1024) );
-    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
-};
-
-
-
-function loadBoxItems(){
-
+      if(t) {
+        t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
+        t.ajax.type='GET';
+		t.ajax.reload();
+      }
+      else {
+	
         t = $('#contentlist').DataTable({
           // "order": [[ 1, "desc" ]],
            "select": true,
@@ -299,10 +277,27 @@ function loadBoxItems(){
              }
 
            ]});
+         }
+        }));
+        $('#contentlist tbody').on('click', 'td', function() {
+          console.log('clicked:' + this.parentNode.className);
+          var data = t.row(this.parentNode).data();
+          console.log("d:" + JSON.stringify(data));
+          var id = data.id;
+          console.log("i:" + id);
+          var preview = new Box.Preview();
+          preview.show(id, sessionStorage.getItem("accessToken"), {
+            container: ".modal-body"
+          });
+          modal.style.display = "block";
+        });
+    });
+    function humanFileSize(size) {
+    var i = Math.floor( Math.log(size) / Math.log(1024) );
+    return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+};
 
-}
-
-    function loadSPItems() {
+    function loadItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
@@ -314,7 +309,6 @@ function loadBoxItems(){
             var size;
             var created;
             var modBy;
-			var id;
 						
             var t = $('#spcontentlist').DataTable();
             $.getJSON(spSearch, function (json) 
@@ -327,11 +321,7 @@ function loadBoxItems(){
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
-						var docFullURL = 'http://descspweb1.westeurope.cloudapp.azure.com' + split[1];
-						//docURL = "<img class='preview' id='previewId' href='"+docFullURL+"' src='preview_icon.png'/>";
-						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1]+"' rel='modal:open'>"+title+"</a>"
-						
-						
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
 					}
 					else
 					{
@@ -357,12 +347,12 @@ function loadBoxItems(){
 					
 					modBy = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="ModifiedBy")].Value'));
                     var rowNode = t
-                    .row.add([title,docURL,docID,fileType,size,createdDate,modBy])
+                    .row.add([title, docURL, docID, fileType, size, createdDate, modBy])
                     .draw()
                     .node();
                 }
-				
-		 }); 
+
+        }); 
 		
     }    
 
