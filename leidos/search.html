@@ -323,7 +323,7 @@ function loadBoxItems(){
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
-						//docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
+						var docFullURL = 'http://descspweb1.westeurope.cloudapp.azure.com' + split[1];
 						docURL = "<img class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
 						//docURL = "<a data-toggle='modal' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>"+title+"</a>"
 						
@@ -359,7 +359,7 @@ function loadBoxItems(){
                 }
 				
 					$('#spcontentlist tbody').on('click', function() {
-					var data = docURL;
+					var data = docFullURL;
 					console.log("data: " + data);
 					modal.style.display = "block";
 					});
