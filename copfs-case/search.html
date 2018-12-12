@@ -16,6 +16,7 @@
   <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
   <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
 
+<script type="text/javascript" src="jsonpath-0.8.0.js"></script>
 <style>
 
 p {
@@ -188,6 +189,7 @@ form.example::after {
     $("#search").on('submit', (function(ev) {
       ev.preventDefault();
       $("#searchres").show();
+loadItems();
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
         t.ajax.type='GET';
@@ -291,6 +293,64 @@ form.example::after {
     var i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
 };
+ function loadItems() {
+	
+			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
+			var jsonSP;
+            var title;
+            var docURLHolder;
+			var docURL;
+            var docID;
+            var fileType;
+            var size;
+            var created;
+            var modBy;
+						
+            var t = $('#spcontentlist').DataTable();
+            $.getJSON(spSearch, function (json) 
+			{
+                jsonSP = json;
+			    var arr = jsonPath(jsonSP, '$..Cells');
+                for (var i = 0; i < arr.length; i++) {
+                    title = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Title")].Value'));
+                    docURLHolder = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value')).toString();
+					if (docURLHolder != null)
+					{
+						split = docURLHolder.split("http://sp-web1");
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
+					}
+					else
+					{
+					var docURL = "No Valid URL Available"
+					}
+					
+					docID = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="DocId")].Value'));
+					fileType = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="FileType")].Value'));
+					size = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Size")].Value'));
+					created = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="Created")].Value'));
+					
+					if (created != "")
+					{
+					var date = new Date(Date.parse(created));
+					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+					}
+					else
+					{
+					var date = new Date();
+					var createdDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+					}
+					
+					
+					modBy = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="ModifiedBy")].Value'));
+                    var rowNode = t
+                    .row.add([title, docURL, docID, fileType, size, createdDate, modBy])
+                    .draw()
+                    .node();
+                }
+
+        }); 
+		
+    }    
 </script>
 
 </head>
@@ -305,7 +365,8 @@ form.example::after {
 
 </div>
 <div id='searchres' class="row">
-  <table id="contentlist" class="display" style="width:95%%">
+  <table id="contentlist" class="display" style="width:95%">
+  <label>Box Results</label>
     <thead>
         <th>Type</th>
         <th>ID</th>
@@ -322,6 +383,21 @@ form.example::after {
       <tbody>
       </tbody>
 
+</table>
+<table id="spcontentlist" class="display" style="width:95%">
+<label>SharePoint Results</label>
+    <thead>
+        <th>Title</th>
+        <th>URL</th>
+		<th>Document ID</th>
+		<th>File Type</th>
+		<th>File Size (kB)</th>
+		<th>Created Date</th>
+		<th>Modified By</th>
+      </thead>
+      <tbody>
+      </tbody>
+	  
 </table>
 </div>
 <div id="myModal" class="modal">
