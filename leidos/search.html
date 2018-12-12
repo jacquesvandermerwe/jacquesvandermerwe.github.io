@@ -15,6 +15,7 @@
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <style>
 
 p {
@@ -216,10 +217,7 @@ form.example::after {
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
 };
 
-function showModal(){
-var modal = document.getElementById('spcontentlist');
-    modal.style.display = 'block';
-}
+
 
 function loadBoxItems(){
 
@@ -316,6 +314,7 @@ function loadBoxItems(){
             var size;
             var created;
             var modBy;
+			var id;
 						
             var t = $('#spcontentlist').DataTable();
             $.getJSON(spSearch, function (json) 
@@ -329,8 +328,8 @@ function loadBoxItems(){
 					{
 						split = docURLHolder.split("http://sp-web1");
 						var docFullURL = 'http://descspweb1.westeurope.cloudapp.azure.com' + split[1];
-						//docURL = "<img class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
-						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' onclick='showModal();'>"+title+"</a>"
+						//docURL = "<img class='preview' id='previewId' href='"+docFullURL+"' src='preview_icon.png'/>";
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1]+"' rel='modal:open'>"+title+"</a>"
 						
 						
 					}
@@ -363,9 +362,7 @@ function loadBoxItems(){
                     .node();
                 }
 				
-
-
-        }); 
+		 }); 
 		
     }    
 
