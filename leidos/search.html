@@ -207,6 +207,20 @@ form.example::after {
           });
           modal.style.display = "block";
         });
+		
+		/*$('#spcontentlist tbody').on('click', 'td', function() {
+          console.log('clicked:' + this.parentNode.className);
+          var data = t.row(this.parentNode).data();
+          console.log("d:" + JSON.stringify(data));
+          var id = data.id;
+          console.log("i:" + id);
+          var preview = new Box.Preview();
+          preview.show(id, sessionStorage.getItem("accessToken"), {
+            container: ".modal-body"
+          });
+          modal.style.display = "block";
+        });*/
+		
     });
     function humanFileSize(size) {
     var i = Math.floor( Math.log(size) / Math.log(1024) );
@@ -321,7 +335,8 @@ function loadBoxItems(){
 					{
 						split = docURLHolder.split("http://sp-web1");
 						//docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
-						docURL = "<img class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
+						//docURL = "<img class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
+						docURL = "<a data-toggle='modal' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>"+title+"</a>"
 						
 						
 					}
