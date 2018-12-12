@@ -320,7 +320,10 @@ function loadBoxItems(){
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
-						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
+						//docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
+						docURL = "<img class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
+						
+						
 					}
 					else
 					{
