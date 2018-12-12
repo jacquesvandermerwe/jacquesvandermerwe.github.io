@@ -208,11 +208,7 @@ form.example::after {
           modal.style.display = "block";
         });
 		
-		$('#spcontentlist tbody').on('click', function() {
-         var data = (jsonPath(jsonSP, '$.PrimaryQueryResult.RelevantResults.Table.Rows[' + i + '].Cells[?(@.Key=="OriginalPath")].Value')).toString();
-          console.log("data: " + data);
-		modal.style.display = "block";
-        });
+	
 		
     });
     function humanFileSize(size) {
@@ -361,6 +357,12 @@ function loadBoxItems(){
                     .draw()
                     .node();
                 }
+				
+					$('#spcontentlist tbody').on('click', function() {
+					var data = docURL;
+					console.log("data: " + data);
+					modal.style.display = "block";
+					});
 
         }); 
 		
