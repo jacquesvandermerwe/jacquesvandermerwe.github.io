@@ -362,7 +362,7 @@ function loadBoxItems(){
 					var data = docURLHolder;
 					console.log("data: " + data);
 					var preview = new Box.Preview();
-					preview.show(data, {
+					preview.show(data, sessionStorage.getItem("accessToken") {
 					container: ".modal-body" 
 						});
 					modal.style.display = "block";
