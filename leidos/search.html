@@ -358,14 +358,11 @@ function loadBoxItems(){
                     .node();
                 }
 				
-					$('#spcontentlist tbody').on('click', function() {
-					var data = docURLHolder;
-					console.log("data: " + data);
-					var preview = new Box.Preview();
-					preview.show(data, sessionStorage.getItem("accessToken"), {
-					container: ".modal-body" 
-						});
+					$('#spcontentlist').on('click', function() {
+					var data = docFullURL;
+					modal.style.body = data;
 					modal.style.display = "block";
+			
 					});
 
         }); 
