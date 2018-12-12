@@ -363,7 +363,8 @@ function loadBoxItems(){
 					console.log("data: " + data);
 					var id = data.id;
 					console.log("i:" + id);
-					   preview.show(id, sessionStorage.getItem(data), {
+					var preview = new Box.Preview();
+					   preview.show(data, {
 						container: ".modal-body"
 						});
 					modal.style.display = "block";
