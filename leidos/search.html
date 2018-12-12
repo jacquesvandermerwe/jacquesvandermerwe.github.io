@@ -208,16 +208,7 @@ form.example::after {
           modal.style.display = "block";
         });
 		
-		$('#spcontentlist tbody').on('click', 'td', function() {
-          console.log('clicked:' + this.parentNode.className);
-          var data = t.row(this.parentNode).data();
-          console.log("d:" + JSON.stringify(data));
-          var id = data.id;
-          console.log("i:" + id);
-          var preview = new Box.Preview();
-          preview.show(id, sessionStorage.getItem("accessToken"), {
-            container: ".modal-body"
-          });
+		$('#spcontentlist tbody').on('click' function() {
           modal.style.display = "block";
         });
 		
