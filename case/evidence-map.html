@@ -32,7 +32,7 @@
 
         var contentString = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/2eoa2vc5a43yjw7bebd0be7615wblrkt?sortColumn=date&view=list" width="800" height="550" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></iframe></div>';
         var contentString2 = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/zalapjgn1tcrn2z1uni5b8ndsusqjenf?sortColumn=date&view=list" width="800" height="550" frameborder="1" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></div>';
-        var contentString3 = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/en1e9buaubbrvrueeu5pawddplppkn7r?sortColumn=date&view=list" width="800" height="550" frameborder="1" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></div>';
+        var contentString3 = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/qpwmji76dn5qbdoza8xkfa58rgnyflnn?sortColumn=date&view=list" width="800" height="550" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></iframe></div>';
 
         var infowindow = new google.maps.InfoWindow({
           content: contentString
@@ -41,6 +41,10 @@
           var infowindow2 = new google.maps.InfoWindow({
             content: contentString2
             });
+
+            var infowindow2 = new google.maps.InfoWindow({
+              content: contentString3
+              });
 
 var image = 'police-scotland.png';
         var marker = new google.maps.Marker({
@@ -56,7 +60,7 @@ var image = 'police-scotland.png';
           title: 'Case: PCSO-20181211-2C966637', icon:image
         });
 
-        var marker2 = new google.maps.Marker({
+        var marker3 = new google.maps.Marker({
           position: {lat: 55.94794, lng: -3.21464},
           map: map,
           title: 'Case: PCSO-20181211-0000001', icon:image
