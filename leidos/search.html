@@ -321,8 +321,8 @@ form.example::after {
 					if (docURLHolder != null)
 					{
 						split = docURLHolder.split("http://sp-web1");
-						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'><img class='preview' src='preview_icon.png'/></a>";
-						//docURL = "<img class='preview' src='preview_icon.png'/>";
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' onclick='urlClick()'><img class='preview' src='preview_icon.png'/></a> modal.style.display = 'block'";
+						//docURL = "<img class='preview' src='preview_icon.png' onclick='urlClick()'/>";
 					}
 					else
 					{
@@ -353,6 +353,10 @@ form.example::after {
                     .node();
                 }
 
+						function urlClick(img) {
+						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' onclick='urlClick()'><img class='preview' src='preview_icon.png'/></a>";
+						modal.style.display = "block";
+						}
         }); 
 		
     }    
