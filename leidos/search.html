@@ -322,6 +322,10 @@ form.example::after {
 					{
 						split = docURLHolder.split("http://sp-web1");
 						docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'><img class='preview' src='preview_icon.png'/></a>";
+						
+						docURL.onclick = function() {
+						modal.style.display = "block";
+						}
 						//docURL = "<img class='preview' src='preview_icon.png'/>";
 					}
 					else
@@ -352,11 +356,6 @@ form.example::after {
                     .draw()
                     .node();
                 }
-				
-				var modal = document.getElementById('spcontentlist');
-				docURL.onclick = function() {
-				modal.style.display = "block";
-				}
 
 
         }); 
