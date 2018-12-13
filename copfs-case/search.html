@@ -32,7 +32,7 @@ body {
  {
     box-sizing: border-box;
 }
-.spcontentlist_filter, div#spcontentlist_length.dataTables_length, div#spcontentlist_filter.dataTables_filter {display: none !important}
+
 form.example input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -189,7 +189,7 @@ form.example::after {
     $("#search").on('submit', (function(ev) {
       ev.preventDefault();
       $("#searchres").show();
-loadItems();
+//loadItems();
       if(t) {
         t.ajax.url("https://api.box.com/2.0/search?query=" + $("#searchText").val() + "&type=file&&fields=id,type,size,name,modified_at,modified_by,metadata.enterprise.caseInformation");;
         t.ajax.type='GET';
@@ -293,7 +293,7 @@ loadItems();
     var i = Math.floor( Math.log(size) / Math.log(1024) );
     return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
 };
- function loadItems() {
+/* function loadItems() {
 	
 			var spSearch = "http://descspweb1.westeurope.cloudapp.azure.com/_api/search/query?querytext=" + "'" + $("#searchText").val() + "'" + "&selectproperties=%27Title,OriginalPath,DocId,FileType,Size,Created,ModifiedBy%27&QueryTemplatePropertiesUrl='spfile://webroot/queryparametertemplate.xml'";
 			var jsonSP;
@@ -350,7 +350,7 @@ loadItems();
 
         }); 
 		
-    }    
+    }*/    
 </script>
 
 </head>
@@ -384,7 +384,7 @@ loadItems();
       </tbody>
 
 </table>
-<table id="spcontentlist" class="display" style="width:95%">
+<!--table id="spcontentlist" class="display" style="width:95%">
 <label>SharePoint Results</label>
     <thead>
         <th>Title</th>
@@ -398,7 +398,7 @@ loadItems();
       <tbody>
       </tbody>
 	  
-</table>
+</table-->
 </div>
 <div id="myModal" class="modal">
 
