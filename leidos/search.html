@@ -322,7 +322,7 @@ form.example::after {
 					{
 						split = docURLHolder.split("http://sp-web1");
 						//docURL = "<a href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "'>" + title + "</a>";
-						docURL = "<a class='preview' href='http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "' src='preview_icon.png'/>";
+						docURL = "<img class='preview' src='preview_icon.png'/>";
 					}
 					else
 					{
@@ -357,8 +357,16 @@ form.example::after {
 		
     }    
 
- 
 
+var images = document.getElementsByTagName("img");
+for(var i = 0; i < images.length; i++) {
+    var image = images[i];
+    image.onclick = function(event) {
+         window.location.href = this.id + 'http://descspweb1.westeurope.cloudapp.azure.com" + split[1] + "';
+    };
+}
+
+ 
 </script>
 
 </head>
@@ -396,7 +404,7 @@ form.example::after {
 <label>SharePoint Results</label>
     <thead>
         <th>Title</th>
-        <th>-</th>
+        <th>URL</th>
 		<th>Document ID</th>
 		<th>File Type</th>
 		<th>File Size (kB)</th>
