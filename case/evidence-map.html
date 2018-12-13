@@ -22,19 +22,48 @@
     <div id="map"></div>
     <script>
 
-      function initMap() {
-        var myLatLng = {lat: 55.943977, lng: -3.217127};
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: myLatLng
-        });
+    function initMap() {
+      var myLatLng = {lat: 55.943977, lng: -3.217127};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: myLatLng
+      });
 
+        var contentString = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/4xliiq9woezdlng1edaohotv8xvwz8pp?sortColumn=date&view=list" width="800" height="550" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></div>';
+        var contentString2 = '<div id="content"><iframe src="https://desc-pov.app.box.com/embed/s/qg2gd9pvf2rp5fjn53a6bmtasuc8ze0k?sortColumn=date&view=list" width="800" height="550" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe></div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+          });
+
+          var infowindow2 = new google.maps.InfoWindow({
+            content: contentString2
+            });
+
+var image = 'police-scotland.png';
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-          title: 'Evidence Mapping with Box Meta-Data'
+          title: 'Case: PCSO-20181211-2C94043B', icon:image
         });
+
+
+        var marker2 = new google.maps.Marker({
+          position: {lat: 55.950160, lng: -3.219730},
+          map: map,
+          title: 'Case: xxxxxxx', icon:image
+        });
+
+
+        marker.addListener('click', function() {
+        infowindow.open(map, marker);
+         });
+
+         marker2.addListener('click', function() {
+         infowindow2.open(map, marker);
+          });
+
       }
     </script>
     <script async defer
