@@ -7,14 +7,15 @@
     <!-- polyfill.io only loads the polyfills your browser needs -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
     <!-- Alternatively, use polyfill hosted on the Box CDN
- <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script> 
+ <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
  -->
 
     <!-- Latest version of the explorer css for your locale -->
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" />
+    <!-- <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" /> -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/8.6.0/en-US/explorer.css" />
     <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.css" />
-    <script src="https://cdn01.boxcdn.net/platform/preview/1.58.2/en-US/preview.js"></script>
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.58.2/en-US/preview.css" />
+    <script src="https://cdn01.boxcdn.net/platform/preview/1.58.3/en-US/preview.js"></script>
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.58.3/en-US/preview.css" />
     <script>
         var folderId = '';
         var accessToken = '';
@@ -164,13 +165,15 @@
         <article id="contentExplorer">
             <div class="container" style="height:100%;width:100%"></div>
             <!-- Latest version of the explorer js for your locale -->
-            <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script>
+            <!-- <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.js"></script> -->
+
+            <script src="https://cdn01.boxcdn.net/platform/elements/8.6.0/en-US/explorer.js"></script> -->
             <script>
                 //var folderId = '123';
                 //var accessToken = 'abc';
 
                 var contentExplorer = new Box.ContentExplorer();
-                contentExplorer.show(folderId, accessToken, {
+                contentExplorer.show('47692626908', 'BJbKMUSmbBEHHVTtAQZ859OoWlXkNmZE', {
                     container: '.container'
                 });
             </script>
@@ -194,7 +197,7 @@
             <div class="preview-container" style="height:100%; width:100%;"></div>
             <script>
                 var preview = new Box.Preview();
-                preview.show('93392244621', 'EqFyi1Yq1tD9mxY8F38sxDfp73pFd7FP', {
+                preview.show('284350835592', 'xRhIdWDBTAaR9Fif8PKjhfGCPFVk3NZZ', {
                     container: '.preview-container',
                     showDownload: true
                 });
