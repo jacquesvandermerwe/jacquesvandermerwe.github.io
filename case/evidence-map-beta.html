@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Suggested Evidence Map Using Box Meta-Data</title>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #content {
+      width: 600px !important;
+      height: 800px !important;
+      overflow-x: hidden;
+
+    }
+
+    .markerLabel {
+      /*width: 150px;*/
+      display:inline-block;
+      height: 18px;
+
+      border: 1px solid #eb3a44;
+      border-radius: 5px;
+      background: #fee1d7;
+      text-align: center;
+      line-height: 20px;
+      font-size: 10px;
+      color: #000;
+    }
+
+    .modal {}
+
+    .vertical-alignment-helper {
+      display: table;
+      height: 100%;
+      width: 100%;
+    }
+
+    .vertical-align-center {
+      /* To center vertically */
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .modal-content {
+      /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+      width: inherit;
+      height: inherit;
+      /* To center horizontally */
+      margin: 0 auto;
+    }
+
+    section {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      padding: 1px;
+      overflow-x: hidden;
+    }
+
+    div#map {
+      width: 70%;
+      height: 100%;
+      float: left;
+      overflow-x: hidden;
+    }
+
+    div#list {
+      margin-left: 0%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    #postcodesearch,
+    #evidencesearch {
+      display: none;
+    }
+
+    .place {
+      background-color: #ffffff;
+    }
+
+    .place:hover,
+    .place.green {
+      background-color: #00cc00;
+    }
+
+    ul.tabs {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+
+    ul.tabs li {
+      background: none;
+      color: #222;
+      display: inline-block;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+    }
+
+    ul.tabs li.current {
+      background: #ededed;
+      color: #222;
+      font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+    }
+
+    .tab-content {
+      display: none;
+      background: #ededed;
+      padding: 15px;
+    }
+
+    .tab-content.current {
+      display: inherit;
+    }
+
+    .tab-content {
+      display: none;
+      background: #ededed;
+      padding: 15px;
+    }
+
+    .tab-content.current {
+      display: inherit;
+    }
+
+    .sameline {
+      display: inline;
+    }
+  </style>
+  <script src="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.js"></script>
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.53.1/en-US/preview.css" />
+
+  <script src="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.js"></script>
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/6.0.0/en-US/explorer.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG5ojHo9enpA5mRRcmhPf0BOHwTMIAyAA">
+  </script>
+  <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
+  <script>
+    var persFolderId = new Map(JSON.parse(sessionStorage.getItem('folderMap'))).get(sessionStorage.getItem('userLogin'));
+    var tabView = 'cases';
+    var markersArray = [];
+    var markersArrayEvidence = [];
+    var cases = new Map();
+    var currentCaseList;
+    var currentEvidenceList;
+    var map;
+    var contentExplorer;
+    var contentPreview;
+    var curInfoWindow;
+    var image = '../case/police-scotland.png';
+    var camImage = 'photo.png';
+    var vidImage = 'video.png';
+    var curSW;
+    var curNE;
+    var markerIcon = {
+      url: '../case/police-scotland.png',
+      scaledSize: new google.maps.Size(40, 40),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(22, 65)
+    };
+    var photoMarkerIcon = {
+      url: 'photo.png',
+      scaledSize: new google.maps.Size(40, 40),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(22, 65)
+    };
+    var videoMarkerIcon = {
+      url: 'video.png',
+      scaledSize: new google.maps.Size(40, 40),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(22, 65)
+    };
+    var cases = new Map();
+    var googleAPI = "AIzaSyCG5ojHo9enpA5mRRcmhPf0BOHwTMIAyAA";
+    var myLatLng = {
+      lat: 55.943977,
+      lng: -3.217127
+    };
+
+    class casefolder {
+
+      constructor(name, postcode, id) {
+        this.name = name;
+        this.postcode = postcode;
+        this.lat = 0;
+        this.lng = 0;
+        this.id = id;
+        this.ready = false;
+        this.marker;
+        var self = this;
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "dataType": "jsonp",
+          "url": "http://api.postcodes.io/postcodes/" + postcode,
+          "method": "GET",
+          "headers": {
+            "Cache-Control": "no-cache"
+          }
+        }
+        $.ajax(settings).done(function(response) {
+          self.lat = response.result.latitude;
+          self.lng = response.result.longitude;
+          self.ready = true;
+          var marker = new MarkerWithLabel({
+            animation: google.maps.Animation.DROP,
+            //position: this.getLatLng(),
+            position: {lat:self.lat,lng:self.lng},
+            map: map,
+            title: 'bob',
+            icon: markerIcon,
+            labelContent: self.name,
+            labelAnchor: new google.maps.Point(30, 30),
+            labelClass: "markerLabel", // the CSS class for the label
+            labelInBackground: false
+          });
+          self.marker = marker;
+          markersArray.push(marker);
+          marker.addListener('click', function() {
+            var $infoWindowContent = $("<div class=content_" + self.id + " id=content></div>");
+            if (curInfoWindow) {
+              curInfoWindow.close();
+            }
+            var infoWindow = new google.maps.InfoWindow({
+              maxWidth: 600,
+              maxHeight: 800
+            });
+            curInfoWindow = infoWindow;
+            infoWindow.setContent($infoWindowContent[0]);
+            infoWindow.open(map, marker);
+            google.maps.event.addListener(infoWindow, 'domready', function() {
+              if (contentExplorer) {
+                contentExplorer.hide();
+                contentExplorer.clearCache();
+              }
+              contentExplorer = new Box.ContentExplorer();
+              contentExplorer.show(self.id, sessionStorage.getItem('accessToken'), {
+                container: '.content_' + self.id,
+                logoUrl: '../case/pixel.png'
+              });
+            });
+            //select case
+            if (currentCaseList) {
+              currentCaseList.toggleClass("green");
+            }
+            $("#caselist_" + self.id).toggleClass("green");
+            currentCaseList = $("#caselist_" + self.id);
+          });
+
+        });
+      };
+      getLatLng() {
+        return {
+          lat: this.lat,
+          lng: this.lng
+        };
+      }
+
+    };
+    class evidence {
+
+      constructor(name, id,lat,lng) {
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
+        this.id = id;
+        this.marker;
+        this.markerIcon;
+        if(this.name.endsWith(".jpg") || this.name.endsWith(".jpeg") || this.name.endsWith(".png")) {
+          this.markerIcon = photoMarkerIcon;
+        }
+        else if(this.name.endsWith(".mp4") || this.name.endsWith(".avi")) {
+            this.markerIcon = videoMarkerIcon;
+        }
+
+        var self = this;
+        console.log(this.lat + "," + this.lng);
+        var marker = new MarkerWithLabel({
+            animation: google.maps.Animation.DROP,
+            position: {lat:this.lat,lng:this.lng},
+            map: map,
+            title: this.name,
+            icon: this.markerIcon,
+            labelContent: this.name,
+            labelAnchor: new google.maps.Point(28, 20),
+            labelClass: "markerLabel", // the CSS class for the label
+            labelInBackground: false
+        });
+        self.marker = marker;
+        markersArray.push(marker);
+        marker.addListener('click', function() {
+        var $infoWindowContent = $("<div class=content_" + self.id + " id=content></div>");
+        if (curInfoWindow) {
+          curInfoWindow.close();
+        }
+        var infoWindow = new google.maps.InfoWindow({
+          maxWidth: 600,
+          maxHeight: 800
+        });
+        curInfoWindow = infoWindow;
+        infoWindow.setContent($infoWindowContent[0]);
+        infoWindow.open(map, marker);
+        google.maps.event.addListener(infoWindow, 'domready', function() {
+        if (contentPreview) {
+            contentPreview.hide();
+            //contentPreview.clearCache();
+        }
+        contentPreview = new Box.Preview();
+        contentPreview.show(self.id, sessionStorage.getItem('accessToken'), {
+          container: '.content_' + self.id,
+        });
+      });
+      //select case
+      if (currentEvidenceList) {
+          currentEvidenceList.toggleClass("green");
+      }
+      $("#evidencenelist_" + this.id).toggleClass("green");
+        currentEvidenceList = $("#evidencenelist_" + this.id);
+      });
+
+      };
+
+
+    };
+    $(document).ready(function() {
+      $(".loaderC").hide();
+      $(".loaderE").hide();
+      $('ul.tabs li').click(function() {
+        var tab_id = $(this).attr('data-tab');
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
+        $(this).addClass('current');
+        $("#" + tab_id).addClass('current');
+        $(".postcodesearch").hide();
+        tabView = $(this).attr('name');
+      });
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+
+      $(".searchform").on('submit', (function(ev) {
+        ev.preventDefault();
+        console.log(tabView);
+        var selection = $("#caselistselector").val();
+        (tabView == 'cases'?selection = $("#caselistselector").val():selection = $("#evidencelistselector").val());
+
+        if (selection == 'postcode') {
+          loadInfo(tabView, $("#postcodesearch").val(), all);
+        } else if (selection == 'all' || selection=='mine') {
+          loadInfo(tabView, null, selection);
+        } else if (selection == 'map') {
+          loadInfo(tabView,null,'all',true);
+        }
+      }));
+
+      $(".selector").change(function(ev) {
+        var selection = this.value;
+        console.log(selection);
+        if (selection == 'postcode') {
+          $(".postcodesearch").show();
+        }
+      });
+    });
+
+    function loadInfo(type, postcodefilter, scope,useMap) {
+      clearOverlays();
+      var url;
+      if (type == 'cases') {
+        $(".loaderC").show();
+        url = "https://api.box.com/2.0/folders/" +sessionStorage.getItem("caseFolderId") + "/items?fields=metadata.enterprise.case";
+      } else if (type == 'evidence') {
+        $(".loaderE").show();
+        var useThisFolder = (scope=='mine'?persFolderId:sessionStorage.getItem("caseFolderId"));
+        if(!useMap) {
+          url = 'https://api.box.com/2.0/search?mdfilters=[{"templateKey":"gpsCoordinates", "scope":"enterprise", "filters":{"latitude1": {"gt":"0"}}}]&ancestor_folder_ids=' + useThisFolder + '&fields=name,id,metadata.enterprise.case,metadata.enterprise.gpsCoordinates';
+        }
+        else {
+          url = 'https://api.box.com/2.0/search?mdfilters=[{"templateKey":"gpsCoordinates", "scope":"enterprise", "filters":{"latitude1": {"gt":"' + map.getBounds().getSouthWest().lat() +'","lt":"' + map.getBounds().getNorthEast().lat() + '"},"longitude":{"gt":"' + map.getBounds().getSouthWest().lng() + '","lt":"' + map.getBounds().getNorthEast().lng() + '"}}}]&ancestor_folder_ids=' + useThisFolder + '&fields=name,id,metadata.enterprise.case,metadata.enterprise.gpsCoordinates';
+          console.log(url);
+        }
+      }
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": url,
+        "method": "GET",
+        "headers": {
+          "Authorization": "Bearer " + sessionStorage.getItem("accessToken"),
+          "Cache-Control": "no-cache"
+        }
+      }
+      $.ajax(settings).done(function(response) {
+        console.log("search done:" + JSON.stringify(response));
+        var i = 0;
+        $.each(response.entries, function(k, data) {
+
+          if (type == 'cases'
+          && ((postcodefilter == undefined || data.metadata.enterprise.case.postcode.includes(postcodefilter))
+            || (scope=='mine' && data.metadata.enterprise.case.officerEmail==sessionStorage.getItem("userLogin"))
+            || scope=='all')) {
+
+              var c = new casefolder(data.metadata.enterprise.case.caseId, data.metadata.enterprise.case.victimpostalcode, data.id);
+              var listItem = $("<div class=place id='caselist_" + c.id + "'>" + c.name + "</div>");
+              listItem.on("click", function(event) {
+              google.maps.event.trigger(c.marker, 'click', {
+                  latLng: c.getLatLng()
+                });
+              });
+              $(".textC").text("Cases ( " +(k+1) + " )");
+              $("#listcases").append(listItem);
+            }
+          else {
+            var e = new evidence(data.name,data.id, data.metadata.enterprise.gpsCoordinates.latitude1,data.metadata.enterprise.gpsCoordinates.longitude);
+            var listItem = $("<div class=place id='evidencelist_" + e.id + "'>" + e.name + "</div>");
+            listItem.on("click", function(event) {
+              google.maps.event.trigger(e.marker, 'click', {
+                latLng: {lat:e.lat,lng:e.lng}
+              });
+            });
+            $(".textE").text("Evidence ( " +(k+1) + " )");
+            $("#listevidence").append(listItem);
+          }
+
+        });
+        $(".loaderE").hide();
+        $(".loaderC").hide();
+      });
+    }
+
+    function clearOverlays() {
+      $(".textC").text("Cases");
+      $(".textE").text("Evidence");
+      if (markersArray) {
+        for (i in markersArray) {
+          markersArray[i].setMap(null);
+        }
+        $("#listcases").empty();
+        currentCaseList = null;
+        $("#listevidence").empty();
+        currentEvidenceList = null;
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <body style="overflow-x: hidden;">
+    <section>
+      <div id="map">></div>
+      <div id="list">
+        <div style="padding: 5 5 5 5px;bgcolor='#F4F6F9';border: 1px solid #cdd4de;">
+          <ul class="tabs">
+            <li name='cases' class="tab-link current" data-tab="tab-100"><span class='textC'>Cases</span> <span class='loaderC'><img src='../case/ajax-loader_t.gif'/></span></li>
+            <li name='evidence' class="tab-link" data-tab="tab-200"><span class='textE'>Evidence</span> <span class='loaderE'><img src='../case/ajax-loader_t.gif'/></span></li>
+          </ul>
+          <div id="tab-100" class="tab-content current">
+            <form class='searchform' name='search' id='search' action='/' method='get'>
+              <select style='display: inline-block;' class='selector' id=caselistselector>
+                      <option value=all>all cases</option>
+                      <option value=mine>my cases</option>
+                      <option value=map>search map</option>
+                      <option value=postcode>search postcode</option>
+                  </select>
+              <input style='display: inline-block;width:30px;' id="submitbutton" type="submit" class="button" value="Go" />
+              <input class='postcodesearch' type=text placeholder='postcode' id='postcodesearch' />
+            </form>
+            <div id='listcases'></div>
+          </div>
+          <div id="tab-200" class="tab-content">
+            <form class='searchform' name='search_evidence' id='search_evidence' action='/' method='get'>
+              <select style='display: inline-block;' class='selector' id=evidencelistselector>
+                      <option value=all>all evidence</option>
+                      <option value=mine>my evidence</option>
+                      <option value=map>search map</option>
+                      <!--<option value=postcode>search postcode</option>-->
+                  </select>
+              <input style='display: inline-block;width:30px;' class="submitbutton" type="submit" class="button" value="Go" />
+              <!--<input class='postcodesearch' type=text placeholder='postcode' id='evidencesearch' />-->
+            </form>
+            <div id='listevidence'></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </body>
+
+</html>

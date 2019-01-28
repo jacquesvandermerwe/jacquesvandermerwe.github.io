@@ -11,11 +11,9 @@
 
 console.log(links.length);
 for(var i = 0; i < links.length; i++) {
-  console.log(links[i].innerHTML);
   links[i].addEventListener("click", function() {
     var current = document.getElementsByClassName("active");
     var currentp = document.getElementsByClassName("activep");
-    console.log(this.innerHTML);
     current[0].className = current[0].className.replace("active", "");
     currentp[0].className = currentp[0].className.replace("activep", "");
     this.className = "active";
@@ -102,17 +100,7 @@ p {
 
 <ul>
 
-  <li width="140px"><p class='activep'><a class="active" height='27px' href="upload.html" target="main">Upload Evidence</a></p></li>
-
-  <li width="90px"><p><a  href="https://box-162828.workflowcloud.com/forms/83b90de6-07da-423b-998d-c3f144babd5d" target="main">Create Case</a></p></li>
-  <li width="140px"><p><a  href="cases.html"  target="main">My Cases</a></p></li>
-  <li width="140px"><p><a href="associate.html" target="main">Associate Evidence</a></p></li>
-  <li width="140px"><p><a href="evidence-map.html" target="main">Suggested Evidence</a></p></li>
-  <li width="140px"><p><a href="evidence-map-beta.html" target="main">Suggested Evidence (beta)</a></p></li>
-  <li width="140px"><p><a href="search.html" target="main">Search Evidence</a></p></li>
-  <li width="140px"><p><a href="collaborations.html" target="main">External Agencies</a></p></li>
-  <li width="140px"><p><a href="events.html" target="main">Case Events</a></p></li>
-  <li width="140px"><p><a href="help.html" target="main">Help</a></p></li>
+<li width="140px"><p><a class="active" href="evidence-map.html" target="main">Suggested Evidence</a></p></li>
   <li width="140px"><p><a href="login.html" target="_top">Logout</a></p></li>
 
 
