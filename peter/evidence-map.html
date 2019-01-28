@@ -29,18 +29,18 @@
 
     }
 
-    .my-custom-class-for-label {
-      width: 50px;
-      height: 20px;
+    .markerLabel {
+      /*width: 150px;*/
+      display:inline-block;
+      height: 18px;
 
       border: 1px solid #eb3a44;
       border-radius: 5px;
       background: #fee1d7;
       text-align: center;
       line-height: 20px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #eb3a44;
+      font-size: 10px;
+      color: #000;
     }
 
     .modal {}
@@ -162,7 +162,7 @@
     var tabView = 'cases';
     var markersArray = [];
     var markersArrayEvidence = [];
-    var cases = new Map();
+    var cases =[];
     var currentCaseList;
     var currentEvidenceList;
     var map;
@@ -170,8 +170,8 @@
     var contentPreview;
     var curInfoWindow;
     var image = '../case/police-scotland.png';
-    var camImage = 'photo.png';
-    var vidImage = 'video.png';
+    var camImage = '.../case/photo.png';
+    var vidImage = '../case/video.png';
     var curSW;
     var curNE;
     var markerIcon = {
@@ -233,7 +233,7 @@
             icon: markerIcon,
             labelContent: self.name,
             labelAnchor: new google.maps.Point(28, 20),
-            labelClass: "my-custom-class-for-label", // the CSS class for the label
+            labelClass: "markerlabel", // the CSS class for the label
             labelInBackground: false
           });
           self.marker = marker;
@@ -265,9 +265,9 @@
             });
             //select case
             if (currentCaseList) {
-              currentCaseList.toggleClass("green");
+              currentCaseList.toggleClass("#54698D");
             }
-            $("#caselist_" + self.id).toggleClass("green");
+            $("#caselist_" + self.id).toggleClass("#54698D");
             currentCaseList = $("#caselist_" + self.id);
           });
 
@@ -307,7 +307,7 @@
             icon: this.markerIcon,
             labelContent: this.name,
             labelAnchor: new google.maps.Point(28, 20),
-            labelClass: "my-custom-class-for-label", // the CSS class for the label
+            labelClass: "markerlabel", // the CSS class for the label
             labelInBackground: false
         });
         self.marker = marker;
@@ -336,9 +336,9 @@
       });
       //select case
       if (currentEvidenceList) {
-          currentEvidenceList.toggleClass("green");
+          currentEvidenceList.toggleClass("#54698D");
       }
-      $("#evidencenelist_" + this.id).toggleClass("green");
+      $("#evidencenelist_" + this.id).toggleClass("#54698D");
         currentEvidenceList = $("#evidencenelist_" + this.id);
       });
 
@@ -415,13 +415,14 @@
         }
       }
       $.ajax(settings).done(function(response) {
-        console.log("search done:" + JSON.stringify(response));
+        console.log("search done (" + useMap + "):" + JSON.stringify(response));
         var i = 0;
         $.each(response.entries, function(k, data) {
 
           if (type == 'cases') {
             if (postcodefilter == undefined || data.metadata.enterprise.case.postcode.includes(postcodefilter)) {
               var c = new casefolder(data.metadata.enterprise.case.name, data.metadata.enterprise.case.postcode, data.id);
+
               var listItem = $("<div class=place id='caselist_" + c.id + "'>" + c.name + "</div>");
               listItem.on("click", function(event) {
               google.maps.event.trigger(c.marker, 'click', {
