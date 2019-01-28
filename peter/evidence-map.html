@@ -97,7 +97,7 @@
 
     .place:hover,
     .place.green {
-      background-color: #00cc00;
+      background-color: #54698D;
     }
 
     ul.tabs {
@@ -181,7 +181,7 @@
       anchor: new google.maps.Point(22, 65)
     };
     var photoMarkerIcon = {
-      url: 'photo.png',
+      url: '../case/photo.png',
       scaledSize: new google.maps.Size(40, 40),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(22, 65)
@@ -265,9 +265,9 @@
             });
             //select case
             if (currentCaseList) {
-              currentCaseList.toggleClass("#54698D");
+              currentCaseList.toggleClass("green");
             }
-            $("#caselist_" + self.id).toggleClass("#54698D");
+            $("#caselist_" + self.id).toggleClass("green");
             currentCaseList = $("#caselist_" + self.id);
           });
 
@@ -336,9 +336,9 @@
       });
       //select case
       if (currentEvidenceList) {
-          currentEvidenceList.toggleClass("#54698D");
+          currentEvidenceList.toggleClass("green");
       }
-      $("#evidencenelist_" + this.id).toggleClass("#54698D");
+      $("#evidencenelist_" + this.id).toggleClass("green");
         currentEvidenceList = $("#evidencenelist_" + this.id);
       });
 
