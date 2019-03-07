@@ -1,0 +1,103 @@
+type:java.util.LinkedHashMap
+resource=/box-poa(java.util.LinkedHashMap$Entry)
+path=/box-poa(java.util.LinkedHashMap$Entry)
+httpMethod=POST(java.util.LinkedHashMap$Entry)
+headers={box-delivery-timestamp=2019-01-25T12:31:14-08:00, box-signature-algorithm=HmacSHA256, box-signature-primary=VA7FZHNU5wbapkt7h7b8t8N7ND60kp9oK48d8WD6Xco=, box-signature-secondary=wz1KL7q+y6NtdrLvIFFDuRWBApmw99g/1t3tkTr0QYU=, box-signature-version=1, Cache-Control=max-age=259200, Content-Type=application/json; charset=UTF-8, Host=5po0omny7c.execute-api.eu-west-2.amazonaws.com, Surrogate-Capability=web-proxy3005.lv7.box.net="Surrogate/1.0 ESI/1.0", User-Agent=Box-Skills-Client/0.1, X-Amzn-Trace-Id=Root=1-5c4b7213-b7d5c837c34b973a9b3ddf0c, X-Forwarded-For=107.152.25.178, X-Forwarded-Port=443, X-Forwarded-Proto=https}(java.util.LinkedHashMap$Entry)
+multiValueHeaders={box-delivery-timestamp=[2019-01-25T12:31:14-08:00], box-signature-algorithm=[HmacSHA256], box-signature-primary=[VA7FZHNU5wbapkt7h7b8t8N7ND60kp9oK48d8WD6Xco=], box-signature-secondary=[wz1KL7q+y6NtdrLvIFFDuRWBApmw99g/1t3tkTr0QYU=], box-signature-version=[1], Cache-Control=[max-age=259200], Content-Type=[application/json; charset=UTF-8], Host=[5po0omny7c.execute-api.eu-west-2.amazonaws.com], Surrogate-Capability=[web-proxy3005.lv7.box.net="Surrogate/1.0 ESI/1.0"], User-Agent=[Box-Skills-Client/0.1], X-Amzn-Trace-Id=[Root=1-5c4b7213-b7d5c837c34b973a9b3ddf0c], X-Forwarded-For=[107.152.25.178], X-Forwarded-Port=[443], X-Forwarded-Proto=[https]}(java.util.LinkedHashMap$Entry)
+queryStringParameters=null(java.util.LinkedHashMap$Entry)
+multiValueQueryStringParameters=null(java.util.LinkedHashMap$Entry)
+pathParameters=null(java.util.LinkedHashMap$Entry)
+stageVariables=null(java.util.LinkedHashMap$Entry)
+requestContext={resourceId=vi0bmq, resourcePath=/box-poa, httpMethod=POST, extendedRequestId=UE7DDFiCLPEFnBg=, requestTime=25/Jan/2019:20:31:15 +0000, path=/default/box-poa, accountId=110151784612, protocol=HTTP/1.1, stage=default, domainPrefix=5po0omny7c, requestTimeEpoch=1548448275537, requestId=29ab5ce3-20e0-11e9-b3cd-1f0967482ae4, identity={cognitoIdentityPoolId=null, accountId=null, cognitoIdentityId=null, caller=null, sourceIp=107.152.25.178, accessKey=null, cognitoAuthenticationType=null, cognitoAuthenticationProvider=null, userArn=null, userAgent=Box-Skills-Client/0.1, user=null}, domainName=5po0omny7c.execute-api.eu-west-2.amazonaws.com, apiId=5po0omny7c}(java.util.LinkedHashMap$Entry)
+body=
+{
+    "type": "skill_invocation",
+    "skill": {
+        "id": "765",
+        "type": "skill",
+        "name": "box-poa",
+        "api_key": "rzmatbbq3lvxordg0mmlo00yhx5klv1p"
+    },
+    "token": {
+        "write": {
+            "access_token": "1!OitizIOO0efer2R28oFSoUis3DMy-2rwoGNVFKuQUUFP1SfFDfHQKUPUpQRcicsvJ2jok22QbZzYJvniNCyhOkuOIghep-qIExndNUnKJHdKp72L7Z7QFnGbvloX8FmQQ1QOrgbHDhRdO-6-_hWVMKk7ki6EnU2wlXDjtHNhsvFwODPESfnzO1DP9QonXPyn4cwKI10XYIf3pTi1jJUjp5lS3r9ZW6LN36sxmEDeraLdRUK8M_I1L1lwES6obyHauO9Hu5t3zKZ2Ffx__NkEq8OO4x-PlGpu2FcgxQbaMTmd2Wmxz72eGWn-EvwwziyQUdbARmuzZVzLf8wg76nPtdzl__4LgY0ceIZ9Q7cRCajsVn0ZZ42OwEdiz9Y5vMpo1dx-MVNqPihNQSiP-ruoWUT38Ei9C21IMpm9F20y8slWDf4V3d3-tTRGVBKkONYsbB2AI-aL9jV41pCxD-uGw5rJeC5qvucahmhBynT4U2w.",
+            "expires_in": 1548528722,
+            "restricted_to": "[{\"scope\":\"gcm\"},{\"scope\":\"item_upload\",\"object_id\":390108506085,\"object_type\":\"file\"},{\"scope\":\"manage_skill_invocations\"}]",
+            "token_type": "bearer"
+        },
+        "read": {
+            "access_token": "1!ZSvaBFDo8rGklhvP2DvjJ_-CkczOz_Qc2fPrDVSI-qLj0pPHWepcgZ0EomjNGxkExO9LvzRxUmin-WfaIXbsDCjmIiI9hXw8tEN8I-aF2XGA6dvMVj_e2Q7OXC-RqId2lTA5BCrZKnC0yadQFMefLbJe07gaKYbjrL1FtxwARf2hPs7gJ28jQSJ0cvtSwxOJo4CbBnHBITkkAOq_Y1ABlJe-3iqiYshXetPhSpjVWVpOf-uKYdweToOokUiPcvZdgK5W366sD0yKL5MDr_93UxzV9_KpBrglA4-RFSfBwaIBSTNzmnb-4qqGB9Q0e-88zsQB7UV7fjETtbTtHLgEWULx-SdKd4l_eSN9ZQ1MVtRV4xO-GJrpkefPN9wlOlbO8dm7boL1N_Rb_ZXlwApgdd2mu_HixuEC994UUn387EROYfoxkQ..",
+            "expires_in": 1548528722,
+            "restricted_to": "[{\"scope\":\"gcm\"},{\"scope\":\"item_read\",\"object_id\":390108506085,\"object_type\":\"file\"}]",
+            "token_type": "bearer"
+        }
+    },
+    "status": {
+        "state": "invoked",
+        "message": "",
+        "error_code": "",
+        "additional_info": ""
+    },
+    "id": "714c274e-088e-4540-8440-85551ef5976f_206668968",
+    "created_at": "2019-01-25T10:52:01-08:00",
+    "trigger": "FILE_CONTENT",
+    "enterprise": {
+        "type": "enterprise",
+        "id": "48902184",
+        "name": "Sapient"
+    },
+    "source": {
+        "type": "file",
+        "id": "390108506085",
+        "name": "BT Bill Previous Address.jpg",
+        "sequence_id": "0",
+        "file_version": {
+            "id": "412457072085"
+        },
+        "owner_enterprise_id": "48902184",
+        "parent": {
+            "id": "52091238792"
+        },
+        "old_parent_id": "64968385454",
+        "collab_accessible_by": {
+            "type": "",
+            "id": "",
+            "name": "",
+            "login": ""
+        },
+        "size": 594307
+    },
+    "event": {
+        "event_id": "714c274e-088e-4540-8440-85551ef5976f",
+        "event_type": "ITEM_COPY",
+        "created_at": "2019-01-25T10:52:01-08:00",
+        "created_by": {
+            "type": "user",
+            "id": "3583722312",
+            "name": "Publicis Sapient",
+            "login": "jmahedy+demo9@box.com"
+        },
+        "source": {
+            "type": "file",
+            "id": "390108506085",
+            "name": "BT Bill Previous Address.jpg",
+            "sequence_id": "0",
+            "file_version": {
+                "id": "412457072085"
+            },
+            "owner_enterprise_id": "48902184",
+            "parent": {
+                "id": "52091238792"
+            },
+            "old_parent_id": "64968385454",
+            "collab_accessible_by": {
+                "type": "",
+                "id": "",
+                "name": "",
+                "login": ""
+            }
+        }
+    },
+    "parameters": {}
+}
+(java.util.LinkedHashMap$Entry)
