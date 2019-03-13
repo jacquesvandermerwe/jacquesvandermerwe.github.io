@@ -423,7 +423,7 @@
             || (scope=='mine' && data.metadata.enterprise.case.officerEmail==sessionStorage.getItem("userLogin"))
             || scope=='all')) {
 
-              var c = new casefolder(data.metadata.enterprise.case.caseId, data.metadata.enterprise.case.victimpostalcode, data.id);
+              var c = new casefolder(data.metadata.enterprise.case.caseId, data.metadata.enterprise.case.postCode, data.id);
               var listItem = $("<div class=place id='caselist_" + c.id + "'>" + c.name + "</div>");
               listItem.on("click", function(event) {
               google.maps.event.trigger(c.marker, 'click', {
