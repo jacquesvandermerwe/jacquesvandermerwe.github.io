@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Portalview</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <!-- polyfill.io only loads the polyfills your browser needs -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <!-- Latest version of the explorer css for your locale -->
+    <!-- <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/explorer.css" /> -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/8.6.0/en-US/explorer.css" />
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.css" />
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.58.3/en-US/preview.css" />
+
+
+
+    <script>
+        var ccnumber = '';
+        var folderId = '';
+        var baseFolderId = '63483253821';
+        var accessToken = '';
+        var fileNamesNotUploaded = [];
+        var restrictedFileTypes= [".exe",".docx",".doc",".xls",".svg",".dmg"];
+        var urlParams = new URLSearchParams(window.location.search);
+        var uploader = new Box.ContentUploader();
+        var hostURL="";
+        accessToken = urlParams.get('accessToken');
+
+        $(document).ready(function () {
+            hostURL=window.location.protocol + "//" + window.location.host;
+            /*
+            Get Acces Token
+            */
+
+            var settingsToken = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://bl2vhdoqzh.execute-api.eu-west-2.amazonaws.com/default/box-jwt-tokengenerator?clientId=xhl9l3ihe5tfnwxa89hy2iol5jx2xttk&userId=6951861249&requestedTokens=userToken&requestedScopes=base-upload",
+                "method": "GET"
+            }
+
+            $.ajax(settingsToken).done(function (response) {
+                accessToken = response.token;
+                console.log(response);
+            });
+
+            $('[data-toggle="popover"]').popover({
+                container: 'body'
+            });
+            $("#uploader").show();
+
+            $("#submitbutton").click(function () {
+              
+                if (/(CC)([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))\d{5}/.test($("#ccnumber_input").val())) {
+
+
+                    $("#submissionform :input").prop("disabled", true);
+                    $('#modalMessage').text("Getting case Folder...");
+                    $('#myModal').modal('show');
+                    //See if the folder exists
+                    var settingsFolderGet = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "https://api.box.com/2.0/folders?parent_id=" + baseFolderId + "&path=" + $("#ccnumber_input").val(),
+                        "method": "GET",
+                        "headers": {
+                            "Authorization": "Bearer " + accessToken
+                        }
+                    }
+
+                    $.ajax(settingsFolderGet).done(function (response) {
+                        if (response.entries.length == 0) {
+                            var settings = {
+                                "async": true,
+                                "crossDomain": true,
+                                "url": "https://api.box.com/2.0/folders",
+                                "method": "POST",
+                                "headers": {
+                                    "Authorization": "Bearer " + accessToken
+                                },
+                                "data": "{\"name\":\"" + $("#ccnumber_input").val() + "\", \"parent\": {\"id\": \"" + baseFolderId + "\"}}"
+                            }
+
+                            $.ajax(settings).done(function (response) {
+                                console.log(response);
+                                folderId = response.id;
+                                $('#modalMessage').text("Case folder created:" + folderId);
+                                $("#uploader").show();
+                                $('#uploader').load('uploadcontrol.html');
+                                $('#modalMessage').text("Please upload your files...");
+                                setTimeout(function () { $('#myModal').modal('toggle'); }, 1000);
+                            });
+                        } else {
+                            folderId = response.entries[0].id;
+                            $('#modalMessage').text("Case folder found:" + folderId);
+                            $("#uploader").show();
+                            $('#uploader').load('uploadcontrol.html');
+                            $('#modalMessage').text("Please upload your files...");
+                            setTimeout(function () { $('#myModal').modal('toggle'); }, 1000);
+                        }
+
+                    });
+                } else {
+                    $('#modalMessage').text("Invalid C&C Number. Please correct the number before proceeding.");
+                    $('#myModal').modal('toggle');
+
+                };
+            });
+        });
+    </script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: rgb(0, 123, 120);
+            padding: 5px;
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.125rem;
+            color: white;
+            height: 5vh;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float:left;
+            width: 40vw;
+            height: 85vh;
+            /*only for demonstration, should be removed */
+
+            background: rgb(192, 192, 192);
+            padding: 20px;
+
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 60vw;
+            background-color: rgb(255, 255, 255);
+            height: 85vh;
+
+            /* only for demonstration, should be removed */
+        }
+
+        /* Clear floats after the columns */
+        section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: rgb(0,123,120);
+            padding: 1px;
+            text-align: center;
+            color: white;
+            height: 5vh;
+        }
+
+        .glyphicon {
+    font-size: 50px;
+}
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p>Portal View Upload</p>
+    </header>
+
+    <section>
+        <nav>
+            <form id="submissionform">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 col-form-label col-form-label-sm">Firstname</label>
+                    <input type="text" class="form-control form-control-sm" id="firstname_input" placeholder="Firstname"
+                        aria-describedby="firstnameHelpBlock">
+                    <small id="firstnameHelpBlock" class="form-text text-muted">
+                        Please provide your first name.
+                    </small>
+                </div>
+                <div class="form-group"></div>
+                <label for="lasttname" class="col-sm-2  col-form-label-sm">Lastname</label>
+                <input type="text" class="form-control form-control-sm" id="lastname_input" placeholder="Lastname"
+                    aria-describedby="lastnameHelpBlock">
+                <small id="lastnameHelpBlock" class="form-text text-muted">
+                    Please provide your last name.
+                </small>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 col-form-label col-form-label-sm">Address</label>
+                    <textarea type="text" class="form-control form-control-sm" id="address_textarea" placeholder="Address"
+                        aria-describedby="addressHelpBlock" rows="4"></textarea>
+                    <small id="addressHelpBlock" class="form-text text-muted">
+                        This is the address where you normally reside.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="ccnumber" class="col-sm-3 col-form-label col-form-label-sm">C&C Number</label>
+                    <input type="text" class="form-control form-control-sm" id="ccnumber_input" placeholder="C&C Number"
+                        aria-describedby="ccnumberHelpBlock" required>
+                    <small id="ccnumberHelpBlock" class="form-text text-muted">
+                        Please provide the C&C Number that was provided to you.
+                    </small>
+                </div>
+
+                <button id="submitbutton" type="button" class="btn btn-outline-primary">Create Case</button>
+            </form>
+
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div id='modalHeader' class="modal-header" style="background-color: rgb(184, 184, 184); padding: 0.25rem;">
+                            <h4 class="modal-title" style="text-align: center; font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 16px;">Progress</h4>
+
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" id="modalMessage" style="text-align: center; font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 13px;">
+                            Progress Status...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        <article id="uploader">
+
+        </article>
+
+
+    </section>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+
+</body>
+
+</html>

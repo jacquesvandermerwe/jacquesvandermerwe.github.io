@@ -1,0 +1,102 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="uploader-container" style="height:100%; width:100%;"></div>
+    <!-- Latest version of the uploader js for your locale -->
+    <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
+
+    <script>
+        var uploader = new Box.ContentUploader();
+
+        var stopPDF = (config) => {
+            console.log(config)
+            let cUrl = config.url;
+            var method = config.method;
+            if (method == 'post' && config.url.includes('https://upload.box.com/api/2.0/files/content')) {
+                var jsonRep = JSON.parse(config.data.attributes);
+
+                //Iterate over blocked file types
+                var arrayLength = restrictedFileTypes.length;
+
+                for (var i = 0; i < arrayLength; i++) {
+                    if (jsonRep.name.endsWith(restrictedFileTypes[i])) {
+                        fileNamesNotUploaded.push(jsonRep.name);
+                        var diffURL = hostURL + "/empty_response.html";
+                        config.method = 'get';
+                        config.url = diffURL;
+                        break;
+                    } else {
+                        config.url = cUrl;
+                    }
+                }
+            }
+            return config;
+        };
+        // Attach event listener for when the close button is pressed
+        uploader.addListener('complete', function () {
+            uploader.hide();
+            $("#submissionform :input").prop("disabled", false);
+            let failedFileNames = "";
+            if (fileNamesNotUploaded.length > 0) {
+
+                failedFileNames = "<p><strong>The following files were not uploaded, because they are restricted formats.</strong></p><p><ul style='font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 13px;'>";
+                for (i = 0; i < fileNamesNotUploaded.length; i++) {
+                    failedFileNames += "<li>" + fileNamesNotUploaded[i] + "</li>";
+                }
+                failedFileNames += "</ul></p>";
+                $('#modal').html(failedFileNames);
+                $('#modal').modal({
+                    fadeDuration: 250
+                });
+            }
+
+            //alert("The following files were not uploaded. Only PDF files can be uploaded." + failedFileNames);
+            fileNamesNotUploaded.length = 0;
+
+            $('#modalMessage').html("<p style='text-align: center;font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 13px;><strong>&nbsp;</strong>Your upload upload is now complete.</p><p style='text-align: center;'>Please feel free to continue uploading additional files.</p>" + failedFileNames);
+            $('#myModal').modal('show');
+            setTimeout(function () { $('#myModal').modal('hide'); }, 5000);
+            $("#uploader").hide();
+        });
+
+        uploader.addListener('close', function () {
+            uploader.hide();
+        });
+
+        uploader.on('upload', (data) => {
+            var text = $('#address_textarea').val();
+            text = text.replace(/\n/g, ' ');
+
+
+
+            var settingsMetadataSet = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://api.box.com/2.0/files/" + data.id + "/metadata/enterprise_62599427/portalview",
+                "method": "POST",
+                "headers": {
+                    "Authorization": "Bearer " + accessToken,
+                    "Content-Type": "application/json"
+                },
+                "data": "{\n  \"ccNumber\": \"" + $("#ccnumber_input").val() + "\",\n  \"firstname\": \"" + $("#firstname_input").val() + "\",\n  \"lastname\": \"" + $("#lastname_input").val() + "\",\n  \"address\": \"" + text + "\"\n}"
+            }
+
+            $.ajax(settingsMetadataSet).done(function (response) {
+                console.log(response);
+            });
+            console.log(`Successfully uploaded file with name "${data.name}" to Box File ID ${data.id}`);
+        });
+
+
+
+        uploader.show(folderId, accessToken, {
+            container: '.uploader-container',
+            requestInterceptor: stopPDF
+        });
+    </script>
+</body>
+
+</html>
