@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Box Content Uploader Demo</title>
+
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+  <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script> 
+    -->
+
+  <!-- Latest version of the uploader css for your locale -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.css" />
+
+
+  <!-- jQuery Modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  <style>
+    #uploader {
+      border-radius: 10px 10px 10px 10px;
+      -moz-border-radius: 10px 10px 10px 10px;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border: 1px solid #000000;
+      padding: 10px;
+      -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    body {
+      align-self: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" style="height:90vh;width:90vw" id="uploader"></div>
+  <!-- Latest version of the uploader js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/7.2.0/en-US/uploader.js"></script>
+  <script>
+
+    var fileNamesNotUploaded = [];
+    var folderId = '56730436611';
+    var accessToken = 'KvHz2N1yuVSy6hvG7kNs761g67pk34Xt';
+    var uploader = new Box.ContentUploader();
+
+    var stopPDF = (config) => {
+      console.log(config)
+      let cUrl=config.url;
+      var method = config.method;
+      if (method == 'post' && config.url.includes('https://upload.box.com/api/2.0/files/content')) {
+        var jsonRep = JSON.parse(config.data.attributes);
+        if (!jsonRep.name.endsWith('.pdf')) {
+          fileNamesNotUploaded.push(jsonRep.name);
+          var diffURL = "http://localhost:8000/empty_response.html";
+          config.method = 'get';
+          config.url = diffURL;
+        } else {
+          config.url =cUrl;
+        }
+
+      }
+      return config;
+    };
+    uploader.show(folderId, accessToken, {
+      container: '.container',
+      requestInterceptor: stopPDF
+    });
+
+    // Log complete data
+    uploader.on('complete', (data) => {
+      let failedFileNames = "";
+      if (fileNamesNotUploaded.length > 0) {
+
+        failedFileNames = "<p style='font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 13px;'><strong>The following files were not uploaded. Only PDF files are allowed.</strong></p><p><ul style='font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;font-size: 13px;'>";
+        for (i = 0; i < fileNamesNotUploaded.length; i++) {
+          failedFileNames += "<li>" + fileNamesNotUploaded[i] + "</li>";
+        }
+        failedFileNames += "</ul></p>";
+        $('#modal').html(failedFileNames);
+        $('#modal').modal({
+          fadeDuration: 250
+        });
+      }
+
+      //alert("The following files were not uploaded. Only PDF files can be uploaded." + failedFileNames);
+      fileNamesNotUploaded.length = 0;
+    });
+  </script>
+
+  <div id="modal" class="modal">
+    A modal ...
+  </div>
+
+
+
+</body>
+
+</html>
