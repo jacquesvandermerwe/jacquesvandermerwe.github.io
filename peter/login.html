@@ -3,28 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>VW Demo</title>
+  <title>Police Scotland Case Manager Login</title>
 
 
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../case/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-  //Mapping of users and personal folders
-  var personalFolderMap = new Map();
-  personalFolderMap.set('pchristensen+plm1@box.com','0');
-  personalFolderMap.set('pchristensen+plm2@box.com','0');
 
   //Change this to change Application context
   var clientId="bn2iyg37p78jkowrp0io0nc2ln0be3wt";
   //Main case folders
-  var caseFolderId = '0';
 
   $(document).ready(function() {
     sessionStorage.clear();
-    sessionStorage.setItem('folderMap',JSON.stringify(Array.from(personalFolderMap.entries())));
-    sessionStorage.setItem('caseFolderId',caseFolderId);
+
     $('#userlogin').on('submit', (function(ev) {
       $("#signbutton").hide();
       $("#loader").show();
@@ -49,34 +43,12 @@
         sessionStorage.setItem("adminAccessToken",response.adminAccessToken);
         console.log("from storage access:" + sessionStorage.getItem("accessToken"));
         console.log("from storage admin:" + sessionStorage.getItem("adminAccessToken"));
-        getStreamPosition();
-
+        window.location.replace('/peter/main.html');
       });
     }));
   });
-  function getStreamPosition() {
-    var stream_position;
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.box.com/2.0/events?stream_position=now",
-        "method": "GET",
-        "headers": {
-          "Authorization": "Bearer " + accessToken,
-          "Cache-Control": "no-cache"
-        }
-    };
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      stream_position=response.next_stream_position;
-      sessionStorage.setItem("streamPosition",stream_position);
-      window.location.replace('/plm/main.html');
-    });
-   //return stream_position;
-  }
 
 </script>
-
 </head>
 
 <bod>
@@ -84,7 +56,7 @@
   <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
 
 		<div class="login-form">
 			<div class="sign-in-htm">
@@ -104,7 +76,7 @@
 				</div>
 				<div class="group">
 					<input id="signbutton" type="submit" class="button" value="Sign In">
-          <img align=center id="loader" src="5.gif" style="display:none;">
+          <img align=center id="loader" src="progressb.gif" style="display:none;">
 
 				</div>
 				<div class="hr"></div>
