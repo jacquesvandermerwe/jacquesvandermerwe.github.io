@@ -203,9 +203,10 @@
             render: function(data, type, row) {
               if (row.event_type && row.event_type.startsWith("COLLAB_")) {
                 return row.source.accessible_by.name + " as " + row.source.role; // + " on " + row.item.type + " " + row.item.name;
-              } else if (row.event_type && row.event_type.startsWith("UPLOAD")) {
+              } else if (row.event_type && row.event_type.startsWith("ITEM_UPLOAD")) {
                 console.log(row);
                 return row.source.accessible_by.name + " as " + row.source.role; // + " on " + row.item.type + " " + row.item.name;
+                
               }
               return "";
             }
