@@ -173,7 +173,7 @@
             <script>
 
                 var folderId = '67052902323';
-                var accessToken = 'JE7YkwR2BuH0MmzHXjE2qmJLCQXU7jL6';
+                var accessToken = 'XvgyKFaRl85zj9klzzVdhzxuCpukARNQ';
                 //alert("CEX" + accessToken);
                 var contentExplorer = new Box.ContentExplorer();
                 contentExplorer.show(folderId, accessToken, {
@@ -199,8 +199,13 @@
                         if (type === 'file' && canPreview) {
                             //contentExplorer.component.preview(e[0]);
                             //alert(e[0]);
-                            e.target.click();
-                            this.preview(e[0].target);
+                            //this.component.preview.show(404928220421);
+                            var preview = new Box.Preview();
+                            preview.show('404928220421', accessToken, {
+                            container: '.container',
+                            showDownload: true
+                            });
+
                         }
                     };
                 contentExplorer.addListener('select', selectListener);
