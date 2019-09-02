@@ -171,9 +171,10 @@
 
             <script src="https://cdn01.boxcdn.net/platform/elements/9.0.2/en-US/explorer.js"></script> -->
             <script>
+
                 var folderId = '67052902323';
-                var accessToken = 'FceJ12MJE2MPT8TvT2M46EYxfgar7q4g';
-                alert("CEX" + accessToken);
+                var accessToken = 'JE7YkwR2BuH0MmzHXjE2qmJLCQXU7jL6';
+                //alert("CEX" + accessToken);
                 var contentExplorer = new Box.ContentExplorer();
                 contentExplorer.show(folderId, accessToken, {
                     container: '.container',
@@ -192,6 +193,18 @@
                         }
                     }
                 });
+                function selectListener(e) {
+                        const type = e[0].type;
+                        const canPreview = e[0].permissions.can_preview;
+                        if (type === 'file' && canPreview) {
+                            //contentExplorer.component.preview(e[0]);
+                            //alert(e[0]);
+                            e.target.click();
+                            this.preview(e[0].target);
+                        }
+                    };
+                contentExplorer.addListener('select', selectListener);
+
             </script>
 
         </article>
