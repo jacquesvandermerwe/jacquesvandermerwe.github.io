@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>Box Content Preview Demo</title>
+  	
+    <!-- polyfill.io only loads the polyfills your browser needs -->
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <!-- Alternatively, use polyfills hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/bluebird/3.5.1/bluebird.min.js"></script>
+    -->
+
+    <!-- Latest version of Box Content Preview for en-US locale -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/10.1.0/en-US/explorer.css" />
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/10.1.0/en-US/uploader.css" />
+</head>
+<body>
+    <div class="container" style="height:100vh; width:100vw;"></div>
+     <script src="https://cdn01.boxcdn.net/platform/elements/10.1.0/en-US/explorer.js"></script>
+     <script>
+
+                var folderId = '67052902323';
+                var accessToken = 'MnBghAtRHEfdxiP8GaSvrnmyEQp2m3w6';
+
+                var contentExplorer = new Box.ContentExplorer();
+                contentExplorer.show(folderId, accessToken, {
+                    container: '.container',
+                    isTouch: false,
+                    contentPreviewProps: {
+                        contentSidebarProps: {
+                            detailsSidebarProps: {
+                                hasNotices: true,
+                                hasProperties: true,
+                                hasAccessStats: true,
+                                hasVersions: true
+                            },
+                            hasActivityFeed: true,
+                            hasSkills: true,
+                            hasMetadata: true
+                        }
+                    }
+                });
+                function selectListener(e) {
+                    const type = e[0].type;
+                    const canPreview = e[0].permissions.can_preview;
+                    if (type === 'file' && canPreview) {
+                        //contentExplorer.component.preview(e[0]);
+                        contentExplorer.component.setState({ isPreviewModalOpen: true });
+                    }
+                };
+
+                contentExplorer.addListener('select', selectListener);
+
+
+            </script>
+</body>
+</html>
