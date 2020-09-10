@@ -1,0 +1,69 @@
+<!-- 
+  CREATED BY: Box Consulting
+  CONSULTANT: Jacques van der Merwe
+  DATE: 27 May 2020
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Box Content Explorer Demo</title>
+
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+  <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
+    -->
+
+  <!-- Latest version of the explorer css for your locale -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.css" />
+  <style>
+.be-search {
+      display: none !important;
+    }
+
+
+.be-header{
+      display: none !important;
+    }
+.be-logo {
+      display: none !important;
+    }
+
+.bdl-ViewModeChangeButton {
+    display: none;
+}
+
+/*div[aria-label="Modified"] {
+    display: none !important;
+}
+div[aria-label="grid"] div[aria-colindex="3"] {
+    display: none !important;
+}*/
+
+</style>
+</head>
+
+<body>
+  <div class="container" style="height:600px"></div>
+  <!-- Latest version of the explorer js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.js"></script>
+
+  <script>
+
+    var folderId = "0";
+    var accessToken = "FOrjpGX5xXIOwkGN820PAi4NkOVx8lUD";
+    var contentExplorer = new Box.ContentExplorer();
+
+
+
+    contentExplorer.show(folderId, accessToken, {
+      container: ".container",
+
+    });
+  </script>
+</body>
+
+</html>

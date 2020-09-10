@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
     <meta charset="utf-8" />
     <title>Box Content Preview Demo</title>
-  	
+
     <!-- polyfill.io only loads the polyfills your browser needs -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
     <!-- Alternatively, use polyfills hosted on the Box CDN
@@ -11,17 +12,38 @@
     -->
 
     <!-- Latest version of Box Content Preview for en-US locale -->
-    <script src="https://cdn01.boxcdn.net/platform/preview/1.58.2/en-US/preview.js"></script>
-    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/1.58.2/en-US/preview.css" />
-</head>
-<body>
-    <div class="preview-container" style="height:100vh; width:100vw;"></div>
+    <script src="https://cdn01.boxcdn.net/platform/preview/2.13.0/en-US/preview.js"></script>
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/2.13.0/en-US/preview.css" />
     <script>
+        var fileid = '';
+        var accessToken = '';
+        var urlParams = new URLSearchParams(window.location.search);
+        accessToken = urlParams.get('accessToken');
+        fileid = urlParams.get('fileId');
+        alert('accessToken' + ":" + accessToken);
+        alert('fileid' + ":" + fileid);
+    </script>
+</head>
+
+<body>
+
+    <div id="preview-container" class="preview-container" style="height:100vh; width:100vw; visibility: visible;"></div>
+    <script>
+
+
         var preview = new Box.Preview();
-      	preview.show('403258094865', 'FceJ12MJE2MPT8TvT2M46EYxfgar7q4g', {
+
+
+        preview.show(fileid, accessToken, {
             container: '.preview-container',
             header: 'none'
         });
+        // Set page to 2 after load
+        preview.addListener('load', function (data) {
+            var viewer = data.viewer;
+            viewer.setPage(2);
+        });
     </script>
 </body>
+
 </html>

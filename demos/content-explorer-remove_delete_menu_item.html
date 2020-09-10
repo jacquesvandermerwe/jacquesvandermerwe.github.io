@@ -1,0 +1,60 @@
+<!-- 
+  CREATED BY: Box Consulting
+  CONSULTANT: Jacques van der Merwe
+  DATE: 27 May 2020
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Box Content Explorer Demo</title>
+
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+  <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
+    -->
+
+  <!-- Latest version of the explorer css for your locale -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.css" />
+</head>
+
+<body>
+  <div class="container" style="height:600px"></div>
+  <!-- Latest version of the explorer js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.js"></script>
+
+  <script>
+
+    var folderId = "0";
+    var accessToken = "vlbmQcrbWmLTjknzXnexA5FINoCAGPOf";
+    var contentExplorer = new Box.ContentExplorer();
+
+    var removeFolderDelete = (config) => {
+    if (config.data.type !== "folder") {
+        return config;
+    }
+    if(config.data.item_collection==undefined) {
+      return config;
+    }
+      var arrayLength = config.data.item_collection.entries.length;
+      for (var i = 0; i < arrayLength; i++) {
+        if (config.data.item_collection.entries[i].type === "folder") {
+          console.log(config.data.item_collection.entries[i]);
+          config.data.item_collection.entries[i].permissions.can_delete = false;
+
+        }
+      }
+      return config;
+    };
+
+    contentExplorer.show(folderId, accessToken, {
+      container: ".container",
+      responseInterceptor: removeFolderDelete
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-control" content="No-Cache">
+  <title>Box Platform - Template Application</title>
+    <!-- polyfill.io only loads the polyfills your browser needs -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
+    -->
+      <!-- Latest version of the explorer js for your locale -->
+    <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.css"></script>
+
+</head>
+
+<body>
+  <div class="container" style="height:90vh; width:100vw;"></div>
+
+    <!-- Latest version of the explorer js for your locale -->
+    <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.js"></script>
+
+  <script>
+    //var folderId = '73553726252';
+
+    const mdQuery = {
+        from: "enterprise_284349379.mitiePayroll", // 973933 is Enterprise ID and mdBasedContentExplorer is metadata template key
+        query: "terminationDate > :arg2",
+        query_params: { "arg2" : "2012-05-14T00:00:00Z"},
+        ancestor_folder_id: "0",
+        use_index:"TERMINATIONDATE_ASC",
+        order_by: [
+        {
+            field_key: "terminationDate",
+            direction: "asc"
+        }
+    ]
+      };
+      // The metadata fields/columns to view - must be valid field names from the metadata template
+      const metadataColumnsToShow = [
+        { name: "terminationDate", canEdit: true },
+        { name: "status", canEdit: true }
+      ];
+    const defaultView = "metadata"; // Required prop to paint the metadata view. If not provided, you'll get regular folder view.
+    var contentExplorer = new Box.ContentExplorer();
+
+      contentExplorer.show("0", "x6Jlmn4ms8wVTK819WupUHGmDg077mmF", {
+        container: '.container',
+        metadataQuery: mdQuery,
+        metadataColumnsToShow: metadataColumnsToShow,
+        defaultView: defaultView
+      });
+
+  </script>
+</body>
+
+</html>
