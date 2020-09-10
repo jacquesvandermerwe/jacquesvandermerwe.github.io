@@ -1,0 +1,84 @@
+var clientId="bn2iyg37p78jkowrp0io0nc2ln0be3wt";
+
+//Main page
+var redirectAfterLoginPage="/template2.0/main.html";
+
+//Navigation
+var navigation=[
+
+  {
+      "page":"readme.html",
+      "title":"README"
+  },
+  
+  {
+      "page":"folder1.html",
+      "title":"FOLDER 1",
+      "boxId":"75440175138"
+  },
+  {
+      "page":"folder3.html",
+      "title":"FOLDER 3",
+      "boxId":"0"
+  },
+  {
+    "page":"tree_local.html",
+    "title":"TREEVIEW",
+    "boxId":"0"
+},
+  {
+      "page":"preview1.html",
+      "title":"PREVIEW 1",
+      "boxId":"666393650356"
+  },
+  {
+      "page":"preview2.html",
+      "title":"PREVIEW 2",
+      "boxId":"666393650356"
+  },
+  {
+    "page":"sign.html",
+    "title":"SIGN",
+    "boxId":"666393650356",
+    "targetFolderId":"113511488301"
+},
+  {
+    "page":"zipdownload.html",
+    "title":"ZIP DOWNLOADER",
+    "boxId":"0"
+},
+  {
+    "page":"move.html",
+    "title":"MOVE",
+    "boxId":"0",
+    "boxId2":"0",
+  },
+  {
+      "page":"uploader.html",
+      "title":"UPLOADER",
+      "boxId":"0"
+  },
+  {
+      "page":"https://peter-demo.app.box.com/f/fc0a2a975dd7431bb9681e528a69b4b7",
+      "title":"FILE REQUEST UPLOAD"
+  },
+  {
+      "page":"metadataformWithFolder.html",
+      "title":"UPLOAD FORM",
+      "boxId":"116751117003",
+      "templateKey":"case",
+      "fieldForFolderName":"caseid",
+      "eid":"47757585"
+  },
+  {"page":"map_folder.html","title":"MAP","boxId":"81642016647","latitude":51.152899277243236,"longitude":0.8391592693839822,"zoomLevel":10},
+    {
+          "page":"mdquery.html",
+          "title":"QUERY",
+          "boxId":"63843176586",
+          "templateKey":"case",
+          "eid":"47757585",
+          "query":"name like :arg1",
+          "query_params": { "arg1":"Case 5 - Train trouble"}
+      }
+     
+];
