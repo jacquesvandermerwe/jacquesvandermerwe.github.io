@@ -1,4 +1,4 @@
-var clientId="bn2iyg37p78jkowrp0io0nc2ln0be3wt";
+var clientId="oolt5to02ar8n0zqxbhfnizf4jjqw7st";
 
 //Main page
 var redirectAfterLoginPage="/template2.0/main.html";
@@ -14,7 +14,7 @@ var navigation=[
   {
       "page":"folder1.html",
       "title":"FOLDER 1",
-      "boxId":"75440175138"
+      "boxId":"0"
   },
   {
       "page":"folder3.html",
@@ -24,22 +24,22 @@ var navigation=[
   {
     "page":"tree_local.html",
     "title":"TREEVIEW",
-    "boxId":"0"
+    "boxId":"122447059412"
 },
   {
       "page":"preview1.html",
       "title":"PREVIEW 1",
-      "boxId":"666393650356"
+      "boxId":"717497630868"
   },
   {
       "page":"preview2.html",
       "title":"PREVIEW 2",
-      "boxId":"666393650356"
+      "boxId":"717497630868"
   },
   {
     "page":"sign.html",
     "title":"SIGN",
-    "boxId":"666393650356",
+    "boxId":"717497630868",
     "targetFolderId":"113511488301"
 },
   {
@@ -70,13 +70,13 @@ var navigation=[
       "fieldForFolderName":"caseid",
       "eid":"47757585"
   },
-  {"page":"map_folder.html","title":"MAP","boxId":"81642016647","latitude":51.152899277243236,"longitude":0.8391592693839822,"zoomLevel":10},
+  {"page":"map_folder.html","title":"MAP","boxId":"122446769212","latitude":51.152899277243236,"longitude":0.8391592693839822,"zoomLevel":10},
     {
           "page":"mdquery.html",
           "title":"QUERY",
           "boxId":"63843176586",
           "templateKey":"case",
-          "eid":"47757585",
+          "eid":"39176179",
           "query":"name like :arg1",
           "query_params": { "arg1":"Case 5 - Train trouble"}
       }
