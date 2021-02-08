@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-control" content="No-Cache">
+  <title>Box Platform - Template Application</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+  <script src="config.json"></script>
+  <script src="js/box.js"></script>
+  <!-- Latest version of the explorer css for your locale -->
+  <!-- Latest version of the picker js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/picker.js"></script>
+  <script>
+    var folderId = "130534119206";
+    var accessToken = "rygfiZVBnsZZQYysrtwwhD929x4CDBY6";
+    var filePicker = new Box.FilePicker();
+    filePicker.show(folderId, accessToken, {
+      container: ".container"
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container" style="height:90vh; width:95vw;"></div>
+
+</body>
+
+</html>
