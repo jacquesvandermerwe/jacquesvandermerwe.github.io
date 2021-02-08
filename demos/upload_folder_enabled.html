@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Box Content Uploader Demo</title>
+
+    <!-- polyfill.io only loads the polyfills your browser needs -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script> 
+    -->
+
+    <!-- Latest version of the uploader css for your locale -->
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/uploader.css"/>
+</head>
+
+<body>
+<div>2</div>
+<div class="container" style="height:95%; width:95;margin: 0;padding: 0;min-width: 320px;"></div>
+<!-- Latest version of the uploader js for your locale -->
+<script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/uploader.js"></script>
+<script>
+
+
+    var folderId = '75926857777';
+    var accessToken = 'AGzuq93WX0U1pcEr87BMbSjAYCQKdwyi';
+    var uploader = new Box.ContentUploader();
+
+    var renameFile = (config) => {
+        console.log(JSON.stringify(config));
+        if (config.method == 'options') {
+            //alert("Response:" + config.method + " Status:" + config.status);
+
+            var fileName =config.data.name.substring(0,config.data.name.lastIndexOf("."));
+            			var ext = config.data.name.substring(config.data.name.lastIndexOf(".")+1);
+            			var oldName=config.data.name;
+                //jsonRep.name = "My Custome Name " + (new Date().toISOString()) + "_." + ext;
+                //config.data.name = "My Custome Name_A." + ext;
+            config.data.name = fileName + "_" + Math.random() + "." + ext;
+            return config;
+        }
+        if (config.method == 'post') {
+            //add timestamp to name to mimic existing functionality
+            if (config.data.hasOwnProperty("attributes")) {
+                var jsonRep = JSON.parse(config.data.attributes);
+                var fileName = jsonRep.name.substring(0, jsonRep.name.lastIndexOf("."));
+                var ext = jsonRep.name.substring(jsonRep.name.lastIndexOf(".") + 1);
+                var oldName = jsonRep.name;
+                //jsonRep.name = "My Custome Name " + (new Date().toISOString()) + "_." + ext;
+                jsonRep.name = "My Custome Name_A." + ext;
+                var newAttributes = JSON.stringify(jsonRep);
+                config.data.attributes = newAttributes;
+                //console.log(config.url + " - replacing with:" + conflictsMap.get(oldName));
+                //var newURl = config.url.replace(conflictsMap.get(oldName) + "/","");
+                //config.url = newURl;
+            } else if (!config.data.hasOwnProperty("attributes")) {
+                config.data.name="My Folder";
+            }
+        }
+        return config;
+    };
+    var renameFile2 = (config) => {
+        console.log(config.method);
+        //config.name="test.png";
+        return config;
+
+    };
+
+    uploader.show(folderId, accessToken, {
+        container: '.container',
+        requestInterceptor: renameFile,
+        isFolderUploadEnabled: true,
+        isTouch: true
+    });
+</script>
+
+
+</body>
+
+</html>
