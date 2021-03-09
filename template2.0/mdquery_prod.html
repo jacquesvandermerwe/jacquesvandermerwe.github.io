@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-control" content="No-Cache">
+  <title>Box Platform - Template Application</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+  <script src="config.json"></script>
+  <script src="js/box.js"></script>
+  <!-- Alternatively, use polyfill hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
+    -->
+
+  <!-- Latest version of the explorer css for your locale -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/12.0.0/en-US/explorer.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="bdl-MetadataBasedItemList-cell" id="inputfilter"> <label for="fname">First name:</label>
+    <select id="filter">
+      <option value="OK" class="datalist-item select-option">OK</option>
+      <option value="AN" class="datalist-item select-option">AN</option>
+    </select></div>
+    <br>
+  <div class="container" style="height:90vh; width:100vw;"></div>
+  <!-- Latest version of the explorer js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/12.0.0/en-US/explorer.js"></script>
+  <script>
+    // $('select').on('change', function() {
+    //   alert( this.value );
+    // });
+    
+    var filtervalue = $( "#filter option:selected" ).text();
+    console.log(filtervalue);
+
+    $('select').on('change', function() {
+      alert( this.value );
+    });
+
+    var pageData = getPageData();
+    var boxId = pageData.boxId;
+    var contentExplorer = new Box.ContentExplorer();
+    getAccessToken().then(function (result) {
+      const mdQuery = {
+        from: "enterprise_"+pageData.eid + "." + pageData.templateKey,
+        fields: [
+        "name",
+        "size",
+        "description",
+        "created_by",
+        "metadata.enterprise_39176179.zboxLNrecords.reportNumber",
+        "metadata.enterprise_39176179.zboxLNrecords.clientName",
+        "metadata.enterprise_39176179.zboxLNrecords.itemStatus",
+        "metadata.enterprise_39176179.zboxLNrecords.authenticatedDate",
+    ],
+        query: pageData.query,
+        query_params:{
+          "arg1": filtervalue
+        },
+        ancestor_folder_id: boxId,
+        order_by: [
+            {
+              "field_key": "authenticatedDate",
+              "direction": "desc"
+            }
+          ]
+      };
+
+      // The metadata fields/columns to view - must be valid field names from the metadata template
+      const fieldsToShow = [
+      'size',
+      {key: 'created_by.login', canEdit: true, displayName: 'Created By'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.reportNumber', canEdit: true, displayName: 'Report Number'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.clientName', canEdit: false, displayName: 'Client Name'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.itemStatus', canEdit: true},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.authenticatedDate', canEdit: true},
+  ];
+
+  contentExplorer.addListener('select', function(data) {
+    console.log('%c==========Select===========', 'background: green; color: #fff');
+    console.log('%c' + JSON.stringify(data, null, 2), 'background: green; color: #fff');
+    console.log('%c==========Select===========', 'background: green; color: #fff');
+});
+contentExplorer.addListener('navigate', function(data) {
+  console.log('%c==========Navigate===========', 'background: pink; color: #fff');
+  console.log('%c' + JSON.stringify(data, null, 2), 'background: pink; color: #fff');
+  console.log('%c==========Navigate===========', 'background: pink; color: #fff');
+});
+      const defaultView = "metadata";
+      contentExplorer.show(boxId, result, {
+        container: '.container',
+        metadataQuery: mdQuery,
+        fieldsToShow: fieldsToShow,
+        defaultView: defaultView,
+        contentPreviewProps: {
+          contentSidebarProps: {
+              detailsSidebarProps: {
+                  hasNotices: true,
+                  hasProperties: true,
+                  hasAccessStats: true,
+                  hasVersions: true
+              },
+              hasActivityFeed: true,
+              hasSkills: true,
+              hasMetadata: true
+          }
+      }
+      });
+    });
+
+
+  </script>
+</body>
+
+</html>

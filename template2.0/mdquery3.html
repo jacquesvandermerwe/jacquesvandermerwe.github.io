@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-control" content="No-Cache">
+  <title>Box Platform - Template Application</title>
+  <!-- polyfill.io only loads the polyfills your browser needs -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
+    <!-- Latest version of the explorer css for your locale -->
+  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/12.0.0/en-US/explorer.css" />
+  <body>
+  <div class="container" style="height:90vh; width:100vw;"></div>
+  <!-- Latest version of the explorer js for your locale -->
+  <script src="https://cdn01.boxcdn.net/platform/elements/12.0.0/en-US/explorer.js"></script>
+  <script>
+    var contentExplorer = new Box.ContentExplorer();
+
+      const mdQuery = {
+        from: "enterprise_39176179.zboxLNrecords",
+        fields: [
+        "name",
+        "size",
+        "description",
+        "created_by",
+        "metadata.enterprise_39176179.zboxLNrecords.reportNumber",
+        "metadata.enterprise_39176179.zboxLNrecords.clientName",
+        "metadata.enterprise_39176179.zboxLNrecords.itemStatus",
+        "metadata.enterprise_39176179.zboxLNrecords.authenticatedDate",
+    ],
+        query: "itemStatus = :arg1",
+        query_params:{
+      "arg1": "OK"
+    },
+        ancestor_folder_id: "0",
+        order_by: [
+            {
+              "field_key": "authenticatedDate",
+              "direction": "desc"
+            }
+          ]
+      };
+
+      // The metadata fields/columns to view - must be valid field names from the metadata template
+      const fieldsToShow = [
+      'size',
+      {key: 'created_by.login', canEdit: true, displayName: 'Created By'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.reportNumber', canEdit: true, displayName: 'Report Number'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.clientName', canEdit: false, displayName: 'Client Name'},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.itemStatus', canEdit: true},
+      {key: 'metadata.enterprise_39176179.zboxLNrecords.authenticatedDate', canEdit: true},
+  ];
+      const defaultView = "metadata";
+      contentExplorer.show("0", "QG49xN7lfQRKLxfXRzFoUaoHZxQVZOIS", {
+        container: '.container',
+        metadataQuery: mdQuery,
+        fieldsToShow: fieldsToShow,
+        defaultView: defaultView,
+        contentPreviewProps: {
+          contentSidebarProps: {
+              detailsSidebarProps: {
+                  hasNotices: true,
+                  hasProperties: true,
+                  hasAccessStats: true,
+                  hasVersions: true
+              },
+              hasActivityFeed: true,
+              hasSkills: true,
+              hasMetadata: true
+          }
+      }
+      });
+
+
+
+  </script>
+</body>
+
+</html>

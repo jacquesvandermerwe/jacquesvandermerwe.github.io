@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>Box Platform - Template Application - Preview</title>
+
+    <!-- polyfill.io only loads the polyfills your browser needs -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
+    <!-- Alternatively, use polyfills hosted on the Box CDN
+    <script src="https://cdn01.boxcdn.net/polyfills/bluebird/3.5.1/bluebird.min.js"></script>
+    -->
+
+    <!-- Latest version of Box Content Preview for en-US locale -->
+    <script src="https://cdn01.boxcdn.net/platform/preview/2.51.0/en-US/preview.js"></script>
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/2.51.0/en-US/preview.css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</head>
+<body>
+    <div class="preview-container" style="height:90vh; width:100vw; align=center;"></div>
+    <script>
+
+
+        var preview = new Box.Preview();
+        var token ='1!WOWHYW90MBOq5GqXg2tc37BLwQv7W6654u_pXnWbYAxZ3kwd3iMZNnKxqda3OkhQjV6PaLVy9rrzjn4LnEBaJAZf7JoNar48NxCEIBd8S-CptEsKnC_lh4ZpAsII0b3UOdSeUQ6mnVqgj7YUG3pkoumHI5wA-XlRZVm0jAw7OVOfrcAWVE8JND0Rbo2rycrOQUyO2s9a03BGjgzDQUtIE_XUTIK4g3UqD-T2i39WKAtTvm9KAg1b50y8GY7wuV3XVTQlehAhqhvVuCtOvYqgv8pX-xyoT5tmPzhVL7JAhG49WzS99ptCOUCEiEmOF0cYX7IkeFTputUxXW5-W6YpT6y5H3IqWLaGXnZgAiKsR5fIOoewCIAYPuxp3vjF4LXcgjUDsxzovpihnN_oufWCC2bST_o4FgQeYMAhWdLAlNKE0bA_dSmPqgtppOXp5RgJKi0dqClOVJ-y-3NbA6hIray0Uj0tYII3OqxRA1-1SvTwE-afpOB2_JQGQs2OJIylCWBU6mq_AWKdyQ..';
+
+          preview.show('577962165719', token, {
+            container: '.preview-container',
+            showDownload:true,
+            showAnnotations:true,
+            viewers :{
+                Document :{
+                  annotations: {
+                    enabled:true,
+                    enabledTypes: [
+                    "draw",
+                    "highlight",
+                    "highlight-comment",
+                    "point"
+                ]
+                  }
+                },
+                Image :{
+                  annotations: {
+                    enabled:true,
+                    enabledTypes: [
+                    "draw",
+                    "point"
+                ]
+                  }
+                }
+              }
+
+        });
+
+    </script>
+</body>
+</html>
