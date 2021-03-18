@@ -26,8 +26,8 @@
             var grefreshToken = "";
             var gauthCode = ""
             var guserID = ""
-            var clientId = "zjuj2cztvt2mcd04ssv4jq2bqji520q7";
-            var clientSecret = "afYyoZFQheJ3zDIoM5V9bBtR7oGVK2Q0"
+            var clientId = "6sjr78bmcic5cn0yvqmdh9z2kpftyycq";
+            var clientSecret = "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc"
             var entries = params.entries();
             for (pair of entries) {
                 $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
@@ -40,24 +40,27 @@
             $("#userId").val(guserID);
             // Getting the Access Token
             var form = new FormData();
-            form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
-            form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
+            form.append("client_id", clientId);
+            form.append("client_secret", clientSecret);
             form.append("grant_type", "client_credentials");
             form.append("box_subject_type", "user");
-            form.append("box_subject_id", "15341847926");
+            form.append("box_subject_id", guserID);
 
             var settings = {
-                "async": false,
-                "crossDomain": true,
                 "url": "https://api.box.com/oauth2/token",
                 "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
                 "processData": false,
-                "contentType": false,
                 "mimeType": "multipart/form-data",
+                "contentType": false,
                 "data": form
-            }
+            };
 
             $.ajax(settings).done(function (response) {
+                console.log(response);åå
                 var obj = JSON.parse(response);
                 //Completed Getting Access Token
 
