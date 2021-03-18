@@ -61,7 +61,7 @@
                 grefreshToken = obj.refresh_token;
                 gfileId = params.get("file_id");
                 $("#refreshToken").val(obj.refresh_token);
-                $("#accessToken").val(obj.access_token);
+                $("#accessTokenOAuth2").val(obj.access_token);
                 $("#fileId").val(gfileId);
                 $("#test").append(response + "<br/>");
 
@@ -399,7 +399,7 @@
     <tr>
         <td>Access Token</td>
         <td>
-            <input type="text" id="accessToken" name="accessToken" value="" width="100%">
+            <input type="text" id="accessTokenOAuth2" name="accessTokenOAuth2" value="" width="100%">
         </td>
     </tr>
 
