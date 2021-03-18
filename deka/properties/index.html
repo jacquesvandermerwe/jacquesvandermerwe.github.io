@@ -17,6 +17,7 @@
         let items = new Map()
         let accessToken = "";
         let propertyName = "";
+        let boxEID = "789106550";
         $(document).ready(function () {
 
 
@@ -144,7 +145,7 @@
                     "Authorization": "Bearer " + accessToken,
                     "Content-Type": "application/json"
                 },
-                "data": "{\"folder_id\":\"" + folderId + "\",\"scope\":\"enterprise_"+ boxEID + "\",\"templateKey\":\"propertyInformation\"}",
+                "data": "{\"folder_id\":\"" + folderId + "\",\"scope\":\"enterprise_" + boxEID + "\",\"templateKey\":\"propertyInformation\"}",
             };
 
             $.ajax(settings).done(function (response) {
