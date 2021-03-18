@@ -40,19 +40,17 @@
             $("#userId").val(guserID);
             // Getting the Access Token
             var form = new FormData();
-            form.append("client_id", clientId);
-            form.append("client_secret", clientSecret);
+            form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
+            form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
             form.append("grant_type", "client_credentials");
             form.append("box_subject_type", "user");
-            form.append("box_subject_id", guserID);
+            form.append("box_subject_id", "15341847926");
 
             var settings = {
+                "async": false,
                 "url": "https://api.box.com/oauth2/token",
                 "method": "POST",
                 "timeout": 0,
-                "headers": {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
                 "processData": false,
                 "mimeType": "multipart/form-data",
                 "contentType": false,
@@ -60,6 +58,10 @@
             };
 
             $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+ /*           $.ajax(settings).done(function (response) {
                 console.log('Access Token ' + response);
                 var obj = JSON.parse(response);
                 //Completed Getting Access Token
@@ -73,7 +75,7 @@
                 $("#fileId").val(gfileId);
                 $("#test").append(response + "<br/>");
 
-            });
+            });*/
 
 
             //End Get Access Token for User
