@@ -13,28 +13,34 @@
     <!--    <script src="http://www.json.org/json.js"></script>-->
     <script src="jsonpath.js"></script>
     <script>
+        var params = new URLSearchParams(window.location.search);
         let items = new Map()
         let accessToken = "";
         let propertyName = "";
         $(document).ready(function () {
+
 
             //Get Access Token for User
             var gaccessToken = "";
             var gfileId = "";
             var grefreshToken = "";
             var gauthCode = ""
+            var clientId = "bwjq59bixmyh88rzkf776bic5khv193h";
+            var clientSecret = "3GF1SeVzcnBIJymLpAbEFTgYiKH9Hc2v"
             var entries = params.entries();
             for (pair of entries) {
                 $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
             }
-            gauthCode = params.get("MessageAttribute.3.Value.StringValue");
+            gauthCode = params.get("auth_code");
             $("#authCode").val(gauthCode);
+            $("#clientId").val(clientId);
+            $("#clientSecret").val(clientSecret);
             // Getting the Access Token
             var form = new FormData();
             form.append("grant_type", "authorization_code");
             form.append("code", gauthCode);
-            form.append("client_id", "bwjq59bixmyh88rzkf776bic5khv193h");
-            form.append("client_secret", "3GF1SeVzcnBIJymLpAbEFTgYiKH9Hc2v");
+            form.append("client_id", clientId);
+            form.append("client_secret", clientSecret);
 
             var settings = {
                 "async": false,
@@ -53,13 +59,14 @@
 
                 gaccessToken = obj.access_token;
                 grefreshToken = obj.refresh_token;
-                gfileId = params.get("MessageAttribute.1.Value.StringValue");
+                gfileId = params.get("file_id");
                 $("#refreshToken").val(obj.refresh_token);
                 $("#accessToken").val(obj.access_token);
                 $("#fileId").val(gfileId);
                 $("#test").append(response + "<br/>");
 
             });
+
 
             //End Get Access Token for User
 
@@ -74,22 +81,22 @@
             $("#status").text(status);
         }
 
-        function copyFolder(name, accessToken) {
+        function copyFolder(name, accessToken, sourceID, targetID) {
             updateStatus("Copying Folder Template");
-            var templateID = $("#standard-select").val();
+
 
             //Copy the Folder
             var responseCall;
             var datename = new Date();
             var settings = {
-                "url": "https://api.box.com/2.0/folders/" + templateID + "/copy",
+                "url": "https://api.box.com/2.0/folders/" + sourceID + "/copy",
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
                     "Authorization": "Bearer " + accessToken,
                     "Content-Type": "text/plain"
                 },
-                "data": "{\"parent\": {\"id\" : 132611360794}, \"name\":\"" + name + " " + datename + "\"}",
+                "data": "{\"parent\": {\"id\" : "+ targetID + "}, \"name\":\"" + name + " " + datename + "\"}",
             };
 
             /*            $.ajax(settings).done(function (response) {
@@ -213,8 +220,15 @@
                 accessToken = $('#accessToken').val();
                 //alert(country + " " + property +" " + transaction_id);
                 $("button").prop('disabled', true);
-                const responseCopy = await copyFolder(country + " " + property + " " + transaction_id, accessToken);
-                console.log(responseCopy);
+                //Copy Main Folder
+                var templateID = $("#standard-select").val();
+                var templateDestinationID = $("#standard-select-destination").val();
+                const responseCopy = await copyFolder(country + " " + property + " " + transaction_id, accessToken,templateID,templateDestinationID);
+                //Copy ASM Root Folder
+                var ASMTemplateID = "133274643439";
+                var ASMTemplateDestinationID = "132611360794";
+                const responseASMCopy = await copyFolder(country + " " + property + " " + transaction_id, accessToken,ASMTemplateID,ASMTemplateDestinationID);
+                console.log(responseASMCopy);
                 const res2 = await getUser(accessToken);
                 console.log(res2);
                 const res3 = await getFolderItems(responseCopy.id, accessToken);
@@ -278,10 +292,24 @@
             <div class="text-input-description">Select Template Type to use</div>
             <div class="select">
                 <select id="standard-select">
-                    <option value="132755923667">Deka International</option>
-                    <option value="132755923667">Deka Europe</option>
-                    <option value="132755923667">Deka Germany</option>
-                    <option value="132755923667">Deka Generic</option>
+                    <option value="133275513283">Deka International</option>
+                    <option value="133275513283">Deka Europe</option>
+                    <option value="133275513283">Deka Germany</option>
+                    <option value="133275513283">Deka Logistik</option>
+                </select></div>
+        </label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label bdl-ReadOnlyMetadataField"><span>Template Destination</span></span>
+            <div class="text-input-description">Select Template Destination</div>
+            <div class="select">
+                <select id="standard-select-destination">
+                    <option value="133202986333">Deka International</option>
+                    <option value="133201738166">Deka Europe</option>
+                    <option value="133202261374">Deka Germany</option>
+                    <option value="133202156628">Deka Logistik</option>
                 </select></div>
         </label></td>
         <td>&nbsp;</td>
@@ -336,6 +364,24 @@
     </tr>
     </thead>
     <tbody>
+    <tr>
+        <td>Client id</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="clientId" name="clientId" value="">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>Client Secret</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="clientSecret" name="clientSecret" value="">
+            </div>
+
+        </td>
+    </tr>
     <tr>
         <td>Authentication Code</td>
         <td>
