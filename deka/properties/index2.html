@@ -25,7 +25,6 @@
             var gfileId = "";
             var grefreshToken = "";
             var gauthCode = ""
-            var guserID = ""
             var clientId = "zjuj2cztvt2mcd04ssv4jq2bqji520q7";
             var clientSecret = "afYyoZFQheJ3zDIoM5V9bBtR7oGVK2Q0"
             var entries = params.entries();
@@ -33,18 +32,15 @@
                 $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
             }
             gauthCode = params.get("auth_code");
-            guserID= params.get("user_id");
             $("#authCode").val(gauthCode);
             $("#clientId").val(clientId);
             $("#clientSecret").val(clientSecret);
-            $("#userId").val(guserID);
             // Getting the Access Token
             var form = new FormData();
-            form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
-            form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
-            form.append("grant_type", "client_credentials");
-            form.append("box_subject_type", "user");
-            form.append("box_subject_id", "15341847926");
+            form.append("grant_type", "authorization_code");
+            form.append("code", gauthCode);
+            form.append("client_id", clientId);
+            form.append("client_secret", clientSecret);
 
             var settings = {
                 "async": false,
@@ -392,15 +388,6 @@
         <td>
             <div class="md-form">
                 <input type="text" id="authCode" name="authCode" value="">
-            </div>
-
-        </td>
-    </tr>
-    <tr>
-        <td>User ID</td>
-        <td>
-            <div class="md-form">
-                <input type="text" id="userId" name="userId" value="">
             </div>
 
         </td>
