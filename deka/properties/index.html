@@ -44,7 +44,7 @@
             form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
             form.append("grant_type", "client_credentials");
             form.append("box_subject_type", "user");
-            form.append("box_subject_id", "15341847926");
+            form.append("box_subject_id", guserID);
 
             var settings = {
                 "async": false,
@@ -59,6 +59,15 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
+                var obj = JSON.parse(response);
+                gaccessToken = obj.access_token;
+                grefreshToken = obj.refresh_token;
+                gfileId = params.get("file_id");
+
+                $("#accessTokenOAuth2").val(obj.access_token);
+                $("#accessToken").val(obj.access_token);
+                $("#fileId").val(gfileId);
+                $("#test").append(response + "<br/>");
             });
 
  /*           $.ajax(settings).done(function (response) {
