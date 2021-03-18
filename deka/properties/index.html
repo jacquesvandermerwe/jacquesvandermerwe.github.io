@@ -24,10 +24,11 @@
             var gaccessToken = "";
             var gfileId = "";
             var grefreshToken = "";
-            var gauthCode = ""
-            var guserID = ""
+            var gauthCode = "";
+            var guserID = "";
             var clientId = "6sjr78bmcic5cn0yvqmdh9z2kpftyycq";
-            var clientSecret = "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc"
+            var clientSecret = "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc";
+            var boxEID = "789106550";
             var entries = params.entries();
             for (pair of entries) {
                 $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
@@ -127,10 +128,30 @@
                 .then(function (response) {
                     updateStatus("Completed Folder Template Copy");
                     console.log("copyFolder response: " + JSON.stringify(response));
+                    setFolderMetadata(accessToken,response.id);
+
                     return response;
                 });
 
         };
+
+        function setFolderMetadata(accessToken,folderId) {
+            var settings = {
+                "url": "https://api.box.com/2.0/metadata_cascade_policies",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer " + accessToken,
+                    "Content-Type": "application/json"
+                },
+                "data": "{\"folder_id\":\"" + folderId + "\",\"scope\":\"enterprise_"+ boxEID + "\",\"templateKey\":\"propertyInformation\"}",
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log("Cascade Template" + response);
+            });
+
+        }
 
         function getUser(accessToken) {
             updateStatus("Getting User");
