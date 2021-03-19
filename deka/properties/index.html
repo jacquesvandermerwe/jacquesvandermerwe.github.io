@@ -139,7 +139,7 @@
 
         };
 
-        async function setFolderMetadata(accessToken, folderId) {
+        function setFolderMetadata(accessToken, folderId) {
             var settings = {
                 "url": "https://api.box.com/2.0/metadata_cascade_policies",
                 "method": "POST",
@@ -320,6 +320,8 @@
                 console.log(res2);
                 const res3 = await getFolderItems(responseCopy.id, accessToken);
                 console.log(res3);
+                const res5 = await setFolderMetadata(accessToken,copiedFolderId);
+                console.log(res5);
                 const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
                 console.log(res4);
                 await updateStatus("Completed")
@@ -503,7 +505,7 @@
 
     </tr>
     <tr>
-        <td>Refresh Token</td>
+        <td>Refresh Token1</td>
         <td>
             <input type="text" id="refreshToken" name="refreshToken" value="" width="100%">
         </td>
