@@ -20,6 +20,7 @@
         let country = '';
         let property = '';
         let transaction_id = '';
+        let metadata_cascade_policy_id = '';
         let boxEID = "789106550";
         $(document).ready(function () {
 
@@ -153,6 +154,8 @@
 
             $.ajax(settings).done(function (response) {
                 console.log("Cascade Template" + response);
+                metadata_cascade_policy_id = response.id;
+                alert(metadata_cascade_policy_id);
             });
 
             var settingsMetadataUpdate = {
@@ -271,6 +274,25 @@
             }
         }
 
+        async function forceApplyMetadataValues(metadata_cascade_policy_id, accessToken) {
+
+            var settings = {
+                "url": "https://api.box.com/2.0/metadata_cascade_policies/"+ metadata_cascade_policy_id + "/apply",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + accessToken
+                },
+                "data": JSON.stringify({"conflict_resolution":"overwrite"}),
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log("Force Apply:" + response);
+            });
+
+        }
+
         async function createTemplateStructure() {
             try {
                 country = $('#country').val();
@@ -293,6 +315,8 @@
                 console.log(res2);
                 const res3 = await getFolderItems(responseCopy.id, accessToken);
                 console.log(res3);
+                const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
+                console.log(res4);
                 await updateStatus("Completed")
                 $("button").prop('disabled', false);
             } catch (err) {
@@ -474,7 +498,7 @@
 
     </tr>
     <tr>
-        <td>Refresh Token22</td>
+        <td>Refresh Token23</td>
         <td>
             <input type="text" id="refreshToken" name="refreshToken" value="" width="100%">
         </td>
