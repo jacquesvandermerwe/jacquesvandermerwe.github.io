@@ -21,6 +21,7 @@
         let property = '';
         let transaction_id = '';
         let metadata_cascade_policy_id = '';
+        let copiedFolderId='';
         let boxEID = "789106550";
         $(document).ready(function () {
 
@@ -108,8 +109,6 @@
 
         function copyFolder(name, accessToken, sourceID, targetID) {
             updateStatus("Copying Folder Template");
-
-
             //Copy the Folder
             var responseCall;
             var datename = new Date();
@@ -133,14 +132,14 @@
                 .then(function (response) {
                     updateStatus("Completed Folder Template Copy");
                     console.log("copyFolder response: " + JSON.stringify(response));
-                    setFolderMetadata(accessToken,response.id);
-
+                    copiedFolderId = response.id;
                     return response;
                 });
 
+
         };
 
-        function setFolderMetadata(accessToken,folderId) {
+        async function setFolderMetadata(accessToken, folderId) {
             var settings = {
                 "url": "https://api.box.com/2.0/metadata_cascade_policies",
                 "method": "POST",
@@ -159,20 +158,26 @@
             });
 
             var settingsMetadataUpdate = {
-                "url": "https://api.box.com/2.0/folders/"+ folderId + "/metadata/enterprise_"+ boxEID + "/propertyInformation",
+                "url": "https://api.box.com/2.0/folders/" + folderId + "/metadata/enterprise_" + boxEID + "/propertyInformation",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
                     "Authorization": "Bearer " + accessToken,
                     "Content-Type": "application/json-patch+json"
                 },
-                "data": JSON.stringify([{"op":"replace","path":"/country","value": country},{"op":"replace","path":"/place","value": property},{"op":"replace","path":"/transactionId","value": transaction_id}]),
+                "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country}, {
+                    "op": "replace",
+                    "path": "/place",
+                    "value": property
+                }, {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
             };
 
             $.ajax(settingsMetadataUpdate).done(function (response) {
                 console.log("Metadata Update" + response);
             });
 
+            const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
+            console.log(res4);
 
         }
 
@@ -274,7 +279,7 @@
             }
         }
 
-        async function forceApplyMetadataValues(metadata_cascade_policy_id, accessToken) {
+        function forceApplyMetadataValues(metadata_cascade_policy_id, accessToken) {
 
             var settings = {
                 "url": "https://api.box.com/2.0/metadata_cascade_policies/"+ metadata_cascade_policy_id + "/apply",
