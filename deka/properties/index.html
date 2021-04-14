@@ -18,8 +18,9 @@
         let accessToken = "";
         let propertyName = "";
         let country = '';
-        let property = '';
+        let property_location = '';
         let transaction_id = '';
+        let property_name = '';
         let metadata_cascade_policy_id = '';
         let copiedFolderId='';
         let boxEID = "789106550";
@@ -175,7 +176,7 @@
             $.ajax(settingsMetadataUpdate).done(function (response) {
                 console.log("Metadata Update" + response);
             });
-            
+
 
         }
 
@@ -221,6 +222,11 @@
 
         function renameFileItems(fileId, fileName, accessToken) {
             updateStatus("Renaming Item:File ID:" + fileId);
+            fileName=fileName.replaceAll('$$country$$',country);
+            fileName=fileName.replaceAll('$$property_location$$',property_location);
+            fileName=fileName.replaceAll('$$transaction_id$$',transaction_id);
+            fileName=fileName.replaceAll('$$object_name$$',property_name);
+            fileName=fileName.replaceAll('$$name$$', propertyName)
             if (fileName.indexOf("$$name$$") >= 0) {
                 var settings = {
                     "url": "https://api.box.com/2.0/files/" + fileId,
@@ -230,7 +236,7 @@
                         "Authorization": "Bearer " + accessToken,
                         "Content-Type": "application/json"
                     },
-                    "data": JSON.stringify({"name": fileName.replaceAll('$$name$$', propertyName)}),
+                    "data": JSON.stringify({"name": fileName}),
                 };
 
                 return $.ajax(settings)
@@ -243,6 +249,12 @@
 
         function renameFolderItems(folderId, folderName, accessToken) {
             updateStatus("Renaming Item:Folder ID:" + folderId);
+            folderName=folderName.replaceAll('$$country$$',country);
+            folderName=folderName.replaceAll('$$property_location$$',property_location);
+            folderName=folderName.replaceAll('$$transaction_id$$',transaction_id);
+            folderName=folderName.replaceAll('$$object_name$$',property_name);
+            folderName=folderName.replaceAll('$$name$$', propertyName)
+
             if (folderName.indexOf("$$name$$") >= 0) {
                 var settings = {
                     "url": "https://api.box.com/2.0/folders/" + folderId,
@@ -252,7 +264,7 @@
                         "Authorization": "Bearer " + accessToken,
                         "Content-Type": "application/json"
                     },
-                    "data": JSON.stringify({"name": folderName.replaceAll('$$name$$', propertyName)}),
+                    "data": JSON.stringify({"name": folderName}),
                 };
 
                 return $.ajax(settings)
@@ -299,21 +311,32 @@
         async function createTemplateStructure() {
             try {
                 country = $('#country').val();
-                property = $('#property').val();
+                property_location = $('#property_location').val();
                 transaction_id = $('#transaction_id').val();
-                propertyName = country + " " + property + " " + transaction_id;
+                property_name = $('#property_name').val();
+                propertyName = country + " " + property_location + " " + property_name + " " + transaction_id;
                 accessToken = $('#accessToken').val();
                 //alert(country + " " + property +" " + transaction_id);
                 $("button").prop('disabled', true);
                 //Copy Main Folder
                 var templateID = $("#standard-select").val();
                 var templateDestinationID = $("#standard-select-destination").val();
-                const responseCopy = await copyFolder(country + " " + property + " " + transaction_id, accessToken,templateID,templateDestinationID);
+                const responseCopy = await copyFolder(propertyName = " Acquisitions", accessToken,templateID,templateDestinationID);
                 //Copy ASM Root Folder
-                var ASMTemplateID = "133274643439";
-                var ASMTemplateDestinationID = "132611360794";
-                const responseASMCopy = await copyFolder(country + " " + property + " " + transaction_id, accessToken,ASMTemplateID,ASMTemplateDestinationID);
+                var ASMTemplateID = "135528955646";
+                var ASMTemplateDestinationID = "135529242974";
+                const responseASMCopy = await copyFolder(propertyName + " ASM", accessToken,ASMTemplateID,ASMTemplateDestinationID);
                 console.log(responseASMCopy);
+                //Copy DataRoom Root Folder
+                var DataRoomTemplateID = "135528953246";
+                var DataRoomTemplateDestinationID = "135528627708";
+                const responseDataRoomCopy = await copyFolder(propertyName + " Data Room", accessToken,DataRoomTemplateID,DataRoomTemplateDestinationID);
+                console.log(responseDataRoomCopy);
+                //Copy MigrationDMS Root Folder
+                var MigrationDMSTemplateID = "135528954446";
+                var MigrationDMSTemplateDestinationID = "135528850774";
+                const responseMigrationDMSCopy = await copyFolder(propertyName + " Migration DMS", accessToken,MigrationDMSTemplateID,MigrationDMSTemplateDestinationID);
+                console.log(responseMigrationDMSCopy);
                 const res2 = await getUser(accessToken);
                 console.log(res2);
                 const res3 = await getFolderItems(responseCopy.id, accessToken);
@@ -381,10 +404,10 @@
             <div class="text-input-description">Select Template Type to use</div>
             <div class="select">
                 <select id="standard-select">
-                    <option value="133275513283">Deka International</option>
-                    <option value="133275513283">Deka Europe</option>
-                    <option value="133275513283">Deka Germany</option>
-                    <option value="133275513283">Deka Logistik</option>
+                    <option value="135528952046">Deka International</option>
+                    <option value="135528952046">Deka Europe</option>
+                    <option value="135528952046">Deka Germany</option>
+                    <option value="135528952046">Deka Logistik</option>
                 </select></div>
         </label></td>
         <td>&nbsp;</td>
@@ -395,10 +418,10 @@
             <div class="text-input-description">Select Template Destination</div>
             <div class="select">
                 <select id="standard-select-destination">
-                    <option value="133202986333">Deka International</option>
-                    <option value="133201738166">Deka Europe</option>
-                    <option value="133202261374">Deka Germany</option>
-                    <option value="133202156628">Deka Logistik</option>
+                    <option value="135528948446">Deka International</option>
+                    <option value="135528950846">Deka Europe</option>
+                    <option value="135528947246">Deka Germany</option>
+                    <option value="135528949646">Deka Spezialisten</option>
                 </select></div>
         </label></td>
         <td>&nbsp;</td>
@@ -415,8 +438,17 @@
     <tr>
         <td>&nbsp;</td>
         <td><label><span class="label bdl-Label"><span>Property</span></span>
-            <div class="text-input-description">Property Location</div>
-            <input aria-invalid="false" id="property" name="textinput" placeholder="Enter property information"
+            <div class="text-input-description">Property Location (City)</div>
+            <input aria-invalid="false" id="property_location" name="textinput" placeholder="Enter property information"
+                   type="text"
+                   value="HAMBURG"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span>Property</span></span>
+            <div class="text-input-description">Property Name</div>
+            <input aria-invalid="false" id="property_name" name="textinput" placeholder="Enter property information"
                    type="text"
                    value="HAMBURG"></label></td>
         <td>&nbsp;</td>
@@ -438,7 +470,7 @@
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td><label><span class="label bdl-Label"><span id="status">Status</span></span></td>
+        <td><label><span class="label bdl-Label"><span id="status">Status</span></span></label></td>
         <td>&nbsp;</td>
     </tr>
 
