@@ -121,7 +121,7 @@
                     "Authorization": "Bearer " + accessToken,
                     "Content-Type": "text/plain"
                 },
-                "data": "{\"parent\": {\"id\" : "+ targetID + "}, \"name\":\"" + name + " " + datename + "\"}",
+                "data": "{\"parent\": {\"id\" : "+ targetID + "}, \"name\":\"" + name + " " + datename.toISOString() + "\"}",
             };
 
             /*            $.ajax(settings).done(function (response) {
@@ -324,7 +324,7 @@
                 const responseCopy = await copyFolder(propertyName + " Acquisitions", accessToken,templateID,templateDestinationID);
                 //Copy ASM Root Folder
                 var ASMTemplateID = "135528955646";
-                var ASMTemplateDestinationID = "135529242974";
+                var ASMTemplateDestinationID = "135532870566";
                 const responseASMCopy = await copyFolder(propertyName + " ASM", accessToken,ASMTemplateID,ASMTemplateDestinationID);
                 console.log(responseASMCopy);
                 //Copy DataRoom Root Folder
