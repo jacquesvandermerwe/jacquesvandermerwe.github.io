@@ -176,6 +176,7 @@
                 $.ajax(settingsMetadataUpdate).done(function (response) {
                     console.log("Metadata Update" + response);
                 });
+                return response;
 
             });
 
@@ -347,6 +348,7 @@
                 console.log(res3);
                 const res5 = await setFolderMetadata(accessToken,copiedFolderIdAcquisition);
                 console.log(res5);
+                setTimeout(() => {  console.log("Pause!"); }, 2000);
                 const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
                 console.log(res4);
                 await updateStatus("Completed")
