@@ -156,25 +156,27 @@
                 console.log("Cascade Template" + response);
                 metadata_cascade_policy_id = response.id;
                 alert(metadata_cascade_policy_id);
+
+                var settingsMetadataUpdate = {
+                    "url": "https://api.box.com/2.0/folders/" + folderId + "/metadata/enterprise_" + boxEID + "/propertyInformation",
+                    "method": "PUT",
+                    "timeout": 0,
+                    "headers": {
+                        "Authorization": "Bearer " + accessToken,
+                        "Content-Type": "application/json-patch+json"
+                    },
+                    "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country},
+                        {"op": "replace","path": "/place","value": property_name},
+                        {"op": "replace","path": "/city","value": property_location},
+                        {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
+                };
+
+                $.ajax(settingsMetadataUpdate).done(function (response) {
+                    console.log("Metadata Update" + response);
+                });
+
             });
 
-            var settingsMetadataUpdate = {
-                "url": "https://api.box.com/2.0/folders/" + folderId + "/metadata/enterprise_" + boxEID + "/propertyInformation",
-                "method": "PUT",
-                "timeout": 0,
-                "headers": {
-                    "Authorization": "Bearer " + accessToken,
-                    "Content-Type": "application/json-patch+json"
-                },
-                "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country},
-                    {"op": "replace","path": "/place","value": property_name},
-                    {"op": "replace","path": "/city","value": property_location},
-                    {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
-            };
-
-            $.ajax(settingsMetadataUpdate).done(function (response) {
-                console.log("Metadata Update" + response);
-            });
 
 
         }
