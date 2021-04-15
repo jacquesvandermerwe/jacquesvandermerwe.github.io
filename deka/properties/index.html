@@ -153,10 +153,8 @@
             };
 
 
-            $.ajax(settings).error(function (response) {
-                console.log(response);
-            });
-            $.ajax(settings).done(function (response) {
+
+            $.ajax(settings).always(function (response) {
                 console.log("Cascade Template" + response);
                 metadata_cascade_policy_id = response.id;
                 alert(metadata_cascade_policy_id);
