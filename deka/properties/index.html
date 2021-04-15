@@ -155,7 +155,7 @@
 
             $.ajax(settings).error(function (response) {
                 console.log(response);
-            };
+            });
             $.ajax(settings).done(function (response) {
                 console.log("Cascade Template" + response);
                 metadata_cascade_policy_id = response.id;
