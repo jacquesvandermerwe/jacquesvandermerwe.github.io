@@ -173,8 +173,23 @@
                         {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
                 };
 
-                $.ajax(settingsMetadataUpdate).done(function (response) {
+                $.ajax(settingsMetadataUpdate).always(function (response) {
                     console.log("Metadata Update" + response);
+                    var settings = {
+                        "url": "https://api.box.com/2.0/metadata_cascade_policies/"+ metadata_cascade_policy_id + "/apply",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + accessToken
+                        },
+                        "data": JSON.stringify({"conflict_resolution":"overwrite"}),
+                    };
+
+                    $.ajax(settings).always(function (response) {
+                        console.log("Force Apply:" + response);
+                    });
+
                 });
                 return response;
 
@@ -306,7 +321,7 @@
                 "data": JSON.stringify({"conflict_resolution":"overwrite"}),
             };
 
-            $.ajax(settings).done(function (response) {
+            $.ajax(settings).always(function (response) {
                 console.log("Force Apply:" + response);
             });
 
