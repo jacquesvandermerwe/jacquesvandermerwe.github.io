@@ -321,7 +321,7 @@
                 //Copy Main Folder
                 var templateID = $("#standard-select").val();
                 var templateDestinationID = $("#standard-select-destination").val();
-                const responseCopy = await copyFolder(propertyName = " Acquisitions", accessToken,templateID,templateDestinationID);
+                const responseCopy = await copyFolder(propertyName + " Acquisitions", accessToken,templateID,templateDestinationID);
                 //Copy ASM Root Folder
                 var ASMTemplateID = "135528955646";
                 var ASMTemplateDestinationID = "135529242974";
