@@ -157,7 +157,7 @@
             $.ajax(settings).always(function (response) {
                 console.log("Cascade Template" + response);
                 metadata_cascade_policy_id = response.id;
-                alert(metadata_cascade_policy_id);
+                //alert(metadata_cascade_policy_id);
 
                 var settingsMetadataUpdate = {
                     "url": "https://api.box.com/2.0/folders/" + folderId + "/metadata/enterprise_" + boxEID + "/propertyInformation",
