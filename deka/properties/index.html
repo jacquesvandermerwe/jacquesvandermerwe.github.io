@@ -322,6 +322,7 @@
                 var templateID = $("#standard-select").val();
                 var templateDestinationID = $("#standard-select-destination").val();
                 const responseCopy = await copyFolder(propertyName + " Acquisitions", accessToken,templateID,templateDestinationID);
+                var copiedFolderIdAcquisition = responseCopy.id;
                 //Copy ASM Root Folder
                 var ASMTemplateID = "135528955646";
                 var ASMTemplateDestinationID = "135532870566";
@@ -341,7 +342,7 @@
                 console.log(res2);
                 const res3 = await getFolderItems(responseCopy.id, accessToken);
                 console.log(res3);
-                const res5 = await setFolderMetadata(accessToken,copiedFolderId);
+                const res5 = await setFolderMetadata(accessToken,copiedFolderIdAcquisition);
                 console.log(res5);
                 const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
                 console.log(res4);
