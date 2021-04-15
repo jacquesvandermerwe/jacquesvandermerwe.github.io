@@ -166,11 +166,10 @@
                     "Authorization": "Bearer " + accessToken,
                     "Content-Type": "application/json-patch+json"
                 },
-                "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country}, {
-                    "op": "replace",
-                    "path": "/place",
-                    "value": property
-                }, {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
+                "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country},
+                    {"op": "replace","path": "/place","value": property_name},
+                    {"op": "replace","path": "/city","value": property_location},
+                    {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
             };
 
             $.ajax(settingsMetadataUpdate).done(function (response) {
