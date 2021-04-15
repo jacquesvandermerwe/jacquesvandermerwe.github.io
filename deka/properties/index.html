@@ -152,6 +152,10 @@
                 "data": "{\"folder_id\":\"" + folderId + "\",\"scope\":\"enterprise_" + boxEID + "\",\"templateKey\":\"propertyInformation\"}",
             };
 
+
+            $.ajax(settings).error(function (response) {
+                console.log(response);
+            };
             $.ajax(settings).done(function (response) {
                 console.log("Cascade Template" + response);
                 metadata_cascade_policy_id = response.id;
