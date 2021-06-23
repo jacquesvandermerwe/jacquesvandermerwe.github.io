@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getToken(){
+        //     return new Promise(function(resolve, reject){
+        //
+        //
+        //             console.log('CjXsellNiyQvWcFRJnIblLhAL25hfSTC');
+        //             resolve('CjXsellNiyQvWcFRJnIblLhAL25hfSTC');
+        //
+        // });
+
+
+            return new Promise(function(resolve,reject){
+                let formData = new URLSearchParams();
+                formData.append('client_id', 'r0942vwf2991khxygt77yktbivho3exm');
+                formData.append('client_secret', 'kBx7JX7wWEvwd6gvyYovt8younLiHuIL');
+                formData.append('grant_type', 'client_credentials');
+                formData.append('box_subject_type', 'enterprise');
+                formData.append('box_subject_id', '39176179');
+
+                let request = new XMLHttpRequest();
+
+                request.open('POST','https://api.box.com/oauth2/token/');
+                request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                // request.setRequestHeader("Access-Control-Allow-Origin","*");
+                // request.setRequestHeader("Access-Control-Allow-Methods","GET, POST, DELETE, PATCH, PUT");
+                // request.setRequestHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept, X-Tableau-Auth");
+                request.send(formData.toString());
+
+                request.onload = function() {
+                    let response = JSON.parse(request.response);
+                    console.log(response['access_token']);
+
+                    resolve(response['access_token']);
+                }
+
+                request.onerror = function() {
+                    console.log(request.status + ': ' + request.statusText);
+                    reject(request.status + ': ' + request.statusText);
+                }
+            })
+
+        }
+
+        function createFolder(folderName, accessToken){
+            return new Promise(function(resolve,reject){
+                let body = {
+                    'name': `${folderName}`,
+                    'parent': {
+                        'id': '0'
+                    }
+                };
+                let request = new XMLHttpRequest();
+
+                request.open('POST','https://api.box.com/2.0/folders/');
+                request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+                request.setRequestHeader('Content-Type','application/json');
+                request.send(JSON.stringify(body));
+
+                request.onload = function() {
+                    let response = JSON.parse(request.response);
+                    console.log(response.id);
+                    resolve(response.id);
+                }
+
+                request.onerror = function() {
+                    reject(request.status + ': ' + request.statusText);
+                }
+            });
+        }
+
+        function createFileRequest(folderId, accessToken){
+            return new Promise(function(resolve, reject){
+                let monthFromToday = new Date(new Date().setDate((new Date().getDate() + 30)));
+                let body = {
+                    'title': 'Please upload required documents',
+                    'description': 'Please upload required documents',
+                    'is_email_required': false,
+                    'expires_at': monthFromToday.toISOString(),
+                    'folder': {
+                        'id':`${folderId}`,
+                        'type':'folder'
+                    }
+                };
+                let request = new XMLHttpRequest();
+
+                request.open('POST','https://api.box.com/2.0/file_requests/307212360/copy');
+                request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+                request.setRequestHeader('Content-Type','application/json');
+                // request.setRequestHeader('Access-Control-Allow-Origin','http://localhost');
+                // request.setRequestHeader('Access-Control-Allow-Methods','GET, POST, DELETE, PATCH, PUT');
+                // request.setRequestHeader('Access-Control-Allow-Headers','*');
+                request.send(JSON.stringify(body));
+
+                request.onload = function() {
+                    let response = JSON.parse(request.response);
+                    console.log(response);
+                    resolve(response.url);
+                }
+
+                request.onerror = function() {
+                    console.log(response);
+                    reject(request.status + ': ' + request.statusText);
+                }
+            })
+        }
+
+        function createFileRequest3(folderId, accessToken) {
+            var settings = {
+                "url": "https://api.box.com/2.0/file_requests/1030257372/copy",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + accessToken
+                },
+                "data": JSON.stringify({
+                    "title": "Please upload required documents",
+                    "description": "Please upload required documents",
+                    "status": "active",
+                    "is_email_required": true,
+                    "is_description_required": true,
+                    "expires_at": "2021-09-28T10:53:43-08:00",
+                    "folder": {
+                        "type": "folder",
+                        "id": folderId
+                    }
+                }),
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+        }
+
+        function createFileRequest2(folderId, accessToken){
+            var data = JSON.stringify({
+                "title": "Please upload required documents",
+                "description": "Please upload required documents",
+                "status": "active",
+                "is_email_required": true,
+                "is_description_required": true,
+                "expires_at": "2021-09-28T10:53:43-08:00",
+                "folder": {
+                    "type": "folder",
+                    "id": folderId
+                }
+            });
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("POST", "https://api.box.com/2.0/file_requests/307212360/copy");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+
+            xhr.send(data);
+        }
+
+
+        function myFunction(){
+            getToken().then(token => {
+                createFolder('JVDM2', token).then(folderId => {
+                    createFileRequest3(folderId, token);
+                })
+            })
+            alert("Page is loaded");
+        }
+
+    </script>
+</head>
+<body onload="myFunction()">
+
+</body>
+</html>
