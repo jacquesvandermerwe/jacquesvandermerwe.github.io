@@ -52,7 +52,7 @@
                 let body = {
                     'name': `${folderName}`,
                     'parent': {
-                        'id': '0'
+                        'id': '139755267901'
                     }
                 };
                 let request = new XMLHttpRequest();
@@ -171,9 +171,10 @@
 
         function myFunction(){
             getToken().then(token => {
-                createFolder('JVDM2', token).then(folderId => {
+                var currentdate = new Date();
+                createFolder('PSNI-Test:' + currentdate, token).then(folderId => {
                     createFileRequest3(folderId, token);
-                })
+                });
             })
             alert("Page is loaded");
         }
