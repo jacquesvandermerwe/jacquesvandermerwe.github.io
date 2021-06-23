@@ -102,6 +102,7 @@
                 request.open('POST','https://api.box.com/2.0/file_requests/1048310341/copy');
                 request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
                 request.setRequestHeader('Content-Type','application/json');
+                request.setRequestHeader('Origin','*');
                 request.send(JSON.stringify(body));
 
                 request.onload = function() {
