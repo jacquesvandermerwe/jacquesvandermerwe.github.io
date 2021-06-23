@@ -9,3 +9,5 @@
 .DS_STORE
 
 .idea/csv-plugin.xml
+.idea/*
+
