@@ -112,6 +112,8 @@
 
         function createFileRequestJquery(folderId, accessToken) {
             console.log('File Request Folder ID:' + folderId + ' Token:' + accessToken);
+            setTimeout(() => {  console.log("Delay"); }, 5000);
+            console.log('File Request Sent');
             var settings = {
                 "url": "https://api.box.com/2.0/file_requests/1030257372/copy",
                 "method": "POST",
