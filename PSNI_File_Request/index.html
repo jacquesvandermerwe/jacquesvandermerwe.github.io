@@ -145,6 +145,7 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
+                $("#FileRequestResponse").text("Hello world!");
             });
         }
 
@@ -192,6 +193,9 @@
     </script>
 </head>
 <body onload="myFunction()">
+<p id="FileRequestResponse">
+
+</p>
 
 </body>
 </html>
