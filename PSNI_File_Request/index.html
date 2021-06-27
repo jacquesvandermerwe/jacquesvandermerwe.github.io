@@ -155,7 +155,6 @@
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 var str = JSON.stringify(response, undefined, 4);
-                output(str);
                 output(syntaxHighlight(str));
             });
         }
