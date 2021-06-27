@@ -154,39 +154,35 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-                $("#FileRequestResponse").text(JSON.stringify(response,null, 2));
+                var str = JSON.stringify(response, undefined, 4);
+                output(str);
+                output(syntaxHighlight(str));
             });
         }
 
-        function createFileRequest2(folderId, accessToken){
-            var data = JSON.stringify({
-                "title": "Please upload required documents",
-                "description": "Please upload required documents",
-                "status": "active",
-                "is_email_required": true,
-                "is_description_required": true,
-                "expires_at": "2021-09-28T10:53:43-08:00",
-                "folder": {
-                    "type": "folder",
-                    "id": folderId
-                }
-            });
-
-            var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-
-            xhr.addEventListener("readystatechange", function() {
-                if(this.readyState === 4) {
-                    console.log(this.responseText);
-                }
-            });
-
-            xhr.open("POST", "https://api.box.com/2.0/file_requests/307212360/copy");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
-
-            xhr.send(data);
+        function output(inp) {
+            document.body.appendChild(document.createElement('pre')).innerHTML = inp;
         }
+
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
 
 
         function myFunction(){
@@ -202,7 +198,7 @@
     </script>
 </head>
 <body onload="myFunction()">
-<code id="FileRequestResponse">
+
 
 </code>
 
