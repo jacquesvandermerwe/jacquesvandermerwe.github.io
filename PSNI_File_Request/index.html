@@ -154,7 +154,7 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-                $("#FileRequestResponse").text(response);
+                $("#FileRequestResponse").text(JSON.stringify(response));
             });
         }
 
