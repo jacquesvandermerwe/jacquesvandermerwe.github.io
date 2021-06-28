@@ -50,7 +50,7 @@
                     console.log(response['access_token']);
                     var str = JSON.stringify(response, undefined, 4);
                     // output(syntaxHighlight(str));
-                    output(str);
+                    output(str,"Access Token Data");
                     resolve(response['access_token']);
                 }
 
@@ -82,7 +82,7 @@
                     console.log(response.id);
                     var str = JSON.stringify(response, undefined, 4);
                     // output(syntaxHighlight(str));
-                    output(str);
+                    output(str,"Folder Request Data");
                     resolve(response.id);
                 }
 
@@ -155,11 +155,12 @@
                 console.log(response);
                 var str = JSON.stringify(response, undefined, 4);
                 // output(syntaxHighlight(str));
-                output(str);
+                output(str, "File Request Data");
             });
         }
 
-        function output(inp) {
+        function output(inp,titleText) {
+            var title = document.body.appendChild(document.createElement('h2')).innerText=titleText;
             var pre = document.body.appendChild(document.createElement('pre'));
             var code = pre.appendChild(document.createElement('code'))
             code.className="language-json"
