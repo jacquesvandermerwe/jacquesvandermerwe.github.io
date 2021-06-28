@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>PSNI File Request Example</title>
+    <link href="themes/prism.css" rel="stylesheet" />
     <style>
         pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
         .string { color: green; }
@@ -154,7 +155,7 @@
         }
 
         function output(inp) {
-            document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+            document.body.appendChild(document.createElement('pre')).appendChild(document.createElement('code')).innerHTML = inp;
         }
 
         function syntaxHighlight(json) {
@@ -191,9 +192,8 @@
     </script>
 </head>
 <body onload="myFunction()">
+<script src="prism.js"></script>
 
-
-</code>
 
 </body>
 </html>
