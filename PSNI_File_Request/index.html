@@ -188,17 +188,16 @@
 
 
         function myFunction(){
-            getToken().then(token => {
+            getToken()
+                .then(token => {
                 var currentdate = new Date();
                 createFolder('PSNI-Test:' + currentdate, token)
                     .then(folderId => {
-                    createFileRequestJquery(folderId, token).then( FrId =>
-                        {
-                            hljs.highlightAll();
-                            alert("Complete 3");
-                        }
-                    );
-
+                    createFileRequestJquery(folderId, token)
+                    .then (fileRequest => {
+                        hljs.highlightAll();
+                        alert("Complete 4");
+                    });
                 })
             })
 
