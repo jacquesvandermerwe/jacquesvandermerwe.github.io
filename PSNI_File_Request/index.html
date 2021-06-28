@@ -192,10 +192,12 @@
                 var currentdate = new Date();
                 createFolder('PSNI-Test:' + currentdate, token)
                     .then(folderId => {
-                    createFileRequestJquery(folderId, token).then(filerequestId => {
-                        hljs.highlightAll();
-                        alert("Complete 2")
-                    });
+                    createFileRequestJquery(folderId, token).then( FrId =>
+                        {
+                            hljs.highlightAll();
+                            alert("Complete 3");
+                        }
+                    );
 
                 })
             })
