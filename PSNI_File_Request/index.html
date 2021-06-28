@@ -25,30 +25,19 @@
 
 
         function getToken(){
-        //     return new Promise(function(resolve, reject){
-        //
-        //
-        //             console.log('CjXsellNiyQvWcFRJnIblLhAL25hfSTC');
-        //             resolve('CjXsellNiyQvWcFRJnIblLhAL25hfSTC');
-        //
-        // });
-
 
             return new Promise(function(resolve,reject){
                 let formData = new URLSearchParams();
-                formData.append('client_id', 'r0942vwf2991khxygt77yktbivho3exm');
-                formData.append('client_secret', 'kBx7JX7wWEvwd6gvyYovt8younLiHuIL');
+                formData.append('client_id', '<client_id>');
+                formData.append('client_secret', '<client_secret>');
                 formData.append('grant_type', 'client_credentials');
                 formData.append('box_subject_type', 'enterprise');
-                formData.append('box_subject_id', '39176179');
+                formData.append('box_subject_id', '<enterprise_id>');
 
                 let request = new XMLHttpRequest();
 
                 request.open('POST','https://api.box.com/oauth2/token/');
                 request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-                // request.setRequestHeader("Access-Control-Allow-Origin","*");
-                // request.setRequestHeader("Access-Control-Allow-Methods","GET, POST, DELETE, PATCH, PUT");
-                // request.setRequestHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept, X-Tableau-Auth");
                 request.send(formData.toString());
 
                 request.onload = function() {
