@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>PSNI File Request Example</title>
-    <style>
-        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
-        .string { color: green; }
-        .number { color: darkorange; }
-        .boolean { color: blue; }
-        .null { color: magenta; }
-        .key { color: red; }
+<!--    <style>-->
+<!--        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }-->
+<!--        .string { color: green; }-->
+<!--        .number { color: darkorange; }-->
+<!--        .boolean { color: blue; }-->
+<!--        .null { color: magenta; }-->
+<!--        .key { color: red; }-->
 
-    </style>
+<!--    </style>-->
     <link rel="stylesheet"
           href="styles/base16/synth-midnight-terminal-dark.min.css">
     <script src="highlight.min.js"></script>
@@ -161,6 +161,7 @@
         function output(inp) {
             var pre = document.body.appendChild(document.createElement('pre'));
             var code = pre.appendChild(document.createElement('code'))
+            code.className="language-json"
             code.innerHTML = inp;
         }
 
