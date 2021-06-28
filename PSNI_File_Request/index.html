@@ -54,7 +54,8 @@
                 request.onload = function() {
                     let response = JSON.parse(request.response);
                     console.log(response['access_token']);
-
+                    var str = JSON.stringify(response, undefined, 4);
+                    output(syntaxHighlight(str));
                     resolve(response['access_token']);
                 }
 
@@ -84,6 +85,8 @@
                 request.onload = function() {
                     let response = JSON.parse(request.response);
                     console.log(response.id);
+                    var str = JSON.stringify(response, undefined, 4);
+                    output(syntaxHighlight(str));
                     resolve(response.id);
                 }
 
