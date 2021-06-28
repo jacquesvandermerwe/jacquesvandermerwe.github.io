@@ -194,9 +194,10 @@
                     .then(folderId => {
                     createFileRequestJquery(folderId, token);
                 })
+                    .then(hljs.highlightAll())
+                    .then(alert("Complete"));
             })
-                .then(hljs.highlightAll())
-                .then(alert("Complete"));
+
             // alert("Page is loaded: PSNI  (Local)");
         }
 
