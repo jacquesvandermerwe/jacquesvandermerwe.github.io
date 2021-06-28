@@ -164,6 +164,7 @@
             var code = pre.appendChild(document.createElement('code'))
             code.className="language-json"
             code.innerHTML = inp;
+            hljs.highlightAll();
         }
 
         function syntaxHighlight(json) {
@@ -193,11 +194,7 @@
                 var currentdate = new Date();
                 createFolder('PSNI-Test:' + currentdate, token)
                     .then(folderId => {
-                    createFileRequestJquery(folderId, token)
-                    .then (fileRequest => {
-                        hljs.highlightAll();
-                        alert("Complete 4");
-                    });
+                    createFileRequestJquery(folderId, token);
                 })
             })
 
