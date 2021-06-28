@@ -47,7 +47,8 @@
                     let response = JSON.parse(request.response);
                     console.log(response['access_token']);
                     var str = JSON.stringify(response, undefined, 4);
-                    output(syntaxHighlight(str));
+                    // output(syntaxHighlight(str));
+                    output(str);
                     resolve(response['access_token']);
                 }
 
@@ -78,7 +79,8 @@
                     let response = JSON.parse(request.response);
                     console.log(response.id);
                     var str = JSON.stringify(response, undefined, 4);
-                    output(syntaxHighlight(str));
+                    // output(syntaxHighlight(str));
+                    output(str);
                     resolve(response.id);
                 }
 
@@ -150,7 +152,8 @@
             $.ajax(settings).done(function (response) {
                 console.log(response);
                 var str = JSON.stringify(response, undefined, 4);
-                output(syntaxHighlight(str));
+                // output(syntaxHighlight(str));
+                output(str);
             });
         }
 
@@ -189,7 +192,7 @@
                     createFileRequestJquery(folderId, token);
                 });
             })
-            alert("Page is loaded: PSNI Test JQuery");
+            alert("Page is loaded: PSNI Prism");
         }
 
     </script>
