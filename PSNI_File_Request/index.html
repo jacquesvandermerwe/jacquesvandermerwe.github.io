@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>PSNI File Request Example</title>
-    <link href="prism.css" rel="stylesheet" />
-<!--    <style>-->
-<!--        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }-->
-<!--        .string { color: green; }-->
-<!--        .number { color: darkorange; }-->
-<!--        .boolean { color: blue; }-->
-<!--        .null { color: magenta; }-->
-<!--        .key { color: red; }-->
+    <style>
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
 
-<!--    </style>-->
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -160,7 +159,6 @@
         function output(inp) {
             var pre = document.body.appendChild(document.createElement('pre'));
             var code = pre.appendChild(document.createElement('code'))
-            code.className="language-json";
             code.innerHTML = inp;
         }
 
@@ -198,7 +196,6 @@
     </script>
 </head>
 <body onload="myFunction()">
-<script src="prism.js"></script>
 
 
 </body>
