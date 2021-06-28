@@ -192,7 +192,7 @@
                 var currentdate = new Date();
                 createFolder('PSNI-Test:' + currentdate, token).then(folderId => {
                     createFileRequestJquery(folderId, token);
-                });
+                }).then(hljs.highlightAll());
             })
             alert("Page is loaded: PSNI  (Local)");
         }
