@@ -26,13 +26,15 @@
 
         function getToken(){
 
+
+
             return new Promise(function(resolve,reject){
                 let formData = new URLSearchParams();
-                formData.append('client_id', '<client_id>');
-                formData.append('client_secret', '<client_secret>');
+                formData.append('client_id', 'r0942vwf2991khxygt77yktbivho3exm');
+                formData.append('client_secret', 'kBx7JX7wWEvwd6gvyYovt8younLiHuIL');
                 formData.append('grant_type', 'client_credentials');
                 formData.append('box_subject_type', 'enterprise');
-                formData.append('box_subject_id', '<enterprise_id>');
+                formData.append('box_subject_id', '39176179');
 
                 let request = new XMLHttpRequest();
 
