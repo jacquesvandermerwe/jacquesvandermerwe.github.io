@@ -7,7 +7,7 @@
         function loadNewDoc(){
             var loc = window.location;
             window.location = loc.hostname + loc.port + loc.pathname + loc.search;
-            window.location = "http://localhost:8080/redirect.html";
+            window.location = "http://localhost:8080/redirect.html?" + loc.search;
         };
     </script>
 </head>
