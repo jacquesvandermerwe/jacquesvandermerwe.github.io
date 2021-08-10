@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<p>Redirected File</p>
-
+<body onload="myFunction()">
+<p>Redirected File: Local File</p>
+<p>Host:</p>
+<p id="host"></p>
+<script>
+    function myFunction() {
+        var x = location.hostname;
+        document.getElementById("host").innerHTML= x;
+    }
+</script>
 </body>
 </html>
