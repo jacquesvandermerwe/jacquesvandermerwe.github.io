@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect File</title>
+    <script>
+        function loadNewDoc(){
+            var loc = window.location;
+            window.location = loc.hostname + loc.port + loc.pathname + loc.search;
+            window.location = "redirect.html";
+        };
+    </script>
+</head>
+<body onLoad="loadNewDoc()">
+
+</body>
+</html>
