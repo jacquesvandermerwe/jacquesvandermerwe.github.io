@@ -11,8 +11,8 @@
     <script>
         $(document).ready(function () {
             var params = new URLSearchParams(window.location.search);
-            console.log(params);
             var guserID = params.get("user_id");
+            console.log(guserID);
             var form = new FormData();
             form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
             form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
@@ -27,7 +27,15 @@
                 "timeout": 0,
                 "processData": false,
                 "contentType": false,
-                "data": form
+                "data": form,
+                success: function (response) {
+                    // The response is a JSON object that contains the access token.
+                    console.log("Access Token:", response.access_token);
+                    // You can now use the token as needed.
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error retrieving token:", status, error);
+                }
             };
 
             $.ajax(settings).done(function (response) {
