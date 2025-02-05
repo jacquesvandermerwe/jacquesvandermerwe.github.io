@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deka Project Creation</title>
+    <!-- Latest version of the explorer css for your locale -->
+    <!--    <link-->
+    <!--            rel="stylesheet"-->
+    <!--            href="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.css"-->
+    <!--    />-->
+    <link href="media/deka.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--    <script src="http://www.json.org/json.js"></script>-->
+    <script src="jsonpath.js"></script>
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        let items = new Map()
+        let accessToken = "";
+        let propertyName = "";
+        let country = '';
+        let property_location = '';
+        let transaction_id = '';
+        let property_name = '';
+        let metadata_cascade_policy_id = '';
+        let copiedFolderId='';
+        let boxEID = "789106550";
+        $(document).ready(function () {
+
+
+            //Get Access Token for User
+            var gaccessToken = "";
+            var gfileId = "";
+            var grefreshToken = "";
+            var gauthCode = "";
+            var guserID = "";
+            var clientId = "6sjr78bmcic5cn0yvqmdh9z2kpftyycq";
+            var clientSecret = "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc";
+            var boxEID = "789106550";
+            var entries = params.entries();
+            for (pair of entries) {
+                $("#test").append(pair[0] + "=" + pair[1] + "<br/>");
+            }
+            gauthCode = params.get("auth_code");
+            guserID= params.get("user_id");
+            $("#authCode").val(gauthCode);
+            $("#clientId").val(clientId);
+            $("#clientSecret").val(clientSecret);
+            $("#userId").val(guserID);
+            // Getting the Access Token
+            var form = new FormData();
+            form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
+            form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
+            form.append("grant_type", "client_credentials");
+            form.append("box_subject_type", "user");
+            form.append("box_subject_id", guserID);
+
+            var settings = {
+                "async": false,
+                "url": "https://api.box.com/oauth2/token",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                var obj = JSON.parse(response);
+                gaccessToken = obj.access_token;
+                grefreshToken = obj.refresh_token;
+                gfileId = params.get("file_id");
+
+                $("#accessTokenOAuth2").val(obj.access_token);
+                $("#accessToken").val(obj.access_token);
+                $("#fileId").val(gfileId);
+                $("#test").append(response + "<br/>");
+            });
+
+ /*           $.ajax(settings).done(function (response) {
+                console.log('Access Token ' + response);
+                var obj = JSON.parse(response);
+                //Completed Getting Access Token
+
+                gaccessToken = obj.access_token;
+                grefreshToken = obj.refresh_token;
+                gfileId = params.get("file_id");
+                $("#refreshToken").val(obj.refresh_token);
+                $("#accessTokenOAuth2").val(obj.access_token);
+                $("#accessToken").val(obj.access_token);
+                $("#fileId").val(gfileId);
+                $("#test").append(response + "<br/>");
+
+            });*/
+
+
+            //End Get Access Token for User
+
+
+            $("button").click(function () {
+                updateStatus("Creating Folder Structure");
+                createTemplateStructure();
+            });
+        });
+
+        function updateStatus(status) {
+            $("#status").text(status);
+        }
+
+        function copyFolder(name, accessToken, sourceID, targetID) {
+            updateStatus("Copying Folder Template");
+            //Copy the Folder
+            var responseCall;
+            var datename = new Date();
+            var settings = {
+                "url": "https://api.box.com/2.0/folders/" + sourceID + "/copy",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer " + accessToken,
+                    "Content-Type": "text/plain"
+                },
+                "data": "{\"parent\": {\"id\" : "+ targetID + "}, \"name\":\"" + name + " " + datename.toISOString() + "\"}",
+            };
+
+            /*            $.ajax(settings).done(function (response) {
+                            console.log("Copied: " + response);
+                            return response;
+                        });*/
+
+            return $.ajax(settings)
+                .then(function (response) {
+                    updateStatus("Completed Folder Template Copy");
+                    console.log("copyFolder response: " + JSON.stringify(response));
+                    copiedFolderId = response.id;
+                    return response;
+                });
+
+
+        };
+
+        function setFolderMetadata(accessToken, folderId) {
+            var settings = {
+                "url": "https://api.box.com/2.0/metadata_cascade_policies",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer " + accessToken,
+                    "Content-Type": "application/json"
+                },
+                "data": "{\"folder_id\":\"" + folderId + "\",\"scope\":\"enterprise_" + boxEID + "\",\"templateKey\":\"propertyInformation\"}",
+            };
+
+
+
+            $.ajax(settings).always(function (response) {
+                console.log("Cascade Template" + response);
+                metadata_cascade_policy_id = response.id;
+                //alert(metadata_cascade_policy_id);
+
+                var settingsMetadataUpdate = {
+                    "url": "https://api.box.com/2.0/folders/" + folderId + "/metadata/enterprise_" + boxEID + "/propertyInformation",
+                    "method": "PUT",
+                    "timeout": 0,
+                    "headers": {
+                        "Authorization": "Bearer " + accessToken,
+                        "Content-Type": "application/json-patch+json"
+                    },
+                    "data": JSON.stringify([{"op": "replace", "path": "/country", "value": country},
+                        {"op": "replace","path": "/place","value": property_name},
+                        {"op": "replace","path": "/city","value": property_location},
+                        {"op": "replace", "path": "/transactionId", "value": transaction_id}]),
+                };
+
+                $.ajax(settingsMetadataUpdate).always(function (response) {
+                    console.log("Metadata Update" + response);
+                    var settings = {
+                        "url": "https://api.box.com/2.0/metadata_cascade_policies/"+ metadata_cascade_policy_id + "/apply",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer " + accessToken
+                        },
+                        "data": JSON.stringify({"conflict_resolution":"overwrite"}),
+                    };
+
+                    $.ajax(settings).always(function (response) {
+                        console.log("Force Apply:" + response);
+                    });
+
+                });
+                return response;
+
+            });
+
+
+
+        }
+
+        function getUser(accessToken) {
+            updateStatus("Getting User");
+            var settings = {
+                "url": "https://api.box.com/2.0/users/me",
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer " + accessToken
+                },
+            };
+            return $.ajax(settings)
+                .then(function (response) {
+                    console.log("getUser response: " + JSON.stringify(response));
+                    updateStatus("Completed: Getting User");
+                    return response;
+                });
+
+        }
+
+        function getFolderItems(folderId, accessToken) {
+            updateStatus("Getting Folder Items");
+            var settings = {
+                "url": "https://api.box.com/2.0/folders/" + folderId + "/items",
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer " + accessToken
+                },
+            };
+
+            return $.ajax(settings)
+                .then(function (response) {
+                    console.log("Folder Items response: " + JSON.stringify(response));
+                    var items = response.entries;
+                    items.forEach(getBoxObjectDetails);
+                    return response;
+                });
+
+        }
+
+        function renameFileItems(fileId, fileName, accessToken) {
+            updateStatus("Renaming Item:File ID:" + fileId);
+            fileName=fileName.replaceAll('$$country$$',country);
+            fileName=fileName.replaceAll('$$property_location$$',property_location);
+            fileName=fileName.replaceAll('$$transaction_id$$',transaction_id);
+            fileName=fileName.replaceAll('$$object_name$$',property_name);
+            fileName=fileName.replaceAll('$$name$$', propertyName)
+            if (fileName.indexOf("$$name$$") >= 0) {
+                var settings = {
+                    "url": "https://api.box.com/2.0/files/" + fileId,
+                    "method": "PUT",
+                    "timeout": 0,
+                    "headers": {
+                        "Authorization": "Bearer " + accessToken,
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({"name": fileName}),
+                };
+
+                return $.ajax(settings)
+                    .then(function (response) {
+                        console.log("File Rename response: " + JSON.stringify(response));
+                        return response;
+                    });
+            }
+        }
+
+        function renameFolderItems(folderId, folderName, accessToken) {
+            updateStatus("Renaming Item:Folder ID:" + folderId);
+            folderName=folderName.replaceAll('$$country$$',country);
+            folderName=folderName.replaceAll('$$property_location$$',property_location);
+            folderName=folderName.replaceAll('$$transaction_id$$',transaction_id);
+            folderName=folderName.replaceAll('$$object_name$$',property_name);
+            folderName=folderName.replaceAll('$$name$$', propertyName)
+
+            if (folderName.indexOf("$$name$$") >= 0) {
+                var settings = {
+                    "url": "https://api.box.com/2.0/folders/" + folderId,
+                    "method": "PUT",
+                    "timeout": 0,
+                    "headers": {
+                        "Authorization": "Bearer " + accessToken,
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({"name": folderName}),
+                };
+
+                return $.ajax(settings)
+                    .then(function (response) {
+                        console.log("Folder Rename response: " + JSON.stringify(response));
+                        return response;
+                    });
+            }
+        }
+
+        function getBoxObjectDetails(value, index, array) {
+            console.log(value.type, value.id, index)
+            updateStatus("Getting Item:" + value.type + " ID:" + value.id);
+
+            if (value.type == "folder") {
+                renameFolderItems(value.id, value.name, accessToken);
+                updateStatus("Check and Renaming Item:", value.type, " ID:", value.id);
+                getFolderItems(value.id, accessToken);
+            } else if (value.type == "file") {
+                updateStatus("Getting Item:", value.type, " ID:", value.id);
+                renameFileItems(value.id, value.name, accessToken);
+            }
+        }
+
+        function forceApplyMetadataValues(metadata_cascade_policy_id, accessToken) {
+
+            var settings = {
+                "url": "https://api.box.com/2.0/metadata_cascade_policies/"+ metadata_cascade_policy_id + "/apply",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + accessToken
+                },
+                "data": JSON.stringify({"conflict_resolution":"overwrite"}),
+            };
+
+            $.ajax(settings).always(function (response) {
+                console.log("Force Apply:" + response);
+            });
+
+        }
+
+        async function createTemplateStructure() {
+            try {
+                country = $('#country').val();
+                property_location = $('#property_location').val();
+                transaction_id = $('#transaction_id').val();
+                property_name = $('#property_name').val();
+                propertyName = country + " " + property_location + " " + property_name + " " + transaction_id;
+                accessToken = $('#accessToken').val();
+                //alert(country + " " + property +" " + transaction_id);
+                $("button").prop('disabled', true);
+                //Copy Main Folder
+                var templateID = $("#standard-select").val();
+                var templateDestinationID = $("#standard-select-destination").val();
+                const responseCopy = await copyFolder(propertyName + " Acquisitions", accessToken,templateID,templateDestinationID);
+                var copiedFolderIdAcquisition = responseCopy.id;
+                //Copy ASM Root Folder
+                var ASMTemplateID = "135528955646";
+                var ASMTemplateDestinationID = "135532870566";
+                const responseASMCopy = await copyFolder(propertyName + " ASM", accessToken,ASMTemplateID,ASMTemplateDestinationID);
+                console.log(responseASMCopy);
+                //Copy DataRoom Root Folder
+                var DataRoomTemplateID = "135528953246";
+                var DataRoomTemplateDestinationID = "135528627708";
+                const responseDataRoomCopy = await copyFolder(propertyName + " Data Room", accessToken,DataRoomTemplateID,DataRoomTemplateDestinationID);
+                console.log(responseDataRoomCopy);
+                //Copy MigrationDMS Root Folder
+                var MigrationDMSTemplateID = "135528954446";
+                var MigrationDMSTemplateDestinationID = "135528850774";
+                const responseMigrationDMSCopy = await copyFolder(propertyName + " Migration DMS", accessToken,MigrationDMSTemplateID,MigrationDMSTemplateDestinationID);
+                console.log(responseMigrationDMSCopy);
+                const res2 = await getUser(accessToken);
+                console.log(res2);
+                const res3 = await getFolderItems(responseCopy.id, accessToken);
+                console.log(res3);
+                const res5 = await setFolderMetadata(accessToken,copiedFolderIdAcquisition);
+                console.log(res5);
+                setTimeout(() => {  console.log("Pause!"); }, 2000);
+                const res4 = await forceApplyMetadataValues(metadata_cascade_policy_id, accessToken);
+                console.log(res4);
+                await updateStatus("Completed")
+                $("button").prop('disabled', false);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+    </script>
+    <script src="jsonpath.js"></script>
+</head>
+<body>
+
+
+<!--<label><span class="label bdl-Label bdl-ReadOnlyMetadataField"><span>Access Token</span></span>
+    <div class="text-input-description">Box Access Token</div>
+    <input id="accessToken" aria-invalid="false" name="textinput" type="text" placeholder="Access Token"
+           value="i0KAg4CUmxETvogfXpRm9Is4DrwmBNbD"></label>
+
+<label><span class="label bdl-Label"><span>Country</span></span>
+    <div class="text-input-description">Country of the property</div>
+    <input id="country" aria-invalid="false" name="textinput" type="text" placeholder="Enter country information"
+           value="DE"></label>
+
+<label><span class="label bdl-Label"><span>Property</span></span>
+    <div class="text-input-description">Property Location</div>
+    <input id="property" aria-invalid="false" name="textinput" type="text" placeholder="Enter property information"
+           value="HAMBURG"></label>
+<p></p>
+
+<label><span class="label bdl-Label"><span>Transaction ID</span></span>
+    <div class="text-input-description">Transaction ID</div>
+    <input id="transaction_id" aria-invalid="false" name="textinput" type="text" placeholder="Transaction ID"
+           value="987"></label>-->
+<p></p>
+
+
+<table class="demo">
+    <thead>
+    <tr>
+        <th style="text-align: center" width="20%"><img height="50" src="media/logo.png"></th>
+        <th width="40%">Property Information</th>
+        <th width="20%">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label bdl-ReadOnlyMetadataField"><span>Access Token</span></span>
+            <div class="text-input-description">Box Access Token</div>
+            <input aria-invalid="false" id="accessToken" name="textinput" placeholder="Access Token" type="text"
+                   value="Jztc0JygA7zKkI18yyyZZ6Li1LzbQzMm"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label bdl-ReadOnlyMetadataField"><span>Template Selection</span></span>
+            <div class="text-input-description">Select Template Type to use</div>
+            <div class="select">
+                <select id="standard-select">
+                    <option value="135528952046">Deka International</option>
+                    <option value="135528952046">Deka Europe</option>
+                    <option value="135528952046">Deka Germany</option>
+                    <option value="135528952046">Deka Logistik</option>
+                </select></div>
+        </label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label bdl-ReadOnlyMetadataField"><span>Template Destination</span></span>
+            <div class="text-input-description">Select Template Destination</div>
+            <div class="select">
+                <select id="standard-select-destination">
+                    <option value="135528948446">Deka International</option>
+                    <option value="135528950846">Deka Europe</option>
+                    <option value="135528947246">Deka Germany</option>
+                    <option value="135528949646">Deka Spezialisten</option>
+                </select></div>
+        </label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span>Country</span></span>
+            <div class="text-input-description">Country of the property</div>
+            <input aria-invalid="false" id="country" name="textinput" placeholder="Enter country information"
+                   type="text"
+                   value="DE"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span>Property</span></span>
+            <div class="text-input-description">Property Location (City)</div>
+            <input aria-invalid="false" id="property_location" name="textinput" placeholder="Enter property information"
+                   type="text"
+                   value="HAMBURG"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span>Property</span></span>
+            <div class="text-input-description">Property Name</div>
+            <input aria-invalid="false" id="property_name" name="textinput" placeholder="Enter property information"
+                   type="text"
+                   value="HAMBURG"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span>Transaction ID</span></span>
+            <div class="text-input-description">Transaction ID</div>
+            <input aria-invalid="false" id="transaction_id" name="textinput" placeholder="Transaction ID" type="text"
+                   value="987"></label></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <button class="btn">Create Property Folder</button>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><label><span class="label bdl-Label"><span id="status">Status</span></span></label></td>
+        <td>&nbsp;</td>
+    </tr>
+
+    </tbody>
+</table>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Debug Parameter</th>
+        <th>Value</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Client id</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="clientId" name="clientId" value="">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>Client Secret</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="clientSecret" name="clientSecret" value="">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>Authentication Code</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="authCode" name="authCode" value="">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>User ID</td>
+        <td>
+            <div class="md-form">
+                <input type="text" id="userId" name="userId" value="">
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td>File ID</td>
+        <td>
+            <input type="text" id="fileId" name="fileId" value="" width="100%">
+        </td>
+    <tr>
+        <td>Access Token</td>
+        <td>
+            <input type="text" id="accessTokenOAuth2" name="accessTokenOAuth2" value="" width="100%">
+        </td>
+    </tr>
+
+    </tr>
+    <tr>
+        <td>Refresh Token1</td>
+        <td>
+            <input type="text" id="refreshToken" name="refreshToken" value="" width="100%">
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
