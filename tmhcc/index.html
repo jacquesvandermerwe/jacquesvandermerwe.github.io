@@ -21,22 +21,47 @@
             form.append("box_subject_id", guserID);
 
             var settings = {
-                "async": false,
                 "url": "https://api.box.com/oauth2/token",
                 "method": "POST",
                 "timeout": 0,
-                "processData": false,
-                "contentType": false,
-                "data": form,
-                success: function (response) {
-                    // The response is a JSON object that contains the access token.
-                    console.log("Access Token:", response.access_token);
-                    // You can now use the token as needed.
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
                 },
-                error: function (xhr, status, error) {
-                    console.error("Error retrieving token:", status, error);
-                }
+                "data": {
+                    "grant_type": "client_credentials",
+                    "client_id": "6sjr78bmcic5cn0yvqmdh9z2kpftyycq",
+                    "client_secret": "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc",
+                    "box_subject_type": "user",
+                    "box_subject_id": "3312464263"
+                },
+                success: function (response) {
+                // The response is a JSON object that contains the access token.
+                console.log("Access Token:", response.access_token);
+                // You can now use the token as needed.
+            },
+            error: function (xhr, status, error) {
+                console.error("Error retrieving token:", status, error);
+            }
             };
+
+
+            // var settings = {
+            //     "async": false,
+            //     "url": "https://api.box.com/oauth2/token",
+            //     "method": "POST",
+            //     "timeout": 0,
+            //     "processData": false,
+            //     "contentType": false,
+            //     "data": form,
+            //     success: function (response) {
+            //         // The response is a JSON object that contains the access token.
+            //         console.log("Access Token:", response.access_token);
+            //         // You can now use the token as needed.
+            //     },
+            //     error: function (xhr, status, error) {
+            //         console.error("Error retrieving token:", status, error);
+            //     }
+            // };
 
             $.ajax(settings).done(function (response) {
                 var obj = JSON.parse(response);
