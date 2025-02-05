@@ -6,11 +6,12 @@
     <!-- Include jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Include Box UI Elements CSS and JS for Content Explorer -->
-    <link rel="stylesheet" href="https://unpkg.com/box-ui-elements/dist/preview.css" />
-    <script src="https://unpkg.com/box-ui-elements/dist/preview.js"></script>
+    <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/21.0.0/en-US/explorer.css" />
+    <script src="https://cdn01.boxcdn.net/platform/elements/21.0.0/en-US/explorer.js"></script>
     <script>
         $(document).ready(function () {
             var params = new URLSearchParams(window.location.search);
+            console.log(params);
             var guserID = params.get("user_id");
             var form = new FormData();
             form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
