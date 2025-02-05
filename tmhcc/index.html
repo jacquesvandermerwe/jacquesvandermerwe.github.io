@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Access Token</title>
+    <title>Access Token & Content Explorer</title>
+    <!-- Include jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include Box UI Elements CSS and JS for Content Explorer -->
+    <link rel="stylesheet" href="https://unpkg.com/box-ui-elements/dist/preview.css" />
+    <script src="https://unpkg.com/box-ui-elements/dist/preview.js"></script>
     <script>
         $(document).ready(function () {
             var params = new URLSearchParams(window.location.search);
@@ -27,7 +31,13 @@
 
             $.ajax(settings).done(function (response) {
                 var obj = JSON.parse(response);
-                $("#accessToken").val(obj.access_token);
+                var token = obj.access_token;
+                $("#accessToken").val(token);
+
+                // Initialize the Box Content Explorer UI element using the generated token
+                var contentExplorer = new Box.ContentExplorer();
+                // The first argument is the folder ID (using "0" for the root folder)
+                contentExplorer.show('0', { token: token, container: '#boxContentExplorer' });
             });
         });
     </script>
@@ -39,6 +49,7 @@
     <input id="accessToken" type="text" placeholder="Access Token" readonly>
 </label>
 
+<!-- Debug Section -->
 <table class="table table-striped table-bordered table-hover">
     <thead class="thead-dark">
     <tr>
@@ -77,5 +88,8 @@
     </tr>
     </tbody>
 </table>
+
+<!-- Container for Box Content Explorer -->
+<div id="boxContentExplorer" style="height:600px; width:100%; margin-top: 20px;"></div>
 </body>
 </html>
