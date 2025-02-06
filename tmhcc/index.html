@@ -14,8 +14,8 @@
             var guserID = params.get("user_id");
             console.log(guserID);
             var form = new FormData();
-            form.append("client_id", "6sjr78bmcic5cn0yvqmdh9z2kpftyycq");
-            form.append("client_secret", "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc");
+            form.append("client_id", "u5m9sjshtkdmapeuo7eopf5cnngig8az");
+            form.append("client_secret", "eAVvFxxUmWXtt2wZcdorby3P3Tkb4CTg");
             form.append("grant_type", "client_credentials");
             form.append("box_subject_type", "user");
             form.append("box_subject_id", guserID);
@@ -29,8 +29,8 @@
                 },
                 "data": {
                     "grant_type": "client_credentials",
-                    "client_id": "6sjr78bmcic5cn0yvqmdh9z2kpftyycq",
-                    "client_secret": "DLjnCPBkWwWRUPw539wf8zRLipkBJuEc",
+                    "client_id": "u5m9sjshtkdmapeuo7eopf5cnngig8az",
+                    "client_secret": "eAVvFxxUmWXtt2wZcdorby3P3Tkb4CTg",
                     "box_subject_type": "user",
                     "box_subject_id": "3312464263"
                 },
@@ -64,14 +64,16 @@
             // };
 
             $.ajax(settings).done(function (response) {
-                var obj = JSON.parse(response);
-                var token = obj.access_token;
+                // console.log(response);
+                // var obj = JSON.parse(response);
+                // console.log(obj);
+                var token = response.access_token;
                 $("#accessToken").val(token);
 
                 // Initialize the Box Content Explorer UI element using the generated token
                 var contentExplorer = new Box.ContentExplorer();
                 // The first argument is the folder ID (using "0" for the root folder)
-                contentExplorer.show('0', { token: token, container: '#boxContentExplorer' });
+                contentExplorer.show("47692626908", token, {container: '#boxContentExplorer' });
             });
         });
     </script>
