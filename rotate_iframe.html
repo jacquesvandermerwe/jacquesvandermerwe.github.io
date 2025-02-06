@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .iframe-container {
+            transition: transform 0.3s ease;
+        }
+        button {
+            padding: 8px 16px;
+            margin-bottom: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button onclick="rotateIframe()">Rotate</button>
+<div id="iframeContainer" class="iframe-container">
+    <iframe src="https://cloud.app.box.com/embed/s/uitphdi7869b73t0lscosxpvqz7vro6k?showParentPath=false&sortColumn=date" width="800" height="550" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>
+</div>
+
+<script>
+    let rotation = 0;
+    function rotateIframe() {
+        rotation = (rotation + 90) % 360;
+        document.getElementById('iframeContainer').style.transform = `rotate(${rotation}deg)`;
+    }
+</script>
+</body>
+</html>
